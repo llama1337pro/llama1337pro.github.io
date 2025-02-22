@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Box Example</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.css">
+  <script type="text/javascript">
+    var user, pwd;
+
+    function setUserVar() {
+      user = document.getElementById("userInput").value;
+    }
+
+    function setPwdVar() {
+      pwd = document.getElementById("pwdInput").value;
+    }
+
+    function submitForm() {
+      var class_code = "some_class_code"; // Set the class_code variable here or retrieve its value dynamically
+
+      // First AJAX request
+      $.ajax({
+        url: 'https://intelligent.games/create_username.php',
+        type: 'post',
+        data: { 'user': user, 'class_code': class_code, 'pwd': pwd },
+        success: function(data){
+          console.log("|" + data.trim() + "|");
+
+          if (data.trim() == "USERNAME ALREADY PRESENT") {
+            $.alert({
+              title: "Username already present!",
+              content: 'Press OK to change your username'
+            });
+          }
+
+          if (data.trim() == "OK") {
+            $.alert({
+              title: "User created!",
+              content: 'Press OK to Finish'
+            });
+          }
+        },
+        complete: function(data){}
+      });
+
+      // Second AJAX request
+      $.ajax({
+        url: 'https://ellygames.com/create_username.php',
+        type: 'post',
+        data: { 'user': user, 'class_code': class_code, 'pwd': pwd },
+        success: function(data){
+          console.log("|" + data.trim() + "|");
+
+          if (data.trim() == "USERNAME ALREADY PRESENT") {
+            $.alert({
+              title: "Username already present!",
+              content: 'Press OK to change your username'
+            });
+          }
+
+          if (data.trim() == "OK") {
+            $.alert({
+              title: "User created!",
+              content: 'Press OK to Finish'
+            });
+          }
+        },
+        complete: function(data){}
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1 align="center"><font face="Comic Sans MS">
+	<span style="background-color: #FFFF00">h</span><span style="background-color: #FF00FF">a</span><span style="background-color: #00FF00">p</span><span style="background-color: #00FFFF">p</span><span style="background-color: #FF0000">y</span>
+	<span style="background-color: #008080">m</span><span style="background-color: #F1C40F">a</span><span style="background-color: #3498DB">t</span><span style="background-color: #C0C0C0">h</span><span style="background-color: #800080">s</span> 
+	signup</font><font size="1"> </font><font size="2">&nbsp;&nbsp; by
+	<a href="https://www.youtube.com/@chairinthewild">@chairinthewild</a> yt</font></h1>
+  <form onsubmit="event.preventDefault(); submitForm();">
+    <p align="center"><font face="Comic Sans MS">
+    <label for="userInput">Enter Username:</label></font>
+    <input type="text" id="userInput" name="userInput" onchange="setUserVar()">
+    <br>
+    <label for="pwdInput"><font face="Comic Sans MS">Enter</font>
+	<font face="Comic Sans MS">Password </font>:</label>
+    <input type="text" id="pwdInput" name="pwdInput" onchange="setPwdVar()">
+    <br>
+    &nbsp;<font size="5" face="Comic Sans MS"><input type="submit" value="Submit"></font></p>
+  </form>
+	<p align="center"><font face="Comic Sans MS">it just signs u up to
+	<a href="https://intelligent.games/">https://intelligent.games/</a></font></p>
+	<p align="center"><font face="Comic Sans MS">&nbsp; by
+	<a href="https://www.youtube.com/@chairinthewild">@chairinthewild</a> yt
+	</font></p>
+	<p align="center">&nbsp;</p>
+</body>
+</html>
