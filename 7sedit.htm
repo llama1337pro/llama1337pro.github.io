@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+</head>
+<body>
+    <form id="profileForm">
+        <p align="center"><font face="Comic Sans MS"><label for="player_id">
+		SEVENSPELLS EDITOR (NOT USERNAME)</label></font></p>
+		<p align="center"><label for="player_id"><font face="Comic Sans MS">just 
+		lets u edit</font></label></p>
+		<p align="center"><font face="Comic Sans MS"><label for="player_id">User 
+		name:</label>
+        <input type="text" id="player_id" name="player_id"><br><br>
+
+        <label for="avatar">Avatar:</label>
+        <input type="text" id="avatar" name="avatar"><br><br>
+
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname"><br><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br><br>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age"><br><br>
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br><br>
+
+        </font>
+
+        <button type="button" onclick="updateProfile()">
+		<font face="Comic Sans MS">Submit</button>
+    	</font></p>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateProfile() {
+            var player_id = document.getElementById('player_id').value;
+            var avatar = document.getElementById('avatar').value;
+            var lastname = document.getElementById('lastname').value;
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var age = document.getElementById('age').value;
+            var gender = document.getElementById('gender').value;
+
+            $.ajax({
+                url: 'update_profile.php',
+                type: 'post',
+                data: {
+                    'user': player_id,
+                    'avatar': avatar,
+                    'lastname': lastname,
+                    'name': name,
+                    'email': email,
+                    'age': age,
+                    'gender': gender
+                },
+                success: function(data){
+                    console.log("Profile updated", data);   //data = <tr><td>... </tr>
+                },
+                complete: function(data){
+                    console.log("complete!!!!");
+                    alert("Profile Updated!");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
