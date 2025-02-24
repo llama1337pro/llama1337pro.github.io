@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Avatar</title>
+	<!--mstheme--><link rel="stylesheet" href="../zero1011.css">
+	<meta name="Microsoft Theme" content="zero 1011">
+</head>
+<body>
+    <form id="avatarForm">
+        <p align="center">
+            <label for="username"><font face="Comic Sans MS" size="7">AVATAR 
+			UPDATER</font></label><p align="center">
+            <label for="username"><font face="Comic Sans MS" size="7">SEVEN 
+			SPELLS</font></label><p align="center">
+            <label for="username"><font face="Comic Sans MS">Username:</font></label><font face="Comic Sans MS">
+            <input type="text" id="username" name="username"><br><br>
+
+            </font>
+
+            <label for="avatar"><font face="Comic Sans MS">Avatar:</font></label><font face="Comic Sans MS">
+            <select id="avatar" name="avatar">
+                        	<option value="/../../../../../logo_new.png">LOGO</option>
+        	<option value="/../../../../../logo.png">LOGO OLD</option>
+            <option value="/../bestInClass.png">Best In Class</option>
+            <option value="/../bestInSchool.png">Best In School</option>
+            <option value="/../bria.png">Bria</option>
+            <option value="/../carol.png">Carol</option>
+            <option value="/../cpu.png">CPU</option>
+            <option value="/../curie - Copy.png">Curie</option>
+            <option value="/../Untitled-3-02.png">Untitled-3-02</option>
+            <option value="/../Untitled-3-03.png">Untitled-3-03</option>
+            <option value="/../Untitled-3-04.png">Untitled-3-04</option>
+            <option value="/../Untitled-3-05.png">Untitled-3-05</option>
+            <option value="/../Untitled-3-06.png">Untitled-3-06</option>
+            <option value="/../Untitled-3-07.png">Untitled-3-07</option>
+            <option value="/../Untitled-3-08.png">Untitled-3-08</option>
+            <option value="/../Untitled-3-09.png">Untitled-3-09</option>
+            <option value="/../Untitled-3-10.png">Untitled-3-10</option>
+            <option value="/../Untitled-3-11.png">Untitled-3-11</option>
+            <option value="/../Untitled-3-12.png">Untitled-3-12</option>
+            <option value="/../Untitled-3-13.png">Untitled-3-13</option>
+            <option value="/../Untitled-3-14.png">Untitled-3-14</option>
+            <option value="/../Untitled-3-15.png">Untitled-3-15</option>
+            <option value="/../Untitled-3-16.png">Untitled-3-16</option>
+            <option value="/../Untitled-3-17.png">Untitled-3-17</option>
+            <option value="/../Untitled-3-18.png">Untitled-3-18</option>
+            <option value="/../Untitled-3-19.png">Untitled-3-19</option>
+            <option value="/../face-bria.png">Face Bria</option>
+            <option value="/../face-carol.png">Face Carol</option>
+            <option value="/../face-characterFour.png">Face CharacterFour</option>
+            <option value="/../face-characterOne.png">Face CharacterOne</option>
+            <option value="/../face-characterThree.png">Face CharacterThree</option>
+            <option value="/../face-characterTwo.png">Face CharacterTwo</option>
+            <option value="/../face-cpu.png">Face CPU</option>
+            <option value="/../face-curie.jpg">Face Curie</option>
+            <option value="/../face-daisy.jpg">Face Daisy</option>
+            <option value="/../face-daniela.png">Face Daniela</option>
+            <option value="/../face-darwin.png">Face Darwin</option>
+            <option value="/../face-default.jpg">Face Default</option>
+            <option value="/../face-einstein.png">Face Einstein</option>
+            <option value="/../face-era.png">Face Era</option>
+            <option value="/../face-finn.png">Face Finn</option>
+            <option value="/../face-frank.jpg">Face Frank</option>
+            <option value="/../face-gradef.png">Face GradeF</option>
+            <option value="/../face-hal9001.png">Face Hal9001</option>
+            <option value="/../face-hawking.png">Face Hawking</option>
+            <option value="/../face-hypathia.png">Face Hypathia</option>
+            <option value="/../face-inventor.png">Face Inventor</option>
+            <option value="/../face-jnewbie.jpg">Face Jnewbie</option>
+            <option value="/../face-koala.png">Face Koala</option>
+            <option value="/../face-madsci.png">Face Madsci</option>
+            <option value="/../face-magpie.png">Face Magpie</option>
+            <option value="/../face-master_li_wang.png">Face Master Li Wang</option>
+            <option value="/../face-master_li_wang_reborn.png">Face Master Li Wang Reborn</option>
+            <option value="/../face-misterx.png">Face Misterx</option>
+            <option value="/../face-mteacher.png">Face Mteacher</option>
+            <option value="/../face-ned.jpg">Face Ned</option>
+            <option value="/../face-oddguy.png">Face Oddguy</option>
+            <option value="/../face-oldcomputer.jpg">Face OldComputer</option>
+            <option value="/../face-oldcomputer.png">Face OldComputer</option>
+            <option value="/../face-peterplus.png">Face Peterplus</option>
+            <option value="/../face-principal.png">Face Principal</option>
+            <option value="/../face-sarah.png">Face Sarah</option>
+            <option value="/../face-sherlock.jpg">Face Sherlock</option>
+            <option value="/../face-smartiest.png">Face Smartiest</option>
+            <option value="/../face-smartypants.jpg">Face Smartypants</option>
+            <option value="/../face-teddy.jpg">Face Teddy</option>
+            <option value="/../face-tooth.png">Face Tooth</option>
+            <option value="/../face-una.png">Face Una</option>
+            </select><br><br>
+
+            </font>
+
+            <button type="button" onclick="updateAvatar()">
+			<font face="Comic Sans MS">Submit</font></button>
+            <br><br>
+            </font>
+            <button type="button" onclick="showAvatar()">
+			<font face="Comic Sans MS">Show Avatar</font></button>
+            <br><br>
+            <img id="avatarImage" src="" alt="Avatar Image" style="display:none; width: 150px; height: 150px;">
+            </font>
+		<p align="center">
+            <font face="Comic Sans MS">it updates ur image on
+			<a href="https://intelligent.games/">https://intelligent.games/</a> 
+			because there isn't a lot of options so there is extra now<br><br>
+            </font>
+            <p id="avatarLink" style="display:none;"></p>
+        </p>
+    </form>
+
+    <font face="Comic Sans MS">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateAvatar() {
+            var username = document.getElementById('username').value;
+            var avatar = document.getElementById('avatar').value;
+
+            $.ajax({
+                url: 'update_profile.php',
+                type: 'post',
+                data: {
+                    'user': username,
+                    'avatar': avatar,
+                    'lastname': '',
+                    'name': '',
+                    'email': '',
+                    'age': '',
+                    'gender': ''
+                },
+                success: function(data){
+                    console.log("Profile updated", data);   //data = <tr><td>... </tr>
+                },
+                complete: function(data){
+                    console.log("complete!!!!");
+                    alert("Profile Updated!");
+                }
+            });
+        }
+
+        function showAvatar() {
+            var avatar = document.getElementById('avatar').value;
+            var imageUrl = 'https://intelligent.games/avatars/' + avatar;
+
+            var avatarImage = document.getElementById('avatarImage');
+            var avatarLink = document.getElementById('avatarLink');
+
+            avatarImage.src = imageUrl;
+            avatarImage.style.display = 'block';
+            avatarLink.innerText = imageUrl;
+            avatarLink.style.display = 'block';
+        }
+    </script>
+	</font>
+</body>
+</html>
