@@ -36,7 +36,7 @@
         </font>
 
         <button type="button" onclick="updateProfile()">
-		<font face="Comic Sans MS">Submit</button>
+		<font face="Comic Sans MS">Submit</font></button>
     	</font></p>
     </form>
 
@@ -52,7 +52,7 @@
             var gender = document.getElementById('gender').value;
 
             $.ajax({
-                url: 'update_profile.php',
+                url: 'https://intelligent.games/update_profile.php',
                 type: 'post',
                 data: {
                     'user': player_id,
