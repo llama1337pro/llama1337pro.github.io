@@ -6,7 +6,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.css">
   <script type="text/javascript">
-    var user, pwd;
+    var user, pwd,classcode;
 
     function setUserVar() {
       user = document.getElementById("userInput").value;
@@ -14,6 +14,9 @@
 
     function setPwdVar() {
       pwd = document.getElementById("pwdInput").value;
+    }
+    function setClasscodeVar() {
+      classcode = document.getElementById("classcodeinput").value;
     }
 
     function submitForm() {
@@ -23,7 +26,7 @@
       $.ajax({
         url: 'https://intelligent.games/create_username.php',
         type: 'post',
-        data: { 'user': user, 'class_code': class_code, 'pwd': pwd },
+        data: { 'user': user, 'class_code': classcode, 'pwd': pwd },
         success: function(data){
           console.log("|" + data.trim() + "|");
 
@@ -48,7 +51,7 @@
       $.ajax({
         url: 'https://ellygames.com/create_username.php',
         type: 'post',
-        data: { 'user': user, 'class_code': class_code, 'pwd': pwd },
+        data: { 'user': user, 'class_code': classcode, 'pwd': pwd },
         success: function(data){
           console.log("|" + data.trim() + "|");
 
@@ -91,7 +94,7 @@ function FP_getObjectByID(id,o) {//v1.0
  return null;
 }
 </script>
-	<!--mstheme--><link rel="stylesheet" href="../zero1011.css">
+	<!--mstheme--><link rel="stylesheet" href="zero1011.css">
 	<meta name="Microsoft Theme" content="zero 1011">
 </head>
 <body onload="FP_preloadImgs(/*url*/'button29.jpg',/*url*/'button2A.jpg')">
@@ -112,6 +115,10 @@ function FP_getObjectByID(id,o) {//v1.0
     <label for="pwdInput"><font face="Comic Sans MS">Enter</font>
 	<font face="Comic Sans MS">Password </font>:</label>
     <input type="text" id="pwdInput" name="pwdInput" onchange="setPwdVar()">
+    <br>
+    <label for="classcode"><font face="Comic Sans MS">Enter</font>
+	<font face="Comic Sans MS">classcode not needed </font>:</label>
+    <input type="text" id="classcodeinputinput" name="classcode" onchange="setClasscodeVar()">
     <br>
     &nbsp;<font size="5" face="Comic Sans MS"><input type="submit" value="Submit"></font></p>
   </form>
