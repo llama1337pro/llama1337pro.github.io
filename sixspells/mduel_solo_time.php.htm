@@ -1,0 +1,4808 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="icon" href="https://intelligent.games/tabLogoSmall.png">
+  <link href="mduel_solo_time.php_files/css.css" rel="stylesheet">
+  <link href="mduel_solo_time.php_files/css_002.css" rel="stylesheet">
+  <link rel="stylesheet" href="mduel_solo_time.php_files/jquery-confirm.min.css">
+  <link rel="stylesheet" type="text/css" href="mduel_solo_time.php_files/card_app.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="mduel_solo_time.php_files/font-awesome.min.css">
+          <script src="mduel_solo_time.php_files/jquery-1.10.2.js"></script>
+		 <script src="mduel_solo_time.php_files/jquery-confirm.min.js"></script>
+          <script src="mduel_solo_time.php_files/ai_player3.js"></script>
+           <script src="mduel_solo_time.php_files/decks.js"></script>
+             <script src="mduel_solo_time.php_files/err_lib.js"></script>
+             <script src="mduel_solo_time.php_files/suggestions.js"></script>
+             <script src="mduel_solo_time.php_files/common_lib.js"></script>
+         <script>
+   function load_js()
+   {
+      var head= document.getElementsByTagName('head')[0];
+      var script= document.createElement('script');
+      script.src= 'common_lib.js';
+      head.appendChild(script);
+   }
+   function load_deck()
+   {
+      var head= document.getElementsByTagName('head')[0];
+      var script= document.createElement('script');
+      script.src= 'decks.js';
+      head.appendChild(script);
+   }
+   load_js();
+   load_deck();
+</script><script src="mduel_solo_time.php_files/common_lib.js"></script><script src="mduel_solo_time.php_files/decks.js"></script>
+          <script src="mduel_solo_time.php_files/levels.js"></script>
+         <script src="mduel_solo_time.php_files/tutorial.js"></script>
+
+<style>
+  html *
+  {
+     font-family: 'Open Sans', sans-serif;
+
+}
+     input.chk-btn {
+  display: none;
+
+}
+input.chk-btn + label {
+  border: 1px solid grey;
+  background-color: #FAFAFA;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+input.chk-btn:not(:checked) + label:hover {
+  box-shadow: 0px 1px 3px;
+}
+input.chk-btn + label:active,
+input.chk-btn:checked + label {
+  box-shadow: 0px 0px 3px inset;
+  background: lightgreen;
+}
+  
+  </style>
+
+
+
+
+</head>
+
+  <body background="mduel_solo_time.php_files/board3.png" style="">
+
+<div style="display:none" id="game_type">0</div><div style="display:none" id="game_name">40cards</div><div style="display:none" id="starting">1</div><div style="display:none" id="pl_you">Fabtiger492</div><div style="display:none" id="pl_opponent">solo#player</div><div style="display:none" id="game_id">1740503413582</div><div style="display:none" id="decks_num">1</div><div style="display:none" id="tournament">-1</div><div style="display:none" id="avatar_you">/../face-oldcomputer.png</div><div style="display:none" id="avatar_opp"></div><div style="display:none" id="home">-1</div><div style="display:none" id="ai_level">1</div><div style="display:none" id="level">-2</div>
+<!-- swipe message-->
+<div id="swipemes" class="overlay-box2" style="display:none;padding:2%;text-align:center;font-size:1.5vw;"><span id="score_mes">Y</span></div>
+
+<div id="overlay2" style="display:none">
+<div id="pick_card" class="modal4" style="width:100%;display:block;background-color: rgba(200,200,200,0)">
+   <div id="pick_card_text" style="background-color:transparent;border:0px;margin-left:10%;width:80%;margin-top:0%;height:60%;display:block;padding:2.5%;justify-content: center;" class="modal-content">
+   	  <div id="hand_pick" class="hand" style="margin-left:2%;padding:0%;width:95%;text-align:center"> 
+
+</div>
+ </div>
+
+ </div>
+ </div>
+
+
+<div id="overlay_tutorial" style="display:none">
+
+<div id="grey_back"></div>
+<div id="tutorial_card" class="modal4" style="padding:1%;display:block;opacity:1;position:absolute;top:10%;left:20%;width:40%;height:auto;background-color:white">
+   <div id="tutorial_text" style="background-color:white;opacity:1;border:0px;width:100%;margin:0%;height:auto;display:block;padding-left:0%;padding-right:0%;text-align: center;font-size:1.5vw" class="modal-content">
+ 	</div>
+ </div>
+	<img id="master_pic">
+
+
+ </div>
+
+
+
+
+
+<div id="bonus" class="overlay-box" style="display:none;width:20%;padding:2%;text-align:center;font-size:2.5vw;"><span id="bonus_mes">Y</span></div>
+
+<div style="width: 11%;
+  height: auto; position: absolute; top: 2%; left: 1%;background-color:lightblue;border-radius:5px ">
+
+<div class="inform" id="time_container" style="margin-left:10%;width:78%;height:auto;display: inline-block;text-align: center	"> 
+
+			<div id="you_name" style="font-size: 1.1vw; padding-bottom: 1%; padding-top: 1%; overflow-wrap: break-word;">Fabtiger492</div>
+			<img id="you_avatar" src="mduel_solo_time.php_files/face-oldcomputer.png" style="margin:0%;width:90%;padding:1%">
+			<h2 id="swipe_you" style="font-size:1.8vw;display:none"><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span></h2>
+			
+		  	
+	  	<div style="padding:2%;margin-left:0%;width:96%;text-align:center;margin-top:5%">
+		  	<div style="font-size:1.4vw;width:100%;"><centre><b>Points</b></centre></div>
+		  	<div id="you_score" style="display:inline-block;width:100%;font-size:1.4vw;background-color:#00a1ff">0</div>
+		  	</div>
+
+	  	<div style="display:none;padding:1%;margin-left:0%;width:100%;text-align:center">
+		  	<div style="font-size:1.4vw;width:100%"><b>⏳</b></div>
+
+		  	<div id="you_time" style="display:inline-block	;width:100%;font-size:1.4vw;background-color:#00a1ff"><b>00:00:00</b></div>
+		  	</div>
+		  	<div style="clear:both;font-size:1.4vw;margin-top:8%;float:left;width:5%;display: 	none"><b>Moves</b></div>
+
+	  	<div style="padding:2%;margin-left:0%;width:96%;text-align:center">
+	  	<div style="font-size:1.4vw;width:100%"><b>Moves</b></div>
+
+		<div id="you_moves" style="display:inline-block;width:100%;font-size:1.4vw;font-size:1.4vw;background-color:#00a1ff">0</div>
+		  </div>
+
+	  	<div style="padding:2%;margin-left:0%;width:96%;text-align:center">
+	  	<div style="font-size:1.4vw;width:100%"><b>Position</b></div>
+		<div id="t_rank" style="display:inline-block;width:100%;font-size:1.4vw;font-size:3vw;background-color:#00a1ff"><b>==</b></div>
+		  </div>
+
+
+
+
+	  	<div style="padding:1%;float:left;margin-left:0%;width:8%;text-align:center;display:none">
+	  	<div style="font-size:1.4vw;width:100%"><b>Card Left</b></div>
+
+		  	<div id="you_cards" style="display:inline-block;width:100%;font-size:1.4vw;font-size:1.4vw;background-color:#00a1ff">30</div>
+		  </div>
+
+	  	<div id="show_level" style="padding: 2%; margin-left: 0%; width: 96%; text-align: center; display: none;">
+	  	<div style="font-size:1.4vw;width:100%"><centre><b>Level</b></centre></div>
+
+		  	<div id="your_level" style="display:inline-block;width:100%;font-size:1.4vw;font-size:1.4vw;background-color:#00a1ff"><b>1</b></div>
+		  </div>
+
+			<div class="btn" id="undo" style="width:70%;padding:15%;color:grey; text-decoration:line-through;margin-top:10%">Undo</div>
+			<div class="btn" style="width:70%;padding:15%;margin-top:10%;margin-bottom:10%" id="giveup">End</div>
+			
+
+	  	<div style="clear:both;font-size:1.8vw;margin-top:8%;float:left;width:5%;display:none;"><b>SCORE</b></div>
+
+		  	<div id="you_all_score" style="display:inline-block;width:5%;font-size:1.8vw;margin-top:8%;display:none;font-size:1.4vw;background-color:#00a1ff"><b>0</b></div>
+
+
+			<div class="points" style="display:none"> 
+			<h2 id="opp_name" style="font-size: 1.5vw; height: 11%; overflow-wrap: break-word;">solo#player</h2>
+			<img id="opp_avatar" src="mduel_solo_time.php_files/face-.htm" style="margin:0%;width:85%;">
+
+			<h2 id="swipe_opponent" style="font-size:1.5vw"><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span><span style="color:white">★</span></h2>
+		  	<div id="opponent_score" style="font-size:1.7vw;background-color: indianred">0</div>
+			</div>
+		<div id="chat" style="display:inline-block;display:none;margin:0%;padding:0%;width:98%;height:35%;font-size: 1.2vw;text-align: left; background-color:white;overflow-y: scroll;color:grey;max-width: 98%">
+			<br>
+		</div>
+    <div>
+ 		 <textarea id="m" style="display:none;resize: none;float:left;margin:2%;padding:2%;height:10%;width:96%;font-size: 12px;" type="text" name="message_chat"></textarea>
+		 <button id="but" style="display:none;margin:2%;padding:2%">SEND</button>
+    </div>
+	<div id="time_left" style="background-color: transparent; float: left; margin-top: 1%; width: 100%; margin-bottom: 0%; height: auto; display: none; text-align: left; padding: 5%;">prova prova<div style="width:13%;float:left"></div>
+	<div id="timeleft" style="width:55%;background-color:red;display:inline-block;margin-left:5%;font-size: 	2vw;"></div></div>
+</div>  	
+
+  </div>
+
+	<div id="hand_opponent" class="hand_opp" style="display: none; background-color: transparent;">
+	</div>
+
+<!-- This is the opponent's hand -->
+<!-- This is the opponent's cards in play-->
+	 <div class="inplay" id="inplay_opponent" style="margin-left:12.5%;text-align:center">
+
+
+
+	<div id="10276" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~11~ </div><div class="card_number">11</div><div class="card_abilities"></div></div><div id="10057" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~3~ </div><div class="card_number">3</div><div class="card_abilities"></div></div><div id="10159" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~6~ </div><div class="card_number">6</div><div class="card_abilities"></div></div><div id="10282" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~12~ </div><div class="card_number">12</div><div class="card_abilities"></div></div><div id="10033" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~2~ </div><div class="card_number">2</div><div class="card_abilities"></div></div><div id="10231" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~9~ </div><div class="card_number">9</div><div class="card_abilities"></div></div><div id="10050" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~2~ </div><div class="card_number">2</div><div class="card_abilities"></div></div><div id="10118" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~5~ </div><div class="card_number">5</div><div class="card_abilities"></div></div><div id="10203" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~8~ </div><div class="card_number">8</div><div class="card_abilities"></div></div><div id="10109" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~5~ </div><div class="card_number">5</div><div class="card_abilities"></div></div><div id="10204" class="card" style="background-image: url('./skins/comic/empty_red.png');"><div class="card_title">~8~ </div><div class="card_number">8</div><div class="card_abilities"></div></div></div>
+
+<!-- This is player1's cards in play-->
+	 <div class="inplay" id="inplay_you" style="margin-left:12.5%;text-align:center;width:79%;">
+
+<!--		<div id="-1" class="fakecard" style="'visibility:hidden;background-image: url('./skins/basic/empty_blue.png');"></div> -->
+
+	<div id="64" class="card" style="background-image: url('./skins/comic/empty_blue.png');"><div class="card_title">~4~ </div><div class="card_number">4</div><div class="card_abilities"></div></div><div id="313" class="card" style="background-image: url('./skins/comic/empty_blue.png');"><div class="card_title">~9~ </div><div class="card_number">9</div><div class="card_abilities">TOTAL</div></div><div id="53" class="card" style="background-image: url('./skins/comic/empty_blue.png');"><div class="card_title">~3~ </div><div class="card_number">3</div><div class="card_abilities"></div></div><div id="246" class="card" style="background-image: url('./skins/comic/empty_blue.png');"><div class="card_title">~5~ </div><div class="card_number">5</div><div class="card_abilities">TOTAL</div></div><div id="310" class="card" style="background-image: url('./skins/comic/empty_blue.png');"><div class="card_title">~8~ </div><div class="card_number">8</div><div class="card_abilities">TOTAL</div></div><div id="353" class="card" style="background-image: url('./skins/comic/empty_blue.png');"><div class="card_title">~10~ </div><div class="card_number">10</div><div class="card_abilities">TOTAL</div></div></div>
+
+
+
+
+
+<!-- Player 1 hand and points-->
+
+
+  <div id="hand_you" class="hand" style="margin-left:12.5%;padding-bottom:1%;padding-top:0%;width:79%;text-align:center">  <div id="620" class="card" style="background-image: url('./skins/comic/double.png');"></div><div id="506" class="card" style="background-image: url('./skins/comic/sub3.png');"></div><div id="637" class="card" style="background-image: url('./skins/comic/triple.png');"></div><div id="824" class="card" style="background-image: url('./skins/comic/rem12to1000_1.png');"></div><div id="621" class="card" style="background-image: url('./skins/comic/double.png');"></div></div>
+
+<div id="message" style="display:inline-block;clear:both;width:75%;background-color:white;padding:1%;margin-left:14%;border-color:black;border-width:3px"><img id="master_pic_mes" src="mduel_solo_time.php_files/face_master.png" style="width:8%;margin-top:-5%"><div id="message_text" style="font-size: 1.5em;width:55%;text-align:center;display:initial;padding-left:5%;">Let' start! Capture those red cards!</div></div>
+<div id="controls" style="clear:both;width:100%;margin-left:5%;margin-right:5.6%;margin-top:1%;padding-top:-0.5%">
+<div style="padding-bottom:0%"> 
+	<div id="cardsleft" style="background-color:transparent; height:auto;width:40%;margin-bottom:0%;height:auto;display:inline-block;float:left;text-align: left;padding:1%;padding-bottom:0%;margin-top:1%;font-size:2vw"><div style="font-size:1.4vw;width:23%;float:right;margin-top:0%;font-size:2vw;">Cards Left (30)</div><div id="boh" style="margin-right:0%;margin-left:0.5%;float:right;width:3%;background-color:transparent;display:inline-block;border-radius:3px;border:1px solid transparent">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div><div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp;</div></div>
+
+</div>
+
+			<div class="btn" style="display: inline-block; padding: 2%; margin-left: 0%; margin-top: 1%; width: 4%; float: left; font-size: 3vw; font-family: &quot;Bangers&quot;;" id="skip">GO!</div>
+
+<div style="padding:0%"> 
+
+
+	<div class="btn" style="width:4%;display: inline-block;padding:1%;margin-left:6%;margin-top:1%;width:15%;float:left;font-size:3vw;font-family:'Bangers'" id="change">Change Card</div>
+
+
+</div>
+</div>
+<div class="row" style="padding:1%"> 
+
+
+
+
+<!-- winner / loser windows at the end of the game -->
+<div id="winlost" class="modal">
+   <form class="modal-content" method="post" action="login2.php" style="margin-left:20%;margin-top:0%;">
+    <div class="container" style="padding:5%">
+ 	  <img id="master_pic_feel" alt="Master Li Wang" style="width:25%;float:left;display:none;margin-left: 3%;margin-top: -10%" src="mduel_solo_time.php_files/face_master.png">
+      <h2 style="text-align: center" id="winlost_mes">Player Joined:</h2>
+     <p id="winlost_result" style="text-align: center;font-size:2.5vw;padding:0%"> </p> 
+      <p id="rank_solo" style="text-align: center;font-size:2.5vw;color:green">Rank: 1000 (10000)<br></p> 
+
+      <div id="feelings" style="display:none;padding:0%"> </div> 
+	  <div class="btn" style="display:none;margin-left: 25%;border: 2px solid lightgrey;" id="next_level">Next Level</div>
+	  <div class="btn" style="margin:2%;margin-left: 65%;border: 2px solid lightgrey;" id="finish">Exit Game</div>
+   
+    </div>
+  </form>
+ </div>
+
+<!-- new turn modal -->
+<div id="over" class="overlay" style="display: none;">
+<div id="new_turn_win" class="modal4" style="width:100%;display:block">
+   <div id="level_instructions" style="margin-left:10%;width:80%;margin-top:0%;display:flex;padding:2.5%;justify-content: center;" class="modal-content">Loading....</div>
+ </div>
+</div>
+
+<!-- modal network load -->
+<div id="over_loading" class="overlay" style="display: none">
+<div id="loading" class="modal3">
+   <div class="modal-content">
+    <div class="container">
+      <h1 style="text-align: center" id="winlost_mes">Loading from Network...</h1>
+      <hr>
+      <p id="load_mes" style="text-align: center;font-size:2vw"> Wait for connection to be established...</p> 
+  
+    </div>
+</div>
+ </div>
+</div>
+
+<script>
+
+//check_logged();
+
+//instructions
+
+var time_trial_inst = '<center><span style="font-size:2.5vw; color:green; ">⌛ TIME TRIAL ⌛</span><br><p>Capture all the red cards.</p><p>Press <span style="padding:1%;border-radius:4px;background-color: lightgrey">GO!</span> to execute your move. Your cards will be automatically refilled</p><p>If you are stuck, <b>right click</b> on one of your card to change it. But remember, every time you do this you lose 3 seconds.</p><p>Every card you use is a move.</p><p>You are running against the time!</p><p>You score high if you are fast and you use less cards!</p><div class="btn_turn" id="deck_you" style="text-align:center;border: 2px solid black;padding:4px" >Click here to Start!</div>'
+
+
+//var cards_30_inst = '<center><span style="font-size:3vw; color:green;font-family:Bangers">!! 40 CARDS !!</span><br><p>How many red cards can you capture with 40 cards?</p><p>Capture the red cards with your cards. Press <span style="padding:1%;border-radius:4px;background-color: lightgrey">GO!</span> to execute your move. Your cards will be automatically refilled</p><p>If you are stuck, <b>right click</b> on one of your card to change it.</p><p>When there are no more cards left to draw and you have no more moves to do, press <span style="padding:1%;border-radius:4px;background-color: lightgrey">End</span> to finish your challenge.</p><p><span style="color:red"><b>Bonuses:</b><li></span> every ⭐ = 4 cards + Points</li><li>MegaMove = pick a <span style="color:red">PowerCard</span></li></p><div class="btn_turn" id="deck_you" style="margin-left:50%;text-align:center;border: 2px solid black;padding:4px" >Click here to Start!</div>'
+
+var cards_30_inst = '<center><span style="font-size:3vw; color:green;font-family:Bangers">!! 40 CARDS !!</span><br><p>How many red cards can you capture with 40 cards?</p><p>Capture the red cards with your cards. Press <span style="padding:1%;border-radius:4px;background-color: lightgrey">GO!</span> to execute your move. Your cards will be automatically refilled</p><p>If you are stuck, click on one of your card that you want to discard and press <span style="padding:1%;border-radius:4px;background-color: lightgrey">Change Card</span> to change it.</p><p>When there are no more cards left to draw and you have no more moves to do, press <span style="padding:1%;border-radius:4px;background-color: lightgrey">End</span> to finish your challenge.</p><p><span style="color:red"><b>Bonuses:</b><li></span> every time you remove all red cards = 3 extra cards + Points</li><li>MegaMove (30+ points in a move) = pick a <span style="color:red">PowerCard</span></li><li>Every 100 points = pick a <span style="color:red">PowerCard</span></li></p><div class="btn_turn" id="deck_you" style="margin-left:50%;text-align:center;border: 2px solid black;padding:4px" >Click here to Start!</div>'
+
+var endurance_inst = '<center><span style="font-size:2.5vw; color:green; ">🏋️ ENDURANCE 🏋️</span><br><p>How much can you get?</p><p>Capture the red cards with your cards. Press <span style="padding:1%;border-radius:4px;background-color: lightgrey">GO!</span> to execute your move. Your cards will be automatically refilled</p><p>If you are stuck, <b>right click</b> on one of your card to change it.</p>You have unlimited cards and time. However, as the time goes, When there are no more cards left to draw and you have no more moves to do, press <span style="padding:1%;border-radius:4px;background-color: lightgrey">End</span> to finish your challenge.</p><div class="btn_turn" id="deck_you" style="text-align:center;border: 2px solid black;padding:4px" >Click here to Start!</div>'
+
+var tutorial1 = '<center><span style="font-size:2.5vw; color:green; ">🎓 Welcome to Seven Spells Tutorial! 🎓</span><br><p>This is a step-by-step 2 minutes guide to play Seven Spells</p><div class="btn_turn" id="deck_you" style="text-align:center;border: 2px solid black;padding:4px" >Click here to Start!</div>'
+
+var restore_game = '<center><span style="font-size:2.5vw; color:green; ">Game restored</span><br><p>Your game has been restored to the last excuted move</p><div class="btn_turn" id="deck_you" style="text-align:center;border: 2px solid black;padding:4px" >Click here to Start!</div>'
+
+
+
+//way of switch priority
+poker_raise = 0;
+var giveuptime=0;
+
+//number of cards each draw
+
+// SOLO GAME VARIABLES
+var cards_used = 0;
+var swipe_towin=1;
+var towin = 50000;
+var bonus_swipe=10;
+var num_card_after_swipe = 22; //number of cards after swipe
+var initial_opponent=num_card_after_swipe;
+
+var total_score = 0;
+var all_score = 0;
+var last_bonus = 0;
+
+var num_cards_start = 11; //cards in hands at start 
+var initial_number=2;  //number of cards at the beginning (+1 if it is not your turn)
+var cards_per_turn = 3;  //number of cards at the beginninig of each turn
+var extra_cards_inplay = 1 //number of additional cards in play if it is not your turn 
+var max_cards = 10 //maximum number of cards in hand, if above cannot draw
+var bonus_cards_swipe = 3
+
+
+var card_index_undo = 0;
+var old_card_index_undo = 0;
+
+var opp_swipe=0;
+var you_swipe=0;
+
+//Points to WIN - FULL GAME
+
+
+
+//carte scoperte o no?
+var cover_card = 1;  //1=coperte
+
+var wait_data = 0;
+
+var num_turns = 0;
+var half = 1;
+var computer=1;
+
+
+//sounds
+const click_card = './sounds/click1.wav';
+const click_2 = './sounds/click2.wav';
+const cast_spell = './sounds/cast_spell2.wav';
+const solve_spell = './sounds/solve.wav';
+const spell_inplay = './sounds/spell_in_play.wav';
+const intro_sound = './sounds/intro.wav';
+const get_points_sound = './sounds/points.wav';
+const cards_dealer = './sounds/cards_dealer.wav';
+const attack_sound = './sounds/attack.wav';
+const undo_sound = './sounds/undo.wav';
+const priority_sound = './sounds/priority.wav';
+
+
+//message positions
+msg_css = [['40%','50%'],['40%','50%'],['40%','50%'],['40%','50%']]
+index_msg=0;
+
+var Cards_after_Remove = [];
+
+//game settings
+var card_max = 99;
+var card_min = 1;
+
+//megamove
+var megamove_pts = 30;
+var milestone_pts = 100;
+var milestone_gap = 100;
+var d_pts = 0; //points scored in one turn
+var version =2;
+//players
+const you =0;
+const opponent =1;
+
+const color_player = ["#00a1ff","indianred","rgba(0,161,255, .6)", "rgba(205, 92, 92, .6)"]
+
+var allcards=-1;  //target of remove all spells
+
+var priority=0;
+var skip_no_action=0;  //1= if the player skipped the phase with no action, another skip with no action ends the phase
+var action=0;  //1= a card was played in the phase
+var previous_action=-1;  //if skip is selected and action=0 and previous_action=0 next phase (and solve the stack)
+var look_discard = 0;
+var extra_turn = 0;
+
+var no_discard=0;
+var chat_text="";
+//unique card id
+card_id_seq = new Array();
+card_id_seq.push(1);
+card_id_seq.push(10000);
+
+
+//if the card can target 1 or more cards
+const hand_you=5;
+const op_hand = 1;
+const my_inplay = 2;
+const op_inplay = 3;
+const all_inplay = 4;
+
+//attack phase
+attack_status=0;
+select_attack = 1;
+select_attacked = 2;
+multi_attack=0; //card can attack multiple cards (=total)
+var card_attacking ;
+
+//merge operation flag
+var merge_op = 0;
+var merge1;
+var merge2;
+
+//turn phases
+const start = -1;
+const draw = 1;
+const discard_card = 2;
+const pre = 3;
+const attack = 4;
+const post = 5;
+
+//card status
+const indeck = 1;
+const inhand = 2;
+const inplay = 3;
+const captured = 4;
+const selfcaptured = 5;
+const onstack = 6;
+
+const draw_cards = 0;
+
+
+var cards_in = new Array();
+var cards_out = new Array();
+var low_cards_warning = 0;
+
+var num_attacked = new Array();
+var undo_num_attacked = new Array();
+
+//explain removals of cards
+var cards_onstack = new Array();
+var explain_removal = new Array();
+var explain_index = 0;
+var explain = 0;
+
+//simple number
+
+//0 = no ability
+//1 = abiloty till the end of the turn
+//2 = permanent ability
+
+var state = -1;
+const wait_start = 0;
+const wait_discard = 1;
+const wait_pre = 2;
+const wait_attack = 3;
+const wait_post = 4;
+
+var count=0;
+var last_chat=0;
+
+var min_number = 3;
+var min_spells = 3;
+
+var end_match = 0;
+
+var use_time= 0;
+
+var power_cards = [];
+
+
+function set_milestone_pts(points){
+	milestone_pts = Math.ceil((0.001+points) / 100)*100;
+}
+
+
+function add_chat_text(sender,msg){
+	sender = String(sender).split("|")[1];
+	if (sender==pl_you)
+	{
+		if (last_chat!=pl_you) {line=" <br>"} else {line=""};
+     sender="Computer"
+     $('#chat').append('<div style="clear:both;"><span style="margin-bottom:2%;">'+line+'</span><span style="margin:2%;float:left;color:black;background-color:'+color_player[2]+';padding:4%;    overflow-wrap: break-word;border-radius: 5px;max-width: 80%;"><span style="color:'+color_you+'">'+sender+': </span>'+msg+'</span><br></div>'); 
+     last_chat=pl_you;
+	} else
+	{
+		if (last_chat!=-5) {line="<br>"} else {line=""};
+
+     $('#chat').append('<div style="clear:both;"><span style="margin-bottom:2%;text-align:center;">'+line+'</span><span style="margin-left:10%;margin-bottom:2%;float:right;color:black;background-color:'+color_player[3]+';padding:4%;overflow-wrap: break-word;border-radius: 5px;max-width: 70%;"><span style="color:'+color_opponent+'">'+sender+': </span>'+msg+'</span><br><div>'); 
+     last_chat=-5;
+	}
+	 var elem = document.getElementById('chat');
+  elem.scrollTop = elem.scrollHeight;
+};
+
+
+function wait_for_data(pl_you,gameid,opponent,interval){
+		return 0
+	}
+
+function pack_state(){
+	game_state = pack_mydeck(1);  
+	game_state = game_state + "|";
+ 	game_state = game_state + pack_mydeck(0); 
+ 	game_state = game_state +"|" ;  
+ 	//attacks
+	packed = "";
+	for (var i = 0; i < game.attacks.length; i++)
+		{packed = packed+String(game.attacks[i][0])+","+String(game.attacks[i][1])+"*";}
+
+ 	game_state = game_state + packed + "|";
+ 	//connections
+	packed = "";
+	for (var i = 0; i < game.connections.length; i++)
+		{packed = packed+String(game.connections[i][0])+","+String(game.connections[i][1])+","+String(game.connections[i][2])+"*";}
+
+ 	//stack
+ 	//num_attacks
+ 
+
+};
+
+function pack_stack(){
+	stack_packed = "";
+	var arrayLength = game.stack.length;
+	for (var i = 0; i < arrayLength; i++)
+		{stack_packed = stack_packed+String(game.stack[i][0])+","+String(game.stack[i][1])+"|";}
+	return stack_packed;
+}
+
+function pack_attacks(){
+	packed = "";
+	var arrayLength = game.attacks.length;
+	for (var i = 0; i < arrayLength; i++)
+		{packed = packed+String(game.attacks[i][0])+","+String(game.attacks[i][1])+"|";}
+	return packed;
+}
+
+
+function color_turn(){
+	//a match is 20 turns (10 each half)
+			if (num_turns==20) {$('#t10').css("background-color","indianred");}
+			if (num_turns==19) {$('#t10').css("background-color","#indianred");}
+			console.log("NUM TURNS ==> ",num_turns);
+			if (num_turns<=10){
+			if (num_turns%2==opponent)
+			{$('#t'+String((num_turns%10+1)/2)).css("background-color","#00a1ff");console.log("BLUE",'#t'+String(num_turns%10+1)/2)}
+			if (num_turns%2==you)
+			{$('#t'+String(5+(num_turns%10)/2)).css("background-color","indianred");console.log("RED",'#t'+String(5+(num_turns%10)/2))}
+			}
+
+			if (num_turns>10){
+			if ((1+num_turns)%2==opponent)
+			{$('#t'+String((num_turns%10)/2)).css("background-color","#00a1ff");console.log("BLUE",'#t'+String(num_turns%10+1)/2)}
+			if ((1+num_turns)%2==you)
+			{$('#t'+String(5+(num_turns%10+1)/2)).css("background-color","indianred");console.log("RED",'#t'+String(5+(num_turns%10)/2))}
+			}
+
+
+}
+
+
+
+function pack_connections(){
+	packed = "";
+	var arrayLength = game.connections.length;
+	for (var i = 0; i < arrayLength; i++)
+		{packed = packed+String(game.connections[i][0])+","+String(game.connections[i][1])+","+String(game.connections[i][2])+"|";}
+	return packed;
+}
+
+//pack all the state
+function save_local_state(){
+ 	game_state = pack_mydeck(1);  
+	game_state = game_state + "|";
+ 	game_state = game_state + pack_mydeck(0); 
+ 	game_state = game_state +"|" ;  
+ 	localStorage["game_state"] = game_state;
+ 	
+ 	//save time for the3 mins game
+ 	localStorage['minutes'] = minutes;//coms.m_id;
+ 	localStorage['seconds'] = seconds;//coms.m_id;
+
+
+ 	//sent messages
+ 	localStorage['sent_messages'] = JSON.stringify(messages_list);
+
+ 	//ack_mes
+ 	localStorage['m_id'] = 0;//coms.m_id;
+ 	//ack_mes
+ 	localStorage['ack_mes'] = ack_mes.join("|");
+ 	//received
+ 	localStorage['received_mes'] = received_mes.join("|");
+
+ 	//attacks
+ 	localStorage["attacks"] = pack_attacks();
+ 	//connections
+ 	localStorage["connections"] = pack_connections();
+ 	//stack
+ 	localStorage["stack"] = pack_stack();
+ 	//num_attacks
+ 	localStorage["num_attacked"] = num_attacked.join("|");
+
+ 	localStorage["match_id"] = $('#game_id').text();
+    localStorage["action"] = action;
+    localStorage["previous_action"] = previous_action;
+    localStorage["phase"] = phase;
+    localStorage["priority"] = priority;
+    localStorage["undo_phase"] = undo_phase;
+    localStorage["mess_undo"] = mess_undo;
+	localStorage["turn"]= turn;
+	localStorage["extra_turn"]= extra_turn;
+	localStorage["first_turn"]=first_turn;
+	localStorage["first_priority"]=first_priority;
+
+    localStorage["undo_active"] = game.undo_active;
+
+	localStorage["game_init_phase"] = game.init_phase;
+	localStorage["game_turn"] = game.turn;
+	localStorage["game_phase"] = game.phase;
+	localStorage["game_priority"] = game.priority;
+
+	localStorage["onetarget"]= game.onetarget;
+	localStorage["multitarget"]= game.multitarget;
+//	undo_game.onetarget = 0;
+//	undo_game.multitarget = 0;
+
+	localStorage["points_you"]= game.points[you];
+	localStorage["points_opponent"]= game.points[opponent];
+
+	localStorage["swipe_you"]= game.swipe[you];
+	localStorage["swipe_opponent"]= game.swipe[opponent];
+	localStorage["cards_used"]= cards_used;
+
+}
+
+
+function restore_local_state(){
+	match_id = parseInt(localStorage["match_id"]);
+	console.log("restore",match_id,parseInt($('#game_id').text()));
+
+
+ 	minutes = parseInt(localStorage['minutes']);
+ 	seconds = parseInt(localStorage['seconds']);
+ 
+
+	if (parseInt($('#game_id').text())!=parseInt(match_id)) {return 0;}
+	//messages sent
+   	messages_list = JSON.parse(localStorage['sent_messages']);
+	console.log("======== MESSAGES ========\n",messages_list);
+	//m_id
+//	coms.m_id = parseInt(localStorage['m_id']);
+	//ack_mes
+	ack_mes.length=0;
+	for(var i=0;i<localStorage['ack_mes'].split("|").length;i++) { ack_mes.push(parseInt(localStorage['ack_mes'].split("|")[i]))}
+ 	
+ 	//received
+	received_mes.length=0;
+	for(var i=0;i<localStorage['received_mes'].split("|").length;i++) { received_mes.push(parseInt(localStorage['received_mes'].split("|")[i]))}
+
+ 	//attacks
+ 	game.attacks.length=0;
+ 	data = localStorage["attacks"].split("|");
+	for(var i=0;i<data.length-1;i++) { 
+		game.attacks.push([parseInt(data[i].split(",")[0]),parseInt(data[i].split(",")[1])]);
+	};
+
+ 	//connections
+ 	game.connections.length=0;
+ 	data = localStorage["connections"].split("|");
+	for(var i=0;i<data.length-1;i++) { 
+		game.connections.push([parseInt(data[i].split(",")[0]),parseInt(data[i].split(",")[1]),parseInt(data[i].split(",")[2])]);
+	};
+
+ 	//stack
+ 	game.stack.length=0;
+ 	data = localStorage["stack"].split("|");
+	for(var i=0;i<data.length-1;i++) { 
+		game.stack.push([parseInt(data[i].split(",")[0]),parseInt(data[i].split(",")[1])]);
+	};
+
+ 	//num_attacks
+ 	num_attacked.length=0;
+	for(var i=0;i<localStorage['num_attacked'].split("|").length;i++) { num_attacked.push(parseInt(localStorage['num_attacked'].split("|")[i]))}
+
+    action = parseInt(localStorage["action"]);
+    previous_action = parseInt(localStorage["previous_action"]);
+    phase = parseInt(localStorage["phase"]);
+    priority = parseInt(localStorage["priority"]);
+    turn = parseInt(localStorage["turn"]);
+    first_turn = parseInt(localStorage["first_turn"]);
+    first_priority	 = parseInt(localStorage["first_priority"]);
+    undo_phase = parseInt(localStorage["undo_phase"]);
+    mess_undo = parseInt(localStorage["mess_undo"]);
+    extra_turn	= localStorage["extra_turn"];
+
+
+
+    game.undo_active = parseInt(localStorage["undo_active"]);
+	game.onetarget = parseInt(localStorage["onetarget"]);
+	game.multitarget = parseInt(localStorage["multitarget"]);
+	game.init_phase = parseInt(localStorage["game_init_phase"]);
+	game.turn = parseInt(localStorage["game_turn"]);
+	game.priority = parseInt(localStorage["game_priority"]);
+	game.phase = parseInt(localStorage["game_phase"]);
+
+	game.points[you] = parseInt(localStorage["points_you"]);
+	game.points[opponent] = parseInt(localStorage["points_opponent"]);
+
+	game.swipe[you] = parseInt(localStorage["swipe_you"]);
+	game.swipe[opponent] = parseInt(localStorage["swipe_opponent"]);
+
+	set_milestone_pts(game.points[you])
+	cards_used =	parseInt(localStorage["cards_used"]);
+	show_card_used(cards_used);
+
+
+	//OPPONENT
+	//hand
+	packed = localStorage["game_state"];
+
+	game.hands[opponent].cards.length=0;
+	hand_data = packed.split("|")[0];
+	card_data = hand_data.split("*");
+	for(var i=0;i<card_data.length-1;i++) { 
+		card_id = parseInt(card_data[i].split(",")[0]);
+		card_uid = parseInt(card_data[i].split(",")[1]);
+
+		//add the card
+		var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+		game.hands[opponent].cards.push(new_card);
+		}
+
+	//inplay OPPONENT
+	game.inplay[opponent].cards.length=0;
+	if (packed.indexOf("|") !=-1)
+	{
+		inplay_data = packed.split("|")[1];
+		card_data = inplay_data.split("*");
+		for(var i=0;i<card_data.length-1;i++) { 
+			console.log("===== CARD IN PLAY", card_data[i],card_data[i].split(",")[2]);
+			card_id = parseInt(card_data[i].split(",")[0]);
+			card_uid = parseInt(card_data[i].split(",")[1]);
+			card_cvalue = parseInt(card_data[i].split(",")[2]);
+			card_bvalue = parseInt(card_data[i].split(",")[3]);
+			card_tot = parseInt(card_data[i].split(",")[4]);
+			card_max_v = parseInt(card_data[i].split(",")[5]);
+			card_pt = parseInt(card_data[i].split(",")[6]);
+			card_used = parseInt(card_data[i].split(",")[7]);
+			card_numer = parseInt(card_data[i].split(",")[8]);
+			card_denom = parseInt(card_data[i].split(",")[9]);
+			card_whole = parseInt(card_data[i].split(",")[10]);
+
+			//add the card
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+				
+			new_card.base_value = card_bvalue;	
+			console.log("before",new_card.cvalue,card_cvalue);		
+			new_card.cvalue = card_cvalue;			
+			console.log("after",new_card.cvalue,card_cvalue);		
+			new_card.max=card_max_v;
+			new_card.total=card_tot;
+			new_card.protect=card_pt;
+			new_card.numer=card_numer;
+			new_card.denom=card_denom;
+			new_card.whole=card_whole;
+
+			if(card_used==1) {num_attacked.push(card_id);}
+
+			console.log("new card",card_cvalue,new_card);
+			game.inplay[opponent].cards.push(new_card);
+			}
+		}
+
+	//deck - opponent
+	game.decks[opponent].cards.length=0;
+	hand_data = packed.split("|")[2];
+	card_data = hand_data.split("*");
+	for(var i=0;i<card_data.length-1;i++) { 
+		card_id = parseInt(card_data[i].split(",")[0]);
+		card_uid = parseInt(card_data[i].split(",")[1]);
+		//add the card
+		var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+		game.decks[opponent].cards.push(new_card);
+		}
+
+
+		//YOU
+		//hand
+	game.hands[you].cards.length=0;
+	hand_data = packed.split("|")[3];
+	card_data = hand_data.split("*");
+	for(var i=0;i<card_data.length-1;i++) { 
+		card_id = parseInt(card_data[i].split(",")[0]);
+		card_uid = parseInt(card_data[i].split(",")[1]);
+		//add the card
+		var new_card = new Card(card_templates[card_uid-1],card_id,color_you);
+		game.hands[you].cards.push(new_card);
+		}
+
+	//inplay, YOU
+	game.inplay[you].cards.length=0;
+	if (packed.indexOf("|") !=-1)
+	{
+		inplay_data = packed.split("|")[4];
+		card_data = inplay_data.split("*");
+		for(var i=0;i<card_data.length-1;i++) { 
+			console.log("===== CARD IN PLAY", card_data[i])
+			card_id = parseInt(card_data[i].split(",")[0]);
+			card_uid = parseInt(card_data[i].split(",")[1]);
+			card_cvalue = parseInt(card_data[i].split(",")[2]);
+			card_bvalue = parseInt(card_data[i].split(",")[3]);
+			card_tot = parseInt(card_data[i].split(",")[4]);
+			card_max_v = parseInt(card_data[i].split(",")[5]);
+			card_pt = parseInt(card_data[i].split(",")[6]);
+			card_used = parseInt(card_data[i].split(",")[7]);
+			card_numer = parseInt(card_data[i].split(",")[8]);
+			card_denom = parseInt(card_data[i].split(",")[9]);
+			card_whole = parseInt(card_data[i].split(",")[10]);
+			//add the card
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_you);
+				
+			new_card.base_value = card_bvalue;			
+			new_card.cvalue = card_cvalue;			
+			new_card.max=card_max_v;
+			new_card.total=card_tot;
+			new_card.protect=card_pt;
+			new_card.numer=card_numer;
+			new_card.denom=card_denom;
+			new_card.whole=card_whole;
+
+			if(card_used==1) {num_attacked.push(card_id);}
+			console.log("new card",card_cvalue,new_card);
+			game.inplay[you].cards.push(new_card);
+			}
+	}
+
+	//deck - YOU
+	game.decks[you].cards.length=0;
+	hand_data = packed.split("|")[5];
+	card_data = hand_data.split("*");
+	for(var i=0;i<card_data.length-1;i++) { 
+		card_id = parseInt(card_data[i].split(",")[0]);
+		card_uid = parseInt(card_data[i].split(",")[1]);
+		//add the card
+		var new_card = new Card(card_templates[card_uid-1],card_id,color_you);
+		game.decks[you].cards.push(new_card);
+		}
+
+	set_tr_light();
+	draw_all();
+	$("#turn").css({"background-color": color_player[turn] });
+	if (turn==you) {$("#turn").text("Turn: You");};
+	if (turn==opponent) {$("#turn").text("Turn: Opponent");};
+
+}
+
+
+//pack_hand = pack hand + inplay + 2 players
+//pack_my_deck = pack 1 deck
+
+function pack_hand(loc) {
+	packed="";
+
+	if (loc=="all")
+	{
+		for(var i=0;i<game.hands[0].cards.length;i++) { 
+					packed = packed+String(game.hands[0].cards[i].id+","+String(game.hands[0].cards[i].uid))+"*"}
+
+		packed = packed+"|";
+		for(var i=0;i<game.inplay[0].cards.length;i++) { 
+					packed = packed+String(game.inplay[0].cards[i].id+","+String(game.inplay[0].cards[i].uid)+","+String(game.inplay[0].cards[i].cvalue)+","+String(game.inplay[0].cards[i].base_value)+","+String(game.inplay[0].cards[i].total)+","+String(game.inplay[0].cards[i].max)+","+String(game.inplay[0].cards[i].protect)+","+String(check_card_already_attack(game.inplay[0].cards[i].id)))+","+String(game.inplay[0].cards[i].numer)+","+String(game.inplay[0].cards[i].denom)+","+String(game.inplay[0].cards[i].whole)+"*"}
+
+		packed = packed+"|";
+		for(var i=0;i<game.hands[1].cards.length;i++) { 
+					packed = packed+String(game.hands[1].cards[i].id+","+String(game.hands[1].cards[i].uid))+"*"}
+
+		packed = packed+"|";
+		for(var i=0;i<game.inplay[1].cards.length;i++) { 
+					packed = packed+String(game.inplay[1].cards[i].id+","+String(game.inplay[1].cards[i].uid)+","+String(game.inplay[1].cards[i].cvalue)+","+String(game.inplay[1].cards[i].base_value)+","+String(game.inplay[1].cards[i].total)+","+String(game.inplay[1].cards[i].max)+","+String(game.inplay[1].cards[i].protect)+","+String(check_card_already_attack(game.inplay[1].cards[i].id)))+","+String(game.inplay[1].cards[i].numer)+","+String(game.inplay[1].cards[i].denom)+","+String(game.inplay[1].cards[i].whole)+"*"}
+	}
+
+	return packed;
+};
+
+
+function pack_mydeck(pl_id) {
+	packed="";
+
+		for(var i=0;i<game.hands[pl_id].cards.length;i++) { 
+					packed = packed+String(game.hands[pl_id].cards[i].id+","+String(game.hands[pl_id].cards[i].uid))+"*"}
+
+		packed = packed+"|";
+		for(var i=0;i<game.inplay[pl_id].cards.length;i++) { 
+					packed = packed+String(game.inplay[pl_id].cards[i].id+","+String(game.inplay[pl_id].cards[i].uid)+","+String(game.inplay[pl_id].cards[i].cvalue)+","+String(game.inplay[pl_id].cards[i].base_value)+","+String(game.inplay[pl_id].cards[i].total)+","+String(game.inplay[pl_id].cards[i].max)+","+String(game.inplay[pl_id].cards[i].protect)+","+String(check_card_already_attack(game.inplay[pl_id].cards[i].id)))+","+String(game.inplay[pl_id].cards[i].numer)+","+String(game.inplay[pl_id].cards[i].denom)+","+String(game.inplay[pl_id].cards[i].whole)+"*"}
+
+		packed = packed+"|";
+		for(var i=0;i<game.decks[pl_id].cards.length;i++) { 
+					packed = packed+String(game.decks[pl_id].cards[i].id+","+String(game.decks[pl_id].cards[i].uid))+"*"}
+
+	return packed;
+};
+
+function unpack_deck_first(loc,packed,pl_id){
+
+	if (loc=="all")
+	{
+		//hand
+		game.hands[opponent].cards.length=0;
+		hand_data = packed.split("|")[0];
+		card_data = hand_data.split("*");
+		console.log(hand_data,"cards",card_data);
+		for(var i=0;i<card_data.length-1;i++) { 
+			card_id = parseInt(card_data[i].split(",")[0]);
+			card_uid = parseInt(card_data[i].split(",")[1]);
+			//add the card
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+			game.hands[opponent].cards.push(new_card);
+
+			}
+
+
+		//deck
+		game.decks[opponent].cards.length=0;
+		hand_data = packed.split("|")[2];
+		card_data = hand_data.split("*");
+//		console.log(hand_data,"cards",card_data);
+		for(var i=0;i<card_data.length-1;i++) { 
+//			console.log(card_data)
+			card_id = parseInt(card_data[i].split(",")[0]);
+			card_uid = parseInt(card_data[i].split(",")[1]);
+			//add the card
+//			console.log(card_data[i],card_id,card_uid,card_templates[card_uid-1][0]);
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+			game.decks[opponent].cards.push(new_card);
+
+			}
+
+		//inplay, if any
+		game.inplay[opponent].cards.length=0;
+		if (packed.indexOf("|") !=-1)
+		{
+			inplay_data = packed.split("|")[1];
+			card_data = inplay_data.split("*");
+			for(var i=0;i<card_data.length-1;i++) { 
+//				console.log(card_data)
+				card_id = parseInt(card_data[i].split(",")[0]);
+				card_uid = parseInt(card_data[i].split(",")[1]);
+				//add the card
+				var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+				game.inplay[opponent].cards.push(new_card);
+				}
+		}
+	}
+
+
+
+}
+
+function unpack_hand(loc,packed){
+	if (loc=="all")
+	{
+		//OPPONENT
+		//hand
+		game.hands[opponent].cards.length=0;
+		hand_data = packed.split("|")[0];
+		card_data = hand_data.split("*");
+		for(var i=0;i<card_data.length-1;i++) { 
+			card_id = card_data[i].split(",")[0];
+			card_uid = card_data[i].split(",")[1];
+
+			//add the card
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+			game.hands[opponent].cards.push(new_card);
+
+			}
+
+		//inplay, if any
+		game.inplay[opponent].cards.length=0;
+		if (packed.indexOf("|") !=-1)
+		{
+			inplay_data = packed.split("|")[1];
+			card_data = inplay_data.split("*");
+			for(var i=0;i<card_data.length-1;i++) { 
+				console.log("===== CARD IN PLAY", card_data[i],card_data[i].split(",")[2]);
+				card_id = parseInt(card_data[i].split(",")[0]);
+				card_uid = parseInt(card_data[i].split(",")[1]);
+				card_cvalue = parseInt(card_data[i].split(",")[2]);
+				card_bvalue = parseInt(card_data[i].split(",")[3]);
+				card_tot = parseInt(card_data[i].split(",")[4]);
+				card_max_v = parseInt(card_data[i].split(",")[5]);
+				card_pt = parseInt(card_data[i].split(",")[6]);
+				card_used = parseInt(card_data[i].split(",")[7]);
+				card_numer = parseInt(card_data[i].split(",")[8]);
+				card_denom = parseInt(card_data[i].split(",")[9]);
+				card_whole = parseInt(card_data[i].split(",")[10]);
+
+
+				//add the card
+				var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+				
+				new_card.base_value = card_bvalue;	
+				console.log("before",new_card.cvalue,card_cvalue);		
+				new_card.cvalue = card_cvalue;			
+				console.log("after",new_card.cvalue,card_cvalue);		
+				new_card.max=card_max_v;
+				new_card.total=card_tot;
+				new_card.protect=card_pt;
+				new_card.numer=card_numer;
+				new_card.denom=card_denom;
+				new_card.whole=card_whole;
+
+				if(card_used==1) {num_attacked.push(card_id);}
+
+				console.log("new card",card_cvalue,new_card);
+				game.inplay[opponent].cards.push(new_card);
+				}
+		}
+
+
+		//YOU
+		//hand
+		game.hands[you].cards.length=0;
+		hand_data = packed.split("|")[2];
+		card_data = hand_data.split("*");
+//		console.log(hand_data,"cards",card_data);
+		for(var i=0;i<card_data.length-1;i++) { 
+//			console.log(card_data)
+			card_id = card_data[i].split(",")[0];
+			card_uid = card_data[i].split(",")[1];
+			//add the card
+//			console.log(card_data[i],card_id,card_uid,card_templates[card_uid-1][0]);
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_you);
+			game.hands[you].cards.push(new_card);
+
+			}
+
+		//inplay, if any
+		game.inplay[you].cards.length=0;
+		if (packed.indexOf("|") !=-1)
+		{
+			inplay_data = packed.split("|")[3];
+			card_data = inplay_data.split("*");
+			for(var i=0;i<card_data.length-1;i++) { 
+				console.log("===== CARD IN PLAY", card_data[i])
+				card_id = parseInt(card_data[i].split(",")[0]);
+				card_uid = parseInt(card_data[i].split(",")[1]);
+				card_cvalue = parseInt(card_data[i].split(",")[2]);
+				card_bvalue = parseInt(card_data[i].split(",")[3]);
+				card_tot = parseInt(card_data[i].split(",")[4]);
+				card_max_v = parseInt(card_data[i].split(",")[5]);
+				card_pt = parseInt(card_data[i].split(",")[6]);
+				card_used = parseInt(card_data[i].split(",")[7]);
+				card_numer = parseInt(card_data[i].split(",")[8]);
+				card_denom = parseInt(card_data[i].split(",")[9]);
+				card_whole = parseInt(card_data[i].split(",")[10]);
+				//add the card
+				var new_card = new Card(card_templates[card_uid-1],card_id,color_you);
+				
+				new_card.base_value = card_bvalue;			
+				new_card.cvalue = card_cvalue;			
+				new_card.max=card_max_v;
+				new_card.total=card_tot;
+				new_card.protect=card_pt;
+				new_card.numer=card_numer;
+				new_card.denom=card_denom;
+				new_card.whole=card_whole;
+
+				if(card_used==1) {num_attacked.push(card_id);}
+				console.log("new card",card_cvalue,new_card);
+				game.inplay[you].cards.push(new_card);
+				}
+		}
+
+
+
+	}
+
+	if (loc=="hand")
+	{
+		//hand
+		game.hands[opponent].cards.length=0;
+		hand_data = packed.split("|")[0];
+		card_data = hand_data.split("*");
+		console.log(hand_data,"cards",card_data);
+		for(var i=0;i<card_data.length-1;i++) { 
+			console.log(card_data)
+			card_id = card_data[i].split(",")[0];
+			card_uid = card_data[i].split(",")[1];
+			//add the card
+			console.log(card_data[i],card_id,card_uid,card_templates[card_uid-1][0]);
+			var new_card = new Card(card_templates[card_uid-1],card_id,color_opponent);
+			game.hands[opponent].cards.push(new_card);
+			}
+	}
+}
+
+class Communication {
+	constructor(pl_seq,gameid,pl_you,pl_opponent,socket){
+		this.pl_seq = pl_seq;
+		this.game_id = gameid;
+		this.you = pl_you;
+		this.opponent = pl_opponent;
+		this.wait=0;
+		this.interval=600;
+		this.m_id = 0;
+		this.socket_mes ="";
+		this.socket = socket;
+	}
+
+	send_data(event,content){
+		//sockets
+		//this.m_id = this.m_id +1;
+		//this.socket_mes = this.prepare_mes(event,content);
+		//this.socket.emit('event_message', this.socket_mes);
+	 	//console.log("===  SENT SOCKET EVENT",this.socket_mes);  
+	 	//add to the list of messages	sent
+	 	//messages_list.push(this.socket_mes); 
+	 	console.log("===  MESSAGES",messages_list);  
+
+	}
+
+	resend(message)
+	{
+		this.socket.emit('event_message', message);
+	 	console.log("===  RESENT SOCKET EVENT",message.m_user_id);  		
+	}
+	
+	prepare_mes(event,content){
+		var myMes = { 'player':this.pl_seq, 'user': this.you , 'game_id': this.game_id , 'opponent': this.opponent, 'event': event, 'content': content, 'm_user_id': this.m_id};
+		return myMes
+	}
+
+}
+
+
+function savechat(){
+	chat_text = String($('#m').val());
+}
+
+
+function loadchat(){
+	$('#m').val(chat_text);
+}
+
+function disable_undo()
+{
+	console.log("disable undo");
+	$('#undo').css('color', 'grey');
+	$('#undo').css('text-decoration', 'line-through');
+	game.undo_active=0;
+	if (start_game!=1) {action=0;start_game=0;}
+	if (start_game==1) {previous_action=-1;}
+
+}
+
+
+// SOUNDS //
+  function play(media){
+	
+	var audio = new Audio(media);
+	audio.play();
+                 }
+ 
+function enable_undo()
+{
+	$('#undo').css('color', 'black');
+	$('#undo').css('text-decoration', 'none');
+	game.undo_active=1;
+	action = 1;
+}
+
+function copy_deck(deck){
+
+	var new_deck = new Deck(1,1);  //fake new deck
+  	new_deck.player = deck.player;
+  	new_deck.id=deck.id;
+  	new_deck.num_cards = deck.num_cards;
+  	new_deck.cards= new Array();
+ 	
+ 	//copy cards
+	var arrayLength = deck.cards.length;
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		 var temp_card = copy_card(deck.cards[i]);
+		 new_deck.addCard(temp_card);	
+	}
+	return new_deck;
+}
+
+
+function copy_hand(hand){
+
+	var new_hand = new Hand(1);  //fake new deck
+  	new_hand.id=hand.id;
+  	new_hand.num_cards = hand.num_cards;
+  	new_hand.cards= new Array();
+ 	
+ 	//copy cards
+	var arrayLength = hand.cards.length;
+	for (var i = 0; i < arrayLength; i++)
+	{
+		 var card = copy_card(hand.cards[i]);
+		 new_hand.cards.push(card);	
+	}
+	return new_hand;
+}
+
+function copy_card(card){  //deep copy of a card
+
+	//create new card
+	var new_card = new Card(card_templates[1],9999,"blue");
+
+	//copy all the values
+	new_card.id = card.id;
+	new_card.cover = card.cover;
+	new_card.uid = card.uid;	
+	new_card.status = card.status;
+	new_card.ab = card.ab;
+   	new_card.protect=card.protect;
+  	new_card.ctype=card.ctype;
+  	new_card.ftype=card.ftype;
+  	new_card.numer=card.numer;
+  	new_card.denom=card.denom;
+  	new_card.whole=card.whole;
+  	new_card.cvalue=card.cvalue;
+  	new_card.name=card.name;
+	new_card.base_value=card.base_value;
+	new_card.instructions=card.instructions;
+	new_card.message=card.message;
+	new_card.total=card.total;
+	new_card.max=card.max;
+	new_card.specials=card.specials;
+	new_card.hydra=card.hydra;
+	new_card.secs=card.secs;
+	new_card.cards=card.cards;
+	new_card.image=card.image;
+	return new_card;
+}
+
+
+function save_game(){
+	console.log("GAME SAVED!");
+	//copy one by one... from game to undo_game
+	undo_game.undo_active = game.undo_active;
+//	undo_game.onetarget = game.onetarget;
+//	undo_game.multitarget = game.multitarget;
+	undo_game.onetarget = 0;
+	undo_game.multitarget = 0;
+	undo_game.init_phase = game.init_phase;
+	undo_game.turn = game.turn;
+	undo_game.phase = game.phase;
+	undo_game.priority = game.priority;
+
+	//copy points
+	undo_game.points.length = 0;
+	undo_game.points.push(game.points[you]);
+	undo_game.points.push(game.points[opponent]);
+
+	//copy swipe count
+	undo_game.swipe.length = 0;
+	undo_game.swipe.push(game.swipe[you]);
+	undo_game.swipe.push(game.swipe[opponent]);
+
+	//copy deck - get the card id and clone them
+	undo_game.decks.length = 0;
+	undo_game.decks.push(copy_deck(game.decks[you]));
+	undo_game.decks.push(copy_deck(game.decks[opponent]));
+
+	//copy hand
+	undo_game.hands.length = 0;
+	undo_game.hands.push(copy_hand(game.hands[you]));
+	undo_game.hands.push(copy_hand(game.hands[opponent]));
+	
+	//copy inplay
+	undo_game.inplay.length = 0;
+	undo_game.inplay.push(copy_hand(game.inplay[you]));
+	undo_game.inplay.push(copy_hand(game.inplay[opponent]))
+
+	//copy stack
+	undo_game.stack.length = 0;
+	var arrayLength = game.stack.length;
+	for (var i = 0; i < arrayLength; i++)
+		{undo_game.stack.push(game.stack[i]);}
+
+	//copy attacks
+	undo_game.attacks.length = 0;
+	var arrayLength = game.attacks.length;
+	for (var i = 0; i < arrayLength; i++)
+		{undo_game.attacks.push(game.attacks[i]);}
+
+	//copy connections
+	undo_game.connections.length = 0;
+	var arrayLength = game.connections.length;
+	for (var i = 0; i < arrayLength; i++)
+		{undo_game.connections.push(game.connections[i]);}
+
+
+	//variables
+	old_action = action;
+	old_previous_action = previous_action;
+	old_phase = phase;
+	old_priority = priority;
+	old_undo_phase = undo_phase;
+	old_mess_undo = mess_undo;
+	old_first_priority = first_priority;
+
+	//copy num attacking
+	undo_num_attacked.length = 0;
+	var arrayLength = num_attacked.length;
+	for (var i = 0; i < arrayLength; i++)
+		{undo_num_attacked.push(num_attacked[i]);}
+
+
+
+//	old_received_mes = Array.from(received_mes);
+//	old_ack_mes = Array.from(ack_mes);
+//	old_messages_list = Array.from(messages_list);
+
+
+};
+
+
+function load_game(){
+	console.log("GAME SAVED!");
+
+	//copy one by one... from game to undo_game
+	game.undo_active = undo_game.undo_active;
+	game.onetarget = undo_game.onetarget;
+	game.multitarget = undo_game.multitarget;
+	game.init_phase = undo_game.init_phase;
+	game.turn = undo_game.turn;
+	game.phase = undo_game.phase;
+	game.priority = undo_game.priority;
+
+	//copy points
+	game.points.length = 0;
+	game.points.push(undo_game.points[you]);
+	game.points.push(undo_game.points[opponent]);
+
+	//copy swipe count
+	game.swipe.length = 0;
+	game.swipe.push(undo_game.swipe[you]);
+	game.swipe.push(undo_game.swipe[opponent]);
+
+
+	//copy deck - get the card id and clone them
+	game.decks.length = 0;
+	game.decks.push(copy_deck(undo_game.decks[you]));
+	game.decks.push(copy_deck(undo_game.decks[opponent]));
+
+	//copy hand
+	game.hands.length = 0;
+	game.hands.push(copy_hand(undo_game.hands[you]));
+	game.hands.push(copy_hand(undo_game.hands[opponent]));
+	
+	//copy inplay
+	game.inplay.length = 0;
+	game.inplay.push(copy_hand(undo_game.inplay[you]));
+	game.inplay.push(copy_hand(undo_game.inplay[opponent]));
+
+	//copy stack
+	game.stack.length = 0;
+	var arrayLength = undo_game.stack.length;
+	for (var i = 0; i < arrayLength; i++)
+		{game.stack.push(undo_game.stack[i]);}
+
+	//copy attacks
+	game.attacks.length = 0;
+	var arrayLength = undo_game.attacks.length;
+	for (var i = 0; i < arrayLength; i++)
+		{game.attacks.push(undo_game.attacks[i]);}
+
+	//copy connections
+	game.connections.length = 0;
+	var arrayLength = undo_game.connections.length;
+	for (var i = 0; i < arrayLength; i++)
+		{game.connections.push(undo_game.connections[i]);}
+
+
+	//variables
+	action = old_action;
+	previous_action = old_previous_action;
+	phase = old_phase;
+	priority = old_priority;
+	undo_phase = old_undo_phase;
+	mess_undo = old_mess_undo;
+	first_priority = old_first_priority;
+
+	//copy num attacking
+	num_attacked.length = 0;
+	var arrayLength = undo_num_attacked.length;
+	for (var i = 0; i < arrayLength; i++)
+		{num_attacked.push(undo_num_attacked[i]);}
+
+};
+
+function reset_change(){
+		$('#message_text').text("Capture the red cards!");
+	change_mode=0;
+	$('#change').text("Change Card");
+	nohl_div_back('inplay_you');
+	nohl_div_back('hand_you');
+}
+
+function undo_priority(){
+	load_game();
+	no_discard=0;
+	merge_op = 0;
+	reset_change();
+	//nohl_section();
+	console.log("undo priority");
+	draw_all();
+	disable_undo();
+	//hide_modal();
+	modal_ok(mess_undo); //rewrite message
+	spell_attack=0;
+	attack_status=select_attack;
+	if (old_card_index_undo != card_index_undo)
+		{ card_index_undo = old_card_index_undo;}
+
+};
+
+
+function add_explain(card_played,card_target)
+{
+	player = owner(card_target.id);
+	player_cast = owner(card_played.id);
+	if (player==you) {color=" (blue) ";} else {color=" (red) ";}
+	if (player==you) {player_name=" You ";} else {player_name=" Opponent ";}
+//	modal_ok("Applying Spells....");
+
+	if (card_target==-1)
+	{
+		explain_removal.push(card_played.name+"("+card_played.id+") "+" --> No Valid Target!");		
+	}
+	else
+		{
+		if (player!=player_cast)
+			{
+			explain_removal.push(card_played.name+" --> "+ card_target.name+color+"pts: "+String(card_target.base_value)+ "for "+player_name);
+	//		modal_ok(card_played.name+" --> "+ card_target.name+color+"pts: "+String(card_target.base_value));
+			}
+		if (player==player_cast)
+			{
+			explain_removal.push(card_played.name+" --> "+ card_target.name+color+"pts: 0 (own card)");
+	//		modal_ok(card_played.name+" --> "+ card_target.name+color+"pts: 0 (own card)");
+			}
+	}	
+	
+	cards_onstack.length=0;
+	cards_onstack.push(card_played.id);
+	cards_onstack.push(card_target.id);
+
+
+};
+
+//for each in explain
+//modal => set variable, increment index
+//press ok => decrease variable -1
+
+function get_points(win){
+	if (level<0) {if (total_score==0) {total_score = minutes*600+tenth+seconds*10;}
+			if (total_score>2400) {total_score=10} else {total_score = parseInt(1500-total_score);if (total_score<0) {total_score=10};
+	};return 0}
+	if (win<0) {if (total_score==0) {total_score = level *200; all_score = all_score + total_score}}
+	if (win>0) {
+		if (total_score==0) {total_score = current_level.max_points - (minutes*600+tenth+seconds*10+num_moves*20+cards_used*5-score_you); if (level<0) {total_score = total_score * -1;}
+		all_score = all_score + total_score};
+	}
+	console.log("ALL Score",all_score,total_score);
+}
+
+function loss_message(mess){
+	clearTimeout(t); //stop time
+	get_points(-1);
+	score_you = parseInt($('#you_score').text());
+	console.log("WINNER",mess)
+	$('#winlost_mes').text(mess);
+	$('#winlost_result').html("Points: "+String(score_you));
+	//$('#you_all_score').text(score_you);
+	$('#winlost').css('display','block'); 
+	update_match_solo(score_you,game_name);
+	return 0;
+}
+
+function giveup()
+{
+	if (tut_active==1) {return 0;}
+	
+	$.confirm({
+   		title: 'Are you sure you want to end the game?',
+     content: '',
+    buttons: {
+        yes: function () {
+			update_move("","end");
+           	win_mes();
+            //return false;
+        },
+        no: function () {
+            //return false;
+        },
+    }
+});
+
+}
+
+
+function giveup_time()
+{
+	if (tut_active==1) {return 0;}
+	if (giveuptime==1) {return 0;}
+	$('#time_left').css('display','none');
+	$.confirm({
+   		title: 'Time is UP! Your match is over',
+     content: '',
+    buttons: {
+        confirm: function () {
+			update_move("","end");
+           	win_mes();
+           	giveuptime=1;
+            //return false;
+        },
+    }
+});
+
+}
+
+function update_points(gap){
+	game.points[you] = game.points[you] + gap;
+	score_you = game.points[you];
+	$('#you_score').text(game.points[you]);
+	bonus_cards(game.points[you]);
+}
+
+function bonus_cards(points){
+	var bonus_interval = 100;
+	new_cards = Math.floor((points-last_bonus)/bonus_interval); 
+	if (points-last_bonus) {
+		last_bonus = last_bonus	+ bonus_interval * new_cards;
+	}
+	add_cards(new_cards);
+}
+
+function win_mes(){
+	end_match = 1;
+	var winner=0;
+
+	score_you = parseInt($('#you_score').text());
+	pl_you = $('#pl_you').text();
+	total_score = score_you;
+	//create swipe
+	swipe_you_text = "";
+
+	//check loss condition
+	//max time
+	var mes_result = "";
+
+	clearTimeout(t); //stop time
+	
+	if (get_feelings==0){
+		mes_result = mes_result+"<br><span style='text-align: center;font-size:3vw'><b>SCORE: "+String(total_score)+"</b><br></span>";
+			
+		$('#winlost_mes').text("Good Job, "+String(pl_you)+"!");
+		$('#winlost_result').html(mes_result);
+		$('#winlost').css('display','block');  
+		console.log("going to update",total_score,level)
+		update_match_solo(total_score,game_name);
+	} else
+	{
+		update_match_solo(total_score,game_name);
+		$('#winlost_mes').css("margin-top","1%");
+		$('#winlost_mes').html("<span style='text-align: center;font-size:2vw'>Your final score is: "+String(total_score)+"</span>")
+		$('#master_pic_mes').css('display','none');  
+		$('#master_pic_feel').css('display','block');  
+
+		ask_feelings(mes_result)
+	}
+}
+
+
+function get_tour_rank(){
+  return 0;  //rank disabled
+  t_name = $('#tournament').text();
+  points = parseInt($('#you_score').text());
+  $.ajax({ url: 'get_tour_rank.php', type: 'post', data: {'user': get_player_name(), 't_name': t_name , 'points':points},
+   success: function(data){
+      console.log("Menu",data);   //data = <tr><td>... </tr>
+       $('#t_rank').html(data);
+       console.log(data);
+    },
+    complete:function(data){
+      var getrank = setTimeout(function() {get_tour_rank();},5000);
+      }
+  });
+}
+
+
+function update_score(){
+	score_you = parseInt($('#you_score').text());
+	total_score = score_you;
+	update_match_solo(total_score,game_name);
+}
+
+function check_winner()
+{
+
+	score_you = parseInt($('#you_score').text());
+	pl_you = $('#pl_you').text();
+
+	//create swipe
+	swipe_you_text = "";
+
+	//check loss condition
+	//max time var mes_result = "";
+	if (level>=0) {
+		if ( CountSpecials() < current_level.num_sp_cards) {	  //time is UP
+			loss_message("You removed a special card! You have lost, "+String(pl_you)+"!");
+			$('#next_level').css('display','none');
+			return 0;
+		}
+		//special cards
+		if ((minutes*60+seconds)> current_level.max_time) {	  //time is UP
+			loss_message("Time is UP! You have lost, "+String(pl_you)+"!");
+			$('#next_level').css('display','none');
+			return 0;
+		}
+		if (CountOppCards()>= current_level.max_opp_cards) {	  //too much red cards
+			loss_message("Too much Red Cards! You have lost, "+String(pl_you)+"!")
+			$('#next_level').css('display','none');
+			return 0;
+		}
+
+		if (cards_used>= current_level.max_cards) {	  //all cards used
+			loss_message("You have used all your cards! You have lost, "+String(pl_you)+"!");
+			$('#next_level').css('display','none');
+			return 0;
+		}
+		//win condition
+		if (score_you>=towin || game.swipe[you]>=swipe_towin) { 
+			clearTimeout(t); //stop time
+			$('#winlost_mes').text("Good Job, "+String(pl_you)+", "+current_level.name+ " completed!");
+			get_points(1);
+			$('#winlost_result').html("Points: "+String(all_score));
+			$('#next_level').css('display','inline-block');
+			$('#finish').css('margin-left','10%');
+			$('#winlost').css('display','block');  
+			$('#you_all_score').text(all_score);
+			console.log("WINNER ==========================");
+			if (num_levels==level) {
+  				$('#winlost_mes').text("Good Job, GAME completed!");
+				$('#next_level').css('display','none');
+				update_match_solo(all_score,game_name);
+			}	
+			return 0;		
+		}
+	}
+
+	for (var i = 0; i < game.swipe[you]; i++) {swipe_you_text = swipe_you_text +"&#9733; ";}
+
+
+	 end_match = 0;
+	var winner=0;
+
+	if (score_you>=towin || game.swipe[you]>=swipe_towin) { 
+		clearTimeout(t); //stop time
+		mes_result = mes_result+"<span style='text-align: center;font-size:2vw'>Points: "+String(score_you)+" ("+String(swipe_you_text)+")<br>Time: "+$('#time_left').text().split(" ")[1]+"<br>Moves: "+$('#you_moves').text()+"</span>" 
+		console.log(minutes,tenth,seconds,num_moves,cards_used,score_you)
+		
+		if (game.swipe[you]>=swipe_towin) {get_points(1)};
+		if (score_you>=towin) {get_points(1)};
+		mes_result = mes_result+"<br><span style='text-align: center;font-size:3vw'><b>TOTAL SCORE: "+String(total_score)+"</b><br></span>";
+
+	}
+
+	if ((score_you>=towin || game.swipe[you]>=swipe_towin) )
+	{
+		
+		$('#winlost_mes').text("Good Job, "+String(pl_you)+"!");
+		$('#winlost_result').html(mes_result);
+		$('#winlost').css('display','block');  
+		console.log("WINNER ==========================");
+		update_match_solo(total_score,game_name);
+	}
+}
+
+function end_time_game()
+{
+	clearTimeout(t_fast);
+	update_match_solo_fast_time(score_you);
+	update_move("","end");
+    win_mes();
+}
+
+
+function end_points_game()
+{
+	var mes_result = "";
+	mes_result = mes_result+"<br><span style='text-align: center;font-size:3vw'><b>YOUR TIME: "+String($('#time_left').text())+"</b><br></span>";
+		$('#winlost_mes').text("Good Job, "+String(pl_you)+"!");
+		$('#winlost_result').html(mes_result);
+		$('#winlost').css('display','block');  
+		console.log("WINNER ==========================",mes_result);
+//		update_match_solo(total_score,level);
+}
+
+function fade(div_id,time)
+{
+	$("#"+String(div_id)).hide('slow', function(){ draw_all(); });
+}
+
+function fade_in(div_id,time)
+{
+//	div = document.getElementById(div_id);
+	$("#"+String(div_id)).show();
+//	div.opacity=0;
+//	console.log("Div to fade",div_id,div);
+//    setTimeout(function(){ console.log("dfdf");div.style.display = "none"; draw_all();}, 500);
+
+}
+
+
+function get_target_stack()  //get all the targets of a remove all card
+{
+	var targets = new Array();
+	var arrayLength = game.inplay[you].cards.length;
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		{if (game.inplay[you].cards[i].ctype=="N") {targets.push(game.inplay[you].cards[i].id);}}
+	}
+
+	var arrayLength = game.inplay[opponent].cards.length;
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		{if (game.inplay[opponent].cards[i].ctype=="N") {targets.push(game.inplay[opponent].cards[i].id);}}
+	}
+	
+	return targets;
+}
+
+function get_max_card()  //get the id of the maximum card
+{
+	var targets = new Array();
+	var list_max = new Array();
+	var arrayLength = game.inplay[you].cards.length;
+	card_id = -1;
+	max = -1;
+	list_max=[];
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		{if (game.inplay[you].cards[i].ctype=="N" && game.inplay[you].cards[i].cvalue>max) 
+			{card_id = game.inplay[you].cards[i].id; max = game.inplay[you].cards[i].cvalue;}}
+	}
+
+	var arrayLength = game.inplay[opponent].cards.length;
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		{if (game.inplay[opponent].cards[i].ctype=="N" && game.inplay[opponent].cards[i].cvalue>max) 
+			{card_id = game.inplay[opponent].cards[i].id; max = game.inplay[opponent].cards[i].cvalue;}}
+	}
+	console.log("max",max)
+
+	var arrayLength = game.inplay[you].cards.length;
+	for (var i = 0; i < arrayLength; i++)
+	{
+		if (game.inplay[you].cards[i].ctype=="N" && game.inplay[you].cards[i].cvalue==max) 
+			{list_max.push(game.inplay[you].cards[i].id)}
+	}
+
+	var arrayLength = game.inplay[opponent].cards.length;
+	for (var i = 0; i < arrayLength; i++)
+	{
+		if (game.inplay[opponent].cards[i].ctype=="N" && game.inplay[opponent].cards[i].cvalue==max) 
+			{list_max.push(game.inplay[opponent].cards[i].id)}
+	}
+
+
+	return list_max;
+}
+
+function get_min_card()  //get the id of the maximum card
+{
+	var targets = new Array();
+	var arrayLength = game.inplay[you].cards.length;
+	card_id = -1;
+	max = 10000;
+	var list_min = new Array();
+	list_min=[];
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		{if (game.inplay[you].cards[i].ctype=="N" && game.inplay[you].cards[i].cvalue<max) 
+			{card_id = game.inplay[you].cards[i].id; max = game.inplay[you].cards[i].cvalue;}}
+	}
+
+	var arrayLength = game.inplay[opponent].cards.length;
+
+	for (var i = 0; i < arrayLength; i++)
+	{
+		{if (game.inplay[opponent].cards[i].ctype=="N" && game.inplay[opponent].cards[i].cvalue<max) 
+			{card_id = game.inplay[opponent].cards[i].id; max = game.inplay[opponent].cards[i].cvalue;}}
+	}
+	
+	//populate min
+
+	var arrayLength = game.inplay[you].cards.length;
+	for (var i = 0; i < arrayLength; i++)
+	{
+		if (game.inplay[you].cards[i].ctype=="N" && game.inplay[you].cards[i].cvalue==max) 
+			{list_min.push(game.inplay[you].cards[i].id)}
+	}
+
+	var arrayLength = game.inplay[opponent].cards.length;
+	for (var i = 0; i < arrayLength; i++)
+	{
+		if (game.inplay[opponent].cards[i].ctype=="N" && game.inplay[opponent].cards[i].cvalue==max) 
+			{list_min.push(game.inplay[opponent].cards[i].id)}
+	}
+
+
+	return list_min;
+
+
+}
+
+
+
+function applycard(card_played, card_target)
+{
+		console.log("Card played ==>",card_played.name);
+
+		if (card_played.name.indexOf("Discard")!=-1)  //look and discard
+		{
+			
+			console.log("discarding...")
+			removeCardfromGame(card_played.id);
+			removeCardfromGame(card_target.id);
+//			draw_all();
+			action = 1; //action performed
+			set_tr_light();
+			//nohl_section();
+			game.onetarget=0; //target deselected
+			look_discard = 0;
+			save_game();  //new save point
+		//	hide_modal();
+			cover_hand(1);  //cover hand
+			op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+			modal_ok("");
+			spell_attack=0;
+			return 0;
+		}
+
+		if (card_played.name.indexOf("Switch")!=-1)  //merge
+		{
+
+			own_player = owner(card_target.id); //owner of the card to switch
+			switched_card = copy_card(card_target)
+			if (own_player==opponent) 
+				{switched_card.image = "empty_"+color_you+".png";
+				cards_you.push(switched_card.id);
+				game.inplay[you].cards.push(switched_card);
+				switched_card.id = new_card_id(you);}
+			else
+				{switched_card.image = "empty_"+color_opponent+".png";
+				cards_opponent.push(switched_card.id);
+				game.inplay[opponent].cards.push(switched_card);
+				switched_card.id = new_card_id(opponent);}
+
+			cards_ingame.push(switched_card);
+
+			removeCardfromGame(card_played.id);
+			removeCardfromGame(card_target.id);
+
+			op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(switched_card)+"</span> ";			
+			get_cards_ingame();
+			enable_undo();
+			spell_attack=0;
+			attack_status=select_attack;
+			//if (check_swipe_solo()==1) {align_swipe(); }
+
+		}
+
+
+		if (card_played.name.indexOf("Merge")!=-1)  //merge
+		{
+			var temp = card_played.name.split(" ");
+			var op = temp[1];
+			card1 = getCard(merge1);
+			card2 = getCard(merge2);
+			card_info = ["","","","",1,1];
+
+			own_player = owner(card_played.id);
+			console.log("card merge");
+
+			new_id = new_card_id(own_player);
+
+			if (priority==opponent)
+				{merged_card = new Card(card_info,new_id,color_opponent);}
+			else
+				{merged_card = new Card(card_info,new_id,color_you);}
+			//value
+			if (op=="+")
+				{	merged_card.base_value = card1.base_value +card2.base_value;
+					merged_card.cvalue = card1.cvalue +card2.cvalue;}
+			if (op=="x")
+				{	merged_card.base_value = card1.base_value + card2.base_value;
+					merged_card.cvalue = card1.cvalue * card2.cvalue;}
+			//abilities
+			merged_card.total = Math.max(card1.total,card2.total);
+			merged_card.max = Math.max(card1.max,card2.max);
+			merged_card.protect = Math.max(card1.protect,card2.protect);
+			//type
+			merged_card.ctype="N";
+			merged_card.name="Card Number" + String(merged_card.base_value);
+			//ownership
+			if (priority==you) {cards_you.push(merged_card.id);}
+			if (priority==opponent) {cards_opponent.push(merged_card.id);}
+			cards_ingame.push(merged_card);
+			//reset merge operation
+			merge1=0;
+			merge2=0;
+			merge_op=0;
+			removeCardfromGame(card1.id);
+			removeCardfromGame(card2.id);
+			removeCardfromGame(card_played.id);
+			//DrawRemove(3);	
+			old_card_index_undo = card_index_undo;		
+			DrawAfterCard();
+			DrawAfterCard();
+			DrawAfterCard();
+			//add card to hand and play it
+			game.hands[priority].cards.push(merged_card);
+			op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card1)+"</span> and <span style='color: black'>"+getCardName(card2)+"</span> "			
+			get_cards_ingame();
+			put_spells_inplay(merged_card.id);
+			enable_undo();
+			spell_attack=0;
+			attack_status=select_attack;
+
+		}
+
+
+		if (card_played.name.indexOf("Protect")!=-1 || card_played.name.indexOf("Give")!=-1)  //change abilitites
+		{
+			if (card_played.name.indexOf("Protect")!=-1 && (card_target.protect ==0))  {card_target.protect=1;}
+			if (card_played.name.indexOf("Give Max")!=-1 && (card_target.max ==0))  {console.log("give max");card_target.max=1;}
+			if (card_played.name.indexOf("Give Total")!=-1 && (card_target.total ==0))  {console.log("give total");card_target.total=1;}
+			removeCardfromGame(card_played.id);
+//			draw_all();
+			action = 1; //action performed
+			set_tr_light();
+			//nohl_section();
+			game.onetarget=0; //target deselected
+			enable_undo();
+			draw_all();
+			//skip();  //after an instant skip the priority
+			return 0;
+		}
+
+
+		if (card_played.name.indexOf("Add") !=-1 || card_played.name.indexOf("Subtract") !=-1 || card_played.name.indexOf("Divide") !=-1 || card_played.name.indexOf("Multiply") !=-1)  //add or subtract card
+		{
+			console.log("operations");
+			//hl_card(card_played.id);
+
+			var temp = card_played.name.split(" ");
+			var delta = parseInt(temp[1]);
+			if (card_target.protect>0) {addmessage(get_player_name(player)+": card protected");removeCardfromGame(card_played.id);return 0;	}
+			
+			if (card_played.name.indexOf("Subtract") !=-1) {card_target.cvalue = card_target.cvalue - delta;card_target.whole = card_target.whole - delta;}			
+			if (card_played.name.indexOf("Add") !=-1) {card_target.cvalue = card_target.cvalue + delta;card_target.whole = card_target.whole + delta;}
+			if (card_played.name.indexOf("Multiply") !=-1) {card_target.cvalue = card_target.cvalue * delta;card_target.whole = card_target.whole * delta;}
+			enable_undo();
+			if (card_played.name.indexOf("Divide") !=-1) 
+				{
+				if ((card_target.cvalue % delta)==0) 
+					{card_target.cvalue = parseInt(card_target.cvalue / delta);card_target.whole = parseInt(card_target.cvalue / delta);}
+				else
+					{addmessage(get_player_name(priority)+": Number cannot be divided by "+String(delta));
+					modal_ok("Number "+String(card_target.cvalue)+ " is not divisible by "+String(delta)+"! Card has no effect!");
+					disable_undo(); save_game(); //new entry point
+					}
+				}
+				
+			console.log(card_target.cvalue,card_target.name);
+			removeCardfromGame(card_played.id);
+			DrawAfterCard();
+
+			//			draw_all();
+			//nohl_section();
+			game.onetarget=0; //target deselected
+			//skip();  //after an instant skip the priority
+			op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>";
+			modal_ok("Play Cards or press PASS to give priority to your opponent");
+
+			return 0;
+		}
+		//on the stack
+
+
+		//remove greatest/smallest
+
+		if (card_played.name.indexOf("Greatest") !=-1 || card_played.name.indexOf("Smallest") !=-1)  //remove greatest/smallest
+		{
+			console.log("greatest")
+			var greatest = 0;
+			if (card_played.name.indexOf("Greatest") !=-1) {greatest=1};
+			//find the maximum card
+			console.log("greatest=",greatest)
+			if (greatest==1) {list_max = get_max_card();}
+			if (greatest==0) {list_max = get_min_card();}
+			console.log("greatest card=",list_max);
+
+			if (list_max==[])
+				{//no cards in play, exit
+					addmessage(get_player_name(player)+": no targer card for smallest/greatest");
+					removeCardfromGame(card_played.id);  //no valid target
+					add_explain(card_played,-1);
+					return 0;
+				}
+
+			var arrayLength = list_max.length;
+			for (var i = 0; i < arrayLength; i++)
+			{
+				card_target = getCard(list_max[i]);
+				//cancel the max card
+				spell_owner = owner(card_played.id);
+				target_owner = owner(card_target.id);
+				console.log(card_target.name);
+				if (card_target.protect>0) {addmessage(get_player_name(priority)+": card protected");removeCardfromGame(card_played.id);return 0;	}
+				if (target_owner!=spell_owner)  //your own cards do not count
+						{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+						}
+
+				removeCardfromGame(card_target.id);
+			}
+		//	add_explain(card_played,card_target);
+			removeCardfromGame(card_played.id);
+			return 0;
+		}
+
+
+		if (card_played.name.indexOf("Remove") !=-1 && card_played.name.indexOf("all") ==-1)  //remove a single number
+		{
+			//check if the target card is in play - it must in play - already done
+			var temp = card_played.name.split(" ");
+			if (card_target.protect>0) {addmessage(get_player_name(player)+": card protected");removeCardfromGame(card_played.id);return 0;	}
+			//odd or even
+			console.log("odd single",card_played.name,card_target.cvalue,card_target.cvalue % 2);
+			if (card_played.name.indexOf("odd") !=-1)
+			{
+				if ((card_target.cvalue % 2)==1)
+				{
+					//cancel the two cards
+					spell_owner = owner(card_played.id);
+					target_owner = owner(card_target.id);
+					if (target_owner!=spell_owner)  //your own cards do not count
+							{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;}
+
+					console.log("ODD single");
+					
+					add_explain(card_played,card_target);
+					removeCardfromGame(card_played.id);
+					removeCardfromGame(card_target.id);
+					op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+				//					modal_ok("")
+
+					return 0;
+				} else {removeCardfromGame(card_played.id); console.log("Odd... explain"); //no valid target
+						add_explain(card_played,-1);return 0};
+			}
+
+			if (card_played.name.indexOf("even") !=-1)
+			{
+				if ((card_target.cvalue % 2)==0)
+				{
+					//cancel the two cards
+					spell_owner = owner(card_played.id);
+					target_owner = owner(card_target.id);
+					if (target_owner!=spell_owner)  //your own cards do not count
+							{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;}
+
+					add_explain(card_played,card_target);
+					removeCardfromGame(card_played.id);
+					removeCardfromGame(card_target.id);
+					op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+					modal_ok("")
+					return 0;
+				} else {removeCardfromGame(card_played.id);  //no valid target
+						add_explain(card_played,-1);return 0};
+			}
+
+			//prime
+			if (card_played.name.indexOf("prime") !=-1)
+			{
+				if (primes.indexOf(card_target.cvalue)!=-1)
+				{
+					//cancel the two cards
+					spell_owner = owner(card_played.id);
+					target_owner = owner(card_target.id);
+					if (target_owner!=spell_owner)  //your own cards do not count
+							{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;}
+
+					add_explain(card_played,card_target);
+					removeCardfromGame(card_played.id);
+					removeCardfromGame(card_target.id);
+					op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+					modal_ok("")
+					return 0;
+				} else {removeCardfromGame(card_played.id);  //no valid target
+						add_explain(card_played,-1);return 0};
+			}
+
+			//table
+			if (card_played.name.indexOf("table") !=-1)
+			{
+				var num_to_be_removed = parseInt(temp[temp.length - 1]);
+				if ((card_target.cvalue % num_to_be_removed)==0)
+				{
+					//cancel the two cards
+					spell_owner = owner(card_played.id);
+					target_owner = owner(card_target.id);
+					if (target_owner!=spell_owner)  //your own cards do not count
+							{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+							}
+
+					add_explain(card_played,card_target);
+					removeCardfromGame(card_played.id);
+					removeCardfromGame(card_target.id);
+					op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+					modal_ok("")
+					return 0;
+
+				} else {removeCardfromGame(card_played.id);  //no valid target
+						add_explain(card_played,-1);return 0};
+			}
+
+			if (card_played.name.indexOf("range") !=-1)
+			{
+				temp2 = temp[temp.length - 1].split(",");
+				num_from = parseInt(temp2[0]);
+				num_to = parseInt(temp2[1]);
+				console.log("range single");
+				if (num_to==10000) {num_from = num_from+1}
+				if (card_target.cvalue>=num_from &&  card_target.cvalue<=num_to)  //right card
+				{
+					//cancel the two cards
+					spell_owner = owner(card_played.id);
+					target_owner = owner(card_target.id);
+					if (target_owner!=spell_owner)  //your own cards do not count
+							{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+							}
+					add_explain(card_played,card_target);
+					removeCardfromGame(card_played.id);
+					removeCardfromGame(card_target.id);
+					op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+					modal_ok("")
+					return 0;
+
+				} else {removeCardfromGame(card_played.id);  //no valid target
+						add_explain(card_played,-1); return 0};
+			}
+
+			//single number
+			var num_to_be_removed = parseInt(temp[temp.length - 1]);
+			if (card_target.cvalue == num_to_be_removed)
+				{
+					//cancel the two cards
+					spell_owner = owner(card_played.id);
+					target_owner = owner(card_target.id);
+					if (target_owner!=spell_owner)  //your own cards do not count
+							{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+							}
+
+					add_explain(card_played,card_target);
+					removeCardfromGame(card_played.id);
+					removeCardfromGame(card_target.id);
+					op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+getCardName(card_target)+"</span>"
+					modal_ok("")
+					return 0;
+				} else {removeCardfromGame(card_played.id);  //no valid target
+						add_explain(card_played,-1);return 0};
+		}
+
+		
+
+		if (card_played.name.indexOf("Remove") !=-1 && card_played.name.indexOf("all") !=-1)  //remove all
+		{
+
+			var temp = card_played.name.split(" ");
+			var card_set = temp[temp.length - 1];
+			console.log("Remove all",card_set);
+			disable_undo();  //stack resolved, no undo
+			if (card_set == 'odd' || card_set == 'even')
+				{
+					//find all the targets on the stack
+					list_targets = get_target_stack(card_played.id);
+					console.log("targets",list_targets);
+					//if target is  odd/evem, cancel it
+					var arrayLength = list_targets.length;
+					for (var i = 0; i < arrayLength; i++)
+					{
+						card_target = getCard(list_targets[i]);
+						console.log("value",card_target.cvalue,card_set,card_target.name);
+						if ( ((card_target.cvalue % 2)==1 && card_set	== 'odd')  || ((card_target.cvalue % 2)==0 && card_set	== 'even'))  //right card
+						{  
+							if (card_target.protect==0) {
+							console.log("elimina odd/even",card_target.cvalue,card_target.name,card_set);
+							spell_owner = owner(card_played.id);
+							target_owner = owner(card_target.id);
+							if (target_owner!=spell_owner)  //your own cards do not count
+									{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+										console.log("expl");
+									}
+							add_explain(card_played,card_target);
+							removeCardfromGame(card_target.id); }  
+						}
+						else {removeCardfromGame(card_played.id);  //no valid target
+						add_explain(card_played,-1)};
+					}
+				}
+
+				//table
+			if (card_played.name.indexOf("table") !=-1)
+				{
+					num = parseInt(card_set);
+
+					//find all the targets on the stack
+					list_targets = get_target_stack(card_played.id);
+					console.log("targets",list_targets);
+					//if target is  odd/evem, cancel it
+					var arrayLength = list_targets.length;
+					for (var i = 0; i < arrayLength; i++)
+					{
+						card_target = getCard(list_targets[i]);
+						console.log("value",card_target.cvalue,card_set,card_target.name);
+						if ((card_target.cvalue % num)==0)    //right card
+						{  
+							if (card_target.protect==0) {
+								console.log("elimina table",num,card_target.cvalue,card_target.name);
+								spell_owner = owner(card_played.id);
+								target_owner = owner(card_target.id);
+								if (target_owner!=spell_owner)  //your own cards do not count
+										{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+										}
+								add_explain(card_played,card_target);
+								removeCardfromGame(card_target.id);  }
+						}
+					}
+				}				
+				//interval
+			if (card_played.name.indexOf("range") !=-1)
+				{
+					temp = card_set.split(",");
+					num_from = parseInt(temp[0]);
+					num_to = parseInt(temp[1]);
+					if (num_to==10000) {num_from = num_from+1}
+
+					//find all the targets on the stack
+					list_targets = get_target_stack(card_played.id);
+					console.log("targets interval",list_targets);
+					//if target is  in the interval, cancel it
+					var arrayLength = list_targets.length;
+					for (var i = 0; i < arrayLength; i++)
+					{
+						card_target = getCard(list_targets[i]);
+						console.log("value",card_target.cvalue,card_set,card_target.name);
+						//check inclusion!!!
+						if (card_target.cvalue>=num_from &&  card_target.cvalue<=num_to)  //right card
+						{  
+							if (card_target.protect==0)    //right card
+							{  
+								console.log("elimina range",card_target.cvalue,card_target.name,card_set);
+								spell_owner = owner(card_played.id);
+								target_owner = owner(card_target.id);
+								if (target_owner!=spell_owner)  //your own cards do not count
+										{game.points[spell_owner]=game.points[spell_owner]+card_target.base_value;
+										}
+								add_explain(card_played,card_target);
+								removeCardfromGame(card_target.id);  }
+						}
+					}
+				}
+				//remove the spell played
+				removeCardfromGame(card_played.id);
+		}
+}
+
+
+function set_tr_light(){
+	color="green";
+	if (previous_action==0 && action==0) {color="green"};
+	if (action==1) {color="red"};
+	if (previous_action==-1 && action==0) {color="yellow"};
+	if (previous_action==-1 && action==-1) {color="yellow"};
+	if (previous_action>0 && action==0) {color="yellow"};
+
+	$("#tr_light").css({"background-color": color });
+	$("#tr_light").css({"color": color });
+};
+
+
+function set_priority(player){
+	console.log(player,get_player_name(player),"background-color: "+color_player[player]);
+	op_mes=""
+	cover_hand(1);
+	$("#priority").css({"background-color": color_player[player] });
+	if (player==you) {
+		$("#priority").text("Priority: You");
+		console.log("priority you!!!")
+		$("#hand_opponent").css({"background-color": 'transparent'}); //color_player[3]);
+	};
+
+	if (player==opponent) {
+		console.log("priority opponent!!!")
+		$("#priority").text("Priority: Opponent");
+		$('#hand_you').css({"background-color": 'transparent'}); //color_player[2]);
+		$('#hand_opponent').css({"background-color": color_player[3]});
+	};
+	//background
+
+	
+	priority=player;
+	first_priority=0;
+	action = 0;  //cosa mettere ???
+	game.undo_active=0;
+	spell_attack=0;
+	attack_status=select_attack;
+
+	play(priority_sound);
+	save_game();
+}
+
+function reset_turn()
+{
+	game.undo_active=0;
+	action=-1;
+	previous_action=-1;
+	game.onetarget=0;
+	game.multitarget=0;
+	game.stack.length=0;
+	game.connections.length=0;
+	game.attacks.length=0;
+	no_discard=0;
+	num_attacked = [];
+	console.log("no dis",no_discard);
+	reset_abilities();
+	spell_attack=0;
+	attack_status=select_attack;
+//	set_tr_light();
+	//Cancel temporary abilities
+}
+
+function reset_abilities()  //reset temporary abilities, applies to cards in play
+{
+	for(var i=0;i<game.inplay[you].cards.length;i++) 
+	{
+		 if (game.inplay[you].cards[i].protect==1) {game.inplay[you].cards[i].protect=0;}
+		 if (game.inplay[you].cards[i].total==1) {game.inplay[you].cards[i].total=0;}
+		 if (game.inplay[you].cards[i].max==1) {game.inplay[you].cards[i].max=0;}	
+	}
+	for(var i=0;i<game.inplay[opponent].cards.length;i++) 
+	{
+		 if (game.inplay[opponent].cards[i].protect==1) {game.inplay[opponent].cards[i].protect=0;}
+		 if (game.inplay[opponent].cards[i].total==1) {game.inplay[opponent].cards[i].total=0;}
+		 if (game.inplay[opponent].cards[i].max==1) {game.inplay[opponent].cards[i].max=0;}	
+	}
+}
+
+
+function check_card_limits()  //reset temporary abilities, applies to cards in play
+{
+	for(var i=0;i<game.inplay[you].cards.length;i++) 
+	{
+		 if (game.inplay[you].cards[i].cvalue<card_min) {console.log("change value");game.inplay[you].cards[i].cvalue=card_min;}
+		 if (game.inplay[you].cards[i].cvalue>card_max) {console.log("change value");game.inplay[you].cards[i].cvalue=card_max;}
+	}
+	for(var i=0;i<game.inplay[opponent].cards.length;i++) 
+	{
+		 if (game.inplay[opponent].cards[i].cvalue<card_min) {game.inplay[opponent].cards[i].cvalue=card_min;}
+		 if (game.inplay[opponent].cards[i].cvalue>card_max) {game.inplay[opponent].cards[i].cvalue=card_max;}
+	}
+}
+function align_swipe()
+{
+	opp_swipe=0;
+	you_swipe=0;
+	console.log("align swipe",game.inplay[you].cards.length,game.inplay[opponent].cards.length);
+		//opponent ?
+	if (game.inplay[opponent].cards.length==CountSpecials()  && CountSpecials() == current_level.num_sp_cards)
+		{
+			//add 2 numbers
+			game.swipe[you] = game.swipe[you] + 1;
+			game.points[you] = game.points[you] + bonus_swipe*game.swipe[you];
+			console.log("swipe upated!");
+			var stars = "";
+			for (i=0; i<game.swipe[you];i++) {stars = stars + "⭐"}
+			show_swipe(stars+" (+"+String(bonus_swipe*game.swipe[you])+")");
+			render_points();
+			//if 40 cards give extra cards
+			console.log("BONUS",cards_used);
+			if (level==-2) {cards_used = cards_used	+bonus_cards_swipe;}
+
+
+			you_swipe=1;
+			if (level!=-1){
+			if (game.swipe[you]<current_level.swipe) {
+			put_numbers_inplay(game,game.decks[opponent],num_card_after_swipe,opponent)}};
+		}
+}
+
+function set_turn(player){
+	console.log("END OF TURN =============",turn,player,num_turns+1);
+//	check_winner();
+	num_turns = num_turns + 1;
+	color_turn();
+	extra_mes = 0;
+	if (extra_turn==0)
+	{turn = (turn + 2) % 2;  //switch turn
+	}
+
+	$("#turn").css({"background-color": color_player[turn] });
+
+	set_priority(turn);
+	reset_turn();
+
+	action=-1;
+
+	//modal draw
+
+	if (first_turn==1)
+		{first_turn=0}
+	automatic_draw();
+	addmessage(get_player_name(turn)+" Click on your deck to draw 3 cards");
+}
+
+//check if the card is still in game or it has been eliminated
+function CardinGame(card_id)
+{
+	temp = getCardIndex(card_id);
+	if (temp[3]==0) {return 0;}
+	return 1;
+}
+
+
+function get_cards_inplay(player)
+{
+	var cards ="";
+	var arrayLength = game.inplay[player].cards.length;
+	for (var i = 0; i < arrayLength; i++)
+		{if (game.inplay[player].cards[i].ctype=="N") {cards = cards +String(game.inplay[player].cards[i].get_info()) +" , ";}}
+	return cards;
+}
+
+function describe_game()
+{
+	explain_removal.push("== Explain Move ==<br>")
+	explain_removal.push("Game Status at the start of the turn<hr>")
+	explain_removal.push("Cards in play (You):       "+get_cards_inplay(you));
+	explain_removal.push("Cards in play (Opponent):  "+get_cards_inplay(opponent));
+
+	var c_stack="";
+
+	var arrayLength = game.stack.length;
+	var reverse_stack = game.stack.slice().reverse();
+
+	for (var i = 0; i < arrayLength; i++)
+		{
+				if (reverse_stack[i][1]==-1)
+				{
+					player = owner(reverse_stack[i][0]);
+				
+				if (player==you) {explain_removal.push("["+String(getCard(reverse_stack[i][0]).name)+"] (You)");}
+				if (player==opponent) {explain_removal.push("["+String(getCard(reverse_stack[i][0]).name)+"] (Opponent)");}
+				} else
+				{
+					player = owner(reverse_stack[i][0]);
+					player1 = owner(reverse_stack[i][1]);
+					if (player==you && player1==you) {explain_removal.push("["+String(getCard(reverse_stack[i][0]).name)+"] (You) --attacking--> ["+getCard(reverse_stack[i][1]).get_info()+"] (You)") ;}
+					if (player==you && player1==opponent) {explain_removal.push("["+String(getCard(reverse_stack[i][0]).name)+"] (You) --attacking--> ["+getCard(reverse_stack[i][1]).get_info()+"] (Opponent)") ;}
+					if (player==opponent && player1==you) {explain_removal.push("["+String(getCard(reverse_stack[i][0]).name)+"] (Opponent) --attacking--> ["+getCard(reverse_stack[i][1]).get_info()+"] (You)") ;}
+					if (player==opponent && player1==opponent) {explain_removal.push("["+String(getCard(reverse_stack[i][0]).name)+"] (Opponent) --attacking--> ["+getCard(reverse_stack[i][1]).get_info()+"] (Opponent)") ;}
+				}
+		};
+}
+
+
+var FunctionTwo = function () {
+ 		game.connections.length=0;
+		return 0;};
+
+function skip(){
+	//resolve??
+	console.log("PRIORITY!");
+	if (game_type==0) {  //previous_action <=0 start or no action
+		//solve stack + attacks
+		prev_cards = CountCards(you) ;
+		d_pts = game.points[you];
+		solve_stack();
+		//bonus_cards(game.points[you]);
+		prev_cards = prev_cards - CountCards(you) ;
+		num_moves = num_moves + prev_cards;		
+		$('#you_moves').text(String(num_moves));
+
+		opp_swipe=0;
+		you_swipe=0;
+		d_pts = game.points[you]-d_pts;
+
+		if (check_swipe_solo()==1)
+		{
+			if (level==-3 && current_tutorial[tut_index][1]=='swipe' ){
+					tut_index = tut_index +1;
+					tut_active =1;
+					show_tutorial(current_tutorial,tut_index)};
+
+			align_swipe();  //add the new cards
+		}
+		previous_action = action;
+		console.log("delta",d_pts);
+		if (level==-3)
+		{
+			console.log(current_tutorial[tut_index][0])
+			if ((current_tutorial[tut_index][1]=='points' && d_pts>0) || tut_div=='skip'){
+			tut_index = tut_index +1;
+			tut_active =1;
+			show_tutorial(current_tutorial,tut_index)};
+
+			if (current_tutorial[tut_index][1]=='points' && d_pts==0){
+			//restore game
+			//show_tutorial(,tut_index)};
+			}
+
+		}
+		
+
+		if (level==-2 && d_pts > megamove_pts)
+			{	//megamove
+				console.log("--- MILESTONE check ")
+				manage_cardpick('<p style="color:black;font-size:4vw;font-family:Bangers">👍 Mega MOVE! ('+String(d_pts)+' pts.) 👍</p>',shuffle(power_cards).slice(0,4)); 
+			} else {
+		if (level==-2 && game.points[you] > milestone_pts)
+			{	//points bonus
+				manage_cardpick('<p style="color:black;font-size:4vw;font-family:Bangers">💎  Points MILESTONE! ('+String(milestone_pts)+') 💎</p>',shuffle(power_cards).slice(0,4));
+				milestone_pts = milestone_pts + milestone_gap;
+			}
+			}
+		if (game.points[you]>1500) {milestone_gap=200;}
+		if (game.points[you]>2000) {megamove_pts=30;}
+		
+		if (game.points[you]>200) {milestone_gap=100;}
+		if (game.points[you]>300) {megamove_pts=30;}
+		
+		if (game.points[you]>1250)  {bonus_swipe=5};
+		if (game.points[you]>3000)  {bonus_swipe=3};
+
+
+		if (game.points[you]>5000)  
+			{megamove_pts=40;
+			milestone_gap=250;
+			deck_cards_opp = create_deck(deck_num_solo_5000); 
+			deck5000 = CreateDeckfromList(deck_cards_opp,opponent,"red");
+			game.decks[opponent] = deck5000
+			power_cards = ['12 total','Remove all table 3',"7 max",'Remove all range 1,3','Remove all range 12,10000','10 max','15',
+							'Remove all even','Remove all table 4','Remove all table 5','Remove table 3','13','Merge +','Switch','11 total','7 max','12 total','Remove all table 3',"7 max",'Remove all range 1,3','Remove all range 12,10000','10 max','15',
+							'Remove all table 4','Remove all table 5','Remove table 3','13','Merge +','Switch','11 total','7 max','Remove all even']
+
+		};
+		
+
+
+
+		check_winner();
+		set_priority((priority + 2) % 2);
+		old_card_index_undo = card_index_undo //new 
+		console.log("prev cards", prev_cards);
+		game.init_phase=0;
+		attack_status = select_attack;
+		merge_op=0;
+		no_discard=0;
+		//real time update if 40cards tournament
+		if (level==-2 || level==-111) {  //40 cards trial
+			//	if ($('#tournament').text()!='-1')	
+					{update_score();}	
+		}
+//		save_local_state()
+		return 0; //change priority
+	}  
+}
+
+function owner(card_id){
+	if ((card_id>=10000) && (start_player==1)) {return opponent};
+	if ((card_id<10000) && (start_player==1)) {return you};
+
+	if ((card_id>=10000) && (start_player==0)) {return you};
+	if ((card_id<10000) && (start_player==0)) {return opponent};
+
+};
+
+function hide_modal(){
+//	    $("#messagediv").css('display', 'none');
+		$("#messagediv").html('<span class="btn2" id="closebtn" >OK</span>'+"> ");
+//	    $("#messagediv").text('> ');
+}
+
+function modal_ok(text){
+	return 0;
+	}
+ 
+
+
+function addmessage(text){
+	$("#messages").append("<p>"+text+"</p>");
+	$("#messages").scrollTop($("#messages").prop("scrollHeight"));
+	 //$("#messages").scrollTop = $("#messages").scrollHeight;
+};
+
+function GetCardTemplate(cardname) {
+	var arrayLength = card_templates.length;
+	for (var i = 0; i < arrayLength; i++) 
+		{ 	//document.write(card_templates[i]);
+			if (card_templates[i][0]==cardname) {return card_templates[i]}}
+	return -1;
+};
+
+function CreateDeckfromList(card_list,id,color)
+{
+	deck = new Deck("pl1",id);
+	var arrayLength = card_list.length;
+	for (var i = 0; i < arrayLength; i++) 
+	{
+		deck.addCard(CreateCard(card_list[i],color));
+	}
+	return deck;
+
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+//create a single card
+function CreateCard(cardname,color) {
+	//start_player always blue, card_id_seq[0]=0
+	console.log("=======------------- Create Cards",cardname)
+	if (color=="blue") 
+		{var card1 = new Card(GetCardTemplate(cardname),card_id_seq[0],color);card_id_seq[0] = card_id_seq[0] + 1;}
+	o_player = (0 + 1) % 2;
+	if (color=="red") {var card1 = new Card(GetCardTemplate(cardname),card_id_seq[o_player],color);card_id_seq[o_player] = card_id_seq[o_player] + 1;}
+	return card1;
+}
+
+function Drawfast(game,deck,num_cards,player){
+	var item = Math.floor(Math.random()*game.decks[player].cards.length);
+	console.log("item",item);
+
+	var card_temp = copy_card(game.decks[player].cards[item]);
+	console.log("card",card_temp);
+	card_temp.status = inplay;
+	card_id_seq[1] = card_id_seq[1] + 1; 
+	//new_id = card_id_seq[1];
+	card_temp.id =  card_id_seq[1];
+	game.inplay[player].cards.push(card_temp);
+
+}
+
+//InitialDraw for player and opponent
+function Draw(game,deck,num_cards,player) {
+	//select random num_cards from deck and add to the inplay
+	
+
+	if (game.decks[you].cards.length==0) {console.log("no cards");return 0;}
+
+	if (deck.num_cards<num_cards) 
+	{$("#messages").text("Not enough card to draw!!");
+		return -1;
+	}
+	else
+	{
+		//if 40 cards balance the cards!
+		var num_cards_play = CountCards(player);
+		if (level==-2 && (num_cards+num_cards_play)>3){
+			var num_numbers = CountNumbers(player);
+			var num_spells = CountSpells(player);
+	
+			console.log("inplay",num_cards_play,"nums",num_numbers,"spells",num_spells);
+			
+			//put numbers down
+			put_numbers_inplay(game,deck,Math.min(num_cards,min_number - num_numbers),player);
+			if (Math.min(num_cards,min_number - num_numbers)>0) num_cards = num_cards -Math.min(num_cards,min_number - num_numbers);
+			console.log("num_cards",num_cards,Math.min(num_cards,min_number - num_numbers));
+			
+			//put spells down
+			put_spellcards_inhand(game,deck,Math.min(num_cards,min_spells - num_spells),player);
+			if (Math.min(num_cards,min_spells - num_spells)>0) num_cards = num_cards -Math.min(num_cards,min_spells - num_spells);
+			console.log("num_cards",num_cards,Math.min(num_cards,min_spells - num_spells));
+			if (num_cards<=0) {return 0;}
+		}
+		
+		//select n random unique numnber
+		$('#you_moves').text(String(num_moves));
+
+		var nums = new Array(game.decks[player].cards.length);//create an empty array with length 45
+		for(var i=0;i<nums.length;i++){ nums[i]=i;}
+		num_list = shuffle(nums);
+		removed = new Array();
+		for(var i=0;i<num_cards;i++)
+			{ 
+				//pick the random card
+				var card_temp = copy_card(game.decks[player].cards[num_list[i]]);
+				//assign the proper id based on the player
+				//if it is the starting player number <10000 otherwise >10000
+
+				//add to the inplay section
+    			card_temp.status = inhand;
+    			if (card_temp.ctype=='N'){
+					game.inplay[player].cards.push(card_temp);
+					card_temp.status = inplay;}
+				else{
+					game.hands[player].cards.push(card_temp);
+					card_temp.status = inhand;
+				}
+				removed.push(num_list[i]);
+			} 
+		//remove from the deck - not needed
+		removed.sort(function(a, b){return b-a});
+		for(var i=0;i<removed.length;i++) {deck.cards.splice(removed[i],1);}
+		play_numbers();
+	}
+};
+
+function remove_cards_from_decks(){
+	//if it is in play, it is not in the deck
+	//you
+	removed = new Array();
+	var nums = new Array(game.inplay[you].cards.length);//create an empty array with length 45
+	for(var i=0;i<game.decks[you].cards.length;i++) {
+		for(var j=0;j<game.inplay[you].cards.length;j++)
+		{
+			if (game.decks[you].cards[i].id == game.inplay[you].cards[j].id ) {removed.push(i);}
+		}
+	}
+
+	//remove from you
+	removed.sort(function(a, b){return b-a});
+	for(var i=0;i<removed.length;i++) {game.decks[you].cards.splice(removed[i],1);}
+	
+	//opponent
+	removed = new Array();
+	var nums = new Array(game.inplay[opponent].cards.length);//create an empty array with length 45
+	for(var i=0;i<game.decks[opponent].cards.length;i++) {
+		for(var j=0;j<game.inplay[opponent].cards.length;j++)
+		{
+			if (game.decks[opponent].cards[i].id == game.inplay[opponent].cards[j].id ) {removed.push(i);}
+		}
+	}
+
+	//remove from opponent
+	removed.sort(function(a, b){return b-a});
+	for(var i=0;i<removed.length;i++) {game.decks[opponent].cards.splice(removed[i],1);}
+
+
+	//you
+	removed = new Array();
+	var nums = new Array(game.hands[you].cards.length);//create an empty array with length 45
+	for(var i=0;i<game.decks[you].cards.length;i++) {
+		for(var j=0;j<game.hands[you].cards.length;j++)
+		{
+			if (game.decks[you].cards[i].id == game.hands[you].cards[j].id ) {removed.push(i);}
+		}
+	}
+
+	//remove from you
+	removed.sort(function(a, b){return b-a});
+	for(var i=0;i<removed.length;i++) {game.decks[you].cards.splice(removed[i],1);}
+	
+	//opponent
+	removed = new Array();
+	var nums = new Array(game.hands[opponent].cards.length);//create an empty array with length 45
+	for(var i=0;i<game.decks[opponent].cards.length;i++) {
+		for(var j=0;j<game.hands[opponent].cards.length;j++)
+		{
+			if (game.decks[opponent].cards[i].id == game.hands[opponent].cards[j].id ) {removed.push(i);}
+		}
+	}
+
+	//remove from opponent
+	removed.sort(function(a, b){return b-a});
+	for(var i=0;i<removed.length;i++) {game.decks[opponent].cards.splice(removed[i],1);}
+
+
+}
+
+function play_numbers()
+{
+	for(var i=0;i<game.hands[you].cards.length;i++)
+		{ 
+			if (game.hands[you].cards[i].ctype=="N")
+				{
+				 game.hands[you].cards[i].status = inplay;
+		  		 game.inplay[you].cards.push(game.hands[you].cards[i]);
+   				 game.hands[you].cards.splice(i,1);
+				}
+		} 
+}
+
+
+function put_spellcards_inhand(game,deck,num_cards,player){
+	//select random num_cards from deck and add to the inplay
+	if (num_cards<=0) {return 0;}
+	var nums = new Array(game.decks[player].cards.length);//create an empty array 
+	for(var i=0;i<nums.length;i++) {nums[i]=i;}
+	num_list = shuffle(nums);
+	//console.log(num_list);
+	nums_drawn = 0;
+	removed = new Array();
+	for(var i=0;i<game.decks[player].cards.length;i++)
+		{ 
+			//pick the random card
+			var card_temp = copy_card(game.decks[player].cards[num_list[i]]);
+			//console.log(card_temp.name);
+			if (card_temp.ctype!="N")
+				{nums_drawn++;
+				 card_temp.status = inhand;
+		  		 game.hands[player].cards.push(card_temp);
+   				 removed.push(num_list[i]);
+				 if (nums_drawn==num_cards) 
+				 	{
+		 				removed.sort(function(a, b){return b-a});
+				 		for(var i=0;i<removed.length;i++) {game.decks[player].cards.splice(removed[i],1);}
+						return 0;}
+				}
+		} 
+}
+
+
+
+function put_numbers_inplay(game,deck,num_cards,player){
+	//select random num_cards from deck and add to the inplay
+	if (num_cards<=0) {return 0;}
+	var nums = new Array(game.decks[player].cards.length);//create an empty array 
+	for(var i=0;i<nums.length;i++) {nums[i]=i;}
+	num_list = shuffle(nums);
+	//console.log(num_list);
+	nums_drawn = 0;
+	removed = new Array();
+	for(var i=0;i<game.decks[player].cards.length;i++)
+		{ 
+			//pick the random card
+			var card_temp = copy_card(game.decks[player].cards[num_list[i]]);
+			//console.log(card_temp.name);
+			if (card_temp.ctype=="N")
+				{nums_drawn++;
+				 card_temp.status = inplay;
+		  		 game.inplay[player].cards.push(card_temp);
+   				 removed.push(num_list[i]);
+				 if (nums_drawn==num_cards) 
+				 	{
+		 				removed.sort(function(a, b){return b-a});
+				 		for(var i=0;i<removed.length;i++) {game.decks[player].cards.splice(removed[i],1);}
+						return 0;}
+				}
+		} 
+}
+
+
+//function to draw cards
+function card_already_attack(card_id)
+{
+	if (num_attacked.indexOf(String(parseInt(card_id)))!=-1) {return "<span style='color:yellow'><br>Used</span>";}
+	return "";
+}
+
+//function to draw cards
+function check_card_already_attack(card_id)
+{
+	if (num_attacked.indexOf(String(parseInt(card_id)))!=-1) {return 1;}
+	return 0;
+}
+
+function add_frac(whole1,num1,denom1,whole2,num2,denom2)
+{
+	i=i;
+}
+
+//funciton to deal with fractions, input is the card
+function reduce_frac(card)
+{
+	card.whole = Math.floor(card.numer / card.denom);
+	card.numer = card.numer -  card.whole * card.denom;
+	return card;
+}
+
+function mult_frac(card,numer,denom)
+{
+	//if denom==1 it is a whole number
+	if (denom==1)
+		{
+			card.numer = card.numer * numer;
+			card = reduce_frac(card);
+		}
+	return card;
+}
+
+function get_whole(card)
+{
+	if (card.whole==0) return "";
+	return String(card.whole);
+}
+
+function cover_hand(cover_value)
+{
+			if (priority==you) {
+			for(var i=0;i<game.hands[1].cards.length;i++) { game.hands[1].cards[i].cover=cover_value;}
+				draw_all();}
+
+			if (cover_value==1) {
+			for(var i=0;i<game.hands[1].cards.length;i++) { game.hands[1].cards[i].cover=cover_value;}
+				draw_all();}
+}
+
+function setphase(ph)
+{
+	game.init_phase=1;
+	phase = ph;
+	
+	switch(ph) {
+		case attack:
+			//if there are no cards or no cards to attack, skip the phase
+			set_priority(turn);
+//			addmessage(get_player_name(priority)+" Play Cards or press PASS to give priority to your opponent");
+			op_mes=""
+//			modal_ok("Play Cards or press PASS to give priority to your opponent");
+			//highlight your cards
+			if (turn == you) {game.onetarget=my_inplay;}
+			if (turn == opponent) {game.onetarget = op_inplay;}
+			spell_attack=0;
+			//console.log("ATTACK PRIORITY");
+
+			attack_status=select_attack;
+			game.attacks.length=0;
+			//action=-1;
+			game.undo_active=0;
+
+//			hl_section();
+			return 0;
+	}
+
+};
+
+function con_div(id1,id2,direction){
+			var i =0;
+			var div1 = document.getElementById(id1);
+    		var div2 = document.getElementById(id2);
+    		console.log(div1,div2);
+			i = connect(div1, div2,direction);
+//			if (i==0) 
+//			{
+//				draw_all();
+//				i = connect(div1, div2,direction);
+//			}
+}
+
+function con_div_tut(id1,id2,direction){
+
+			var div1 = document.getElementById(id1);
+    		var div2 = document.getElementById(id2);
+			connect_tut(div1, div2,direction);
+}
+
+
+function connect_tut(div1, div2, direction) {
+    thickness = 5;
+//    console.log("divs",div1,div2);
+    var off1 = getOffset(div1);
+    var off2 = getOffset(div2);
+    // bottom right
+    var x1 = off1.left + off1.width/2;
+    var y1 = off1.top + off1.height/2;
+    // top right
+    var x2 = off2.left + off2.width/2;
+    var y2 = off2.top + off2.height/2;
+    // distance
+    var length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
+    // center
+    var cx = ((x1 + x2) / 2) - (length / 2);
+    var cy = ((y1 + y2) / 2) - (thickness / 2);
+    // angle
+    var angle = Math.atan2((y1-y2),(x1-x2))*(180/Math.PI);
+
+    var w = window.innerWidth;
+	var h = window.innerHeight;
+ //   console.log(w,h,cx,cx);
+
+    var htmlLine = "<div class='attackline_tut' style='padding:0px; margin:0px; height:" + "3" + "%; background-color:" + "transparent"  + "; line-height:1px; position:absolute; left:" + cx + "px; top:" + cy + "px; width:" + length + "px; -moz-transform:rotate(" + angle + "deg); -webkit-transform:rotate(" + angle + "deg); -o-transform:rotate(" + angle + "deg); -ms-transform:rotate(" + angle + "deg); transform:rotate(" + angle + "deg);'>";
+    //savechat();
+
+    //compute the arrow coordinates
+//    if (direction==you)
+   	{ 	arrow_size = 20* 100 / length;
+    	arrow_path="M0,50 L"+String(arrow_size)+","+String(20)+" L"+String(arrow_size)+","+String(80)+"  L0,50";}
+ 	
+    htmlLine = htmlLine + "<svg width='100%' height='100%' viewBox='0 0 100 100' preserveAspectRatio='none' vector-effect='non-scaling-stroke'></path><path d='M0,50 L100,50' style='stroke:yellow; stroke-width: 20px; fill: none;opacity:0.8;marker-end: url(#arrow);'/></svg></div>"
+    document.body.innerHTML += htmlLine; 
+ //   loadchat();
+  	//console.log("con after html-----------------> chat",$(m).val());
+
+}
+
+
+
+function connect(div1, div2, direction) {
+    thickness = 5;
+//    console.log("divs",div1,div2);
+    var off1 = getOffset(div1);
+    var off2 = getOffset(div2);
+    // bottom right
+    var x1 = off1.left + off1.width/2;
+    var y1 = off1.top + off1.height/2;
+    // top right
+    var x2 = off2.left + off2.width/2;
+    var y2 = off2.top + off2.height/2;
+    // distance
+    var length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
+    // center
+    var cx = ((x1 + x2) / 2) - (length / 2);
+    var cy = ((y1 + y2) / 2) - (thickness / 2);
+    // angle
+    var angle = Math.atan2((y1-y2),(x1-x2))*(180/Math.PI);
+
+    var w = window.innerWidth;
+	var h = window.innerHeight;
+
+    var htmlLine = "<div class='attackline' style='padding:0px; margin:0px; height:" + "3" + "%; background-color:" + "transparent"  + "; line-height:1px; position:absolute; left:" + cx + "px; top:" + cy + "px; width:" + length + "px; -moz-transform:rotate(" + angle + "deg); -webkit-transform:rotate(" + angle + "deg); -o-transform:rotate(" + angle + "deg); -ms-transform:rotate(" + angle + "deg); transform:rotate(" + angle + "deg);'>";
+    //savechat();
+
+    //compute the arrow coordinates
+//    if (direction==you)
+   	{ 	arrow_size = 20* 100 / length;
+    	arrow_path="M0,50 L"+String(arrow_size)+","+String(20)+" L"+String(arrow_size)+","+String(80)+"  L0,50";}
+ 	
+    htmlLine = htmlLine + "<svg width='100%' height='100%' viewBox='0 0 100 100' preserveAspectRatio='none' vector-effect='non-scaling-stroke'><path d='"+arrow_path+"' style='fill:yellow;'></path><path d='M0,50 L100,50' style='stroke:yellow; stroke-width: 22px; fill: none;marker-end: url(#arrow);'/></svg></div>"
+    document.body.innerHTML += htmlLine; 
+ //   loadchat();
+  	//console.log("con after html-----------------> chat",$(m).val());
+  	return 1;
+}
+
+function getOffset( el ) {
+    var rect = el.getBoundingClientRect();
+    return {
+        left: rect.left + window.pageXOffset,
+        top: rect.top + window.pageYOffset,
+        width: rect.width || el.offsetWidth,
+        height: rect.height || el.offsetHeight
+    };
+}
+
+
+function get_player_name(turn_name){
+	color = color_player[priority];
+	if (turn_name==you) {return "<span style='background-color:white;color:"+color+"'>@You </span> ";}
+	if (turn_name==opponent) {return "<span style='color:"+color+"'>@Opponent </span> ";}
+	return "unk";
+}
+
+function Draw_first_hand(){
+		//first draw
+		play(cards_dealer);
+		other_player = (turn + 1) % 2
+		num_cards_start = 11;
+		Draw(game,game.decks[you],num_cards_start,you);
+		//Draw(game,game.decks[opponent],num_cards_start,opponent);
+		//mettere numeri in gioco
+		if (start_player==1)
+		{
+			//special cards
+			for (var i=0;  i< current_level.special_cards.length; i++)
+				{	console.log(current_level.special_cards[i]);
+					game.inplay[opponent].cards.push(CreateCard(current_level.special_cards[i],"red"));}
+			put_numbers_inplay(game,game.decks[opponent],initial_opponent,opponent);
+		} 
+		else
+		{
+			put_numbers_inplay(game,game.decks[you],initial_number+extra_cards_inplay,you);
+			//check special cards
+			put_numbers_inplay(game,game.decks[opponent],initial_number,opponent);
+		} 
+
+
+//		play_numbers();
+		renderCards(game,"all");
+
+		setphase(attack);
+		no_discard = 0;
+		addmessage(get_player_name(turn)+"play a number card, or skip the phase");
+//		save_local_state();
+//		save_game();
+
+}
+
+function getCard(card_id){
+	//check on the game object!
+
+	var player = owner(card_id);  //owner of the card
+	card_id = parseInt(card_id);
+	//console.log("getcard=",player,card_id);
+
+	for(var i=0;i<game.hands[player].cards.length;i++) {
+		if (game.hands[player].cards[i].id==card_id) {return game.hands[player].cards[i]; }}
+
+	for(var i=0;i<game.inplay[player].cards.length;i++) { 
+		if (game.inplay[player].cards[i].id==card_id) {return game.inplay[player].cards[i]; }}
+	return 0; 
+
+};
+
+function getCardIndex(card_id){
+	card_id = parseInt(card_id);
+	var player = owner(card_id);  //owner of the card
+
+	for(var i=0;i<game.inplay[player].cards.length;i++) { 
+		if (game.inplay[player].cards[i].id==card_id) {return [player,inplay,i,game.inplay[player].cards[i].ctype]; }}
+
+	for(var i=0;i<game.decks[player].cards.length;i++) { 
+		if (game.decks[player].cards[i].id==card_id) {return [player,indeck,i,game.decks[player].cards[i].ctype]; }}
+	
+	for(var i=0;i<game.hands[player].cards.length;i++) {
+		if (game.hands[player].cards[i].id==card_id) {return [player,inhand,i,game.hands[player].cards[i].ctype]; }}
+
+
+	//add stack?
+
+	return [0,0,0,0]; 
+};
+
+function mess_after_move(){
+	if (phase==attack) {modal_ok(" Play Cards or press PASS to give priority to your opponent");}
+}
+
+
+function moveCard(card_id,source,target)
+{
+	console.log(source,inhand,game.onetarget,inplay);
+	if (source==inhand && target==inplay) 
+	{
+		temp = getCardIndex(card_id);
+		var player = temp[0];
+		var location = temp[1];
+		var index = temp[2];
+		var card_type = temp[3];
+
+		console.log("index to move=",player,location,index);
+		if (location!=source)
+			{addmessage("Error moving card!");}
+		else
+		{
+ 			if (location==inhand) 
+ 			{  //from hand to inplay
+				var card_temp = copy_card(game.hands[player].cards[index]);
+ 				card_temp.status = inplay;
+ 				card_temp.cover=0; //show the card, is in play
+ 				game.inplay[player].cards.push(card_temp);  //move to inplay
+				game.hands[player].cards.splice(index,1);   //remove from the hand
+			} 
+
+		}
+
+	}
+};
+
+function attack_already(card_id){
+
+	for(var i=0;i<game.attacks.length;i++) { 
+		if (game.attacks[i][0]==card_id) {return 1; }}
+	return 0
+}
+
+//check if the attack is already there
+function new_attack(card_id1,card_id2)
+{
+	for(var i=0;i<game.attacks.length;i++) { 
+		if (game.attacks[i][0]==card_id1 && game.attacks[i][0]==card_id2) {return 0; }}
+	return 1
+
+}
+
+
+function apply_target(card_id,card_played)
+{
+	temp = getCardIndex(card_id);
+	var player = temp[0];
+	var location = temp[1];
+	var index = temp[2];
+	var card_type = temp[3];
+	card = getCard(card_id);
+	console.log("ready to apply",location,inplay,card_id);
+	if (card.ctype!="N")
+		{console.log("oh oh");addmessage(get_player_name(turn)+": Invalid Target, select a Number card inside the yellow rectangle!");
+		modal_ok("Invalid Target, select a Number card inside the yellow rectangle!");return 0;}
+	if (location!=inplay)	
+		{addmessage(get_player_name(turn)+": Invalid Target card, chose a card inside the yellow rectangle!");
+		modal_ok("Invalid Target, select a Number card inside the yellow rectangle!");return 0;}
+	else
+		{
+			//apply the card
+			if (card_played.ctype=="I")
+			{
+				applycard(card_played,card);
+				spell_attack=0;
+				return 0;
+			}
+
+			if (card_played.ctype=="S") //apply spell on the stack
+			{
+				console.log("SKIPPONE attacco!",priority);
+				put_spells_inplay(card_played.id);
+				card = getCard(card_id);
+				op_mes = " Opponent played <span style='color: black'>"+card_name(String(card_played.name))+"</span> on <span style='color: black'>"+String(card.name)+"</span>"
+				//connect to the target card
+				game.connections.push([parseInt(card_played.id),parseInt(card_id),parseInt(priority)]);
+				//place on the stack
+				add_stack(parseInt(card_played.id),parseInt(card_id));
+			//	game.stack.push([parseInt(card_played.id),parseInt(card_id)]);
+				//draw_all();
+			//	nohl_section();
+				game.onetarget=0; //target deselected
+				spell_attack=0;
+				enable_undo();
+				return 0;
+			}
+		}
+}
+
+
+function attack_inhand(card,card_id)
+{
+					if (spell_attack==0) //no target spell played
+					{
+						console.log("No spell");
+						if (card.ctype=="S")  //on the stack
+							{//use the rules of the card
+								playCard(card_id);
+								//card = getCard(card_id)
+								op_mes = " Opponent played <span style='color: black'>"+card_name(String(card.name))+"</span>";
+								if (card.name.indexOf("all")!=-1 || card.name.indexOf("Greatest")!=-1  || card.name.indexOf("Smallest")!=-1 )
+									{spell_attack=0;} else {spell_attack=1;}
+							} 
+						if (card.ctype=="I")  //not on the stack - all instants go here
+							{//use the rules of the card
+								console.log("play create during attack phase");
+								playCard(card_id);
+								if (card.name.indexOf("Merge")!=-1 || card.name.indexOf("Create")!=-1 || card.name.indexOf("Draw")!=-1  || card.name.indexOf("+1 Turn")!=-1 )
+									{spell_attack=0;} else {spell_attack=1;}								//card = getCard(card_id)
+								op_mes = " Opponent played <span style='color: black'>"+card_name(String(card.name))+"</span>"
+							} 
+						if (card.ctype=="N" && priority==turn)  
+							{//use the rules of the card
+								console.log("play number");
+								playCard(card_id);
+								//card = getCard(card_id)
+								spell_attack=0;
+								op_mes = " Opponent played <span style='color: black'>"+card_name(String(card.name))+"</span>"
+							} 
+					return 0;
+					}
+
+}
+
+function is_all_spell(card){
+	if (card.indexOf("all")!=-1) {return 1}
+		return 0
+}
+
+function CardClick(card_id){
+
+		var player;var location;var index;
+		player = owner(card_id);
+
+
+		if (look_discard==1)
+		{
+			//check if target is valid
+			temp = getCardIndex(card_id);
+			var player = temp[0];
+			var location = temp[1];
+			var index = temp[2];
+			var card_type = temp[3];
+			player = owner(card_id);
+			if (location!=inhand || player == priority)
+				{addmessage(get_player_name(priority)+": select one of the card in the yellow rectangle");
+				modal_ok("Select a card from your opponent's hand (inside the yellow rectangle). She/he discards that card.");return 0;}
+			if (location==inhand && player != priority)
+				{
+					card = getCard(card_id);
+					applycard(card_played,card);
+					mess_after_move();
+					save_game();
+				}
+			return(0)
+		}
+
+		temp = getCardIndex(card_id);
+		var location = temp[1];
+		var index = temp[2];
+		var card_type = temp[3];
+		owner_card = owner(card_id);
+		
+		console.log("controllo carta",location,inhand,owner_card,turn);
+		if (location==inhand  && owner_card!=priority)
+			{addmessage(get_player_name(priority)+": you cannot play your opponent's card");
+				//modal_ok("You cannot play your opponent's card");
+				return 0;}
+
+
+		if (merge_op==1)
+			{
+				//check if target is valid
+		
+				temp = getCardIndex(card_id);
+				var player = temp[0];
+				var location = temp[1];
+				var index = temp[2];
+				var card_type = temp[3];
+				player = owner(card_id);
+				console.log("merge =>",player, location, index,game.onetarget,all_inplay,card_type);
+				if (location!=inplay || player != priority)
+					{addmessage(get_player_name(priority)+": select one of your number cards in play"); $('#message_text').text("Select one of your number cards to merge");return 0;}
+				if (card_type!="N") {return 0;}
+				console.log("merge target",merge1,merge2);
+				if (location==inplay && player == priority)
+					{
+						if (merge1>0) 
+							{	if (merge1==card_id)
+									{addmessage(get_player_name(priority)+": select a different number cards of yours to merge them");
+									modal_ok("<span style='color: black'>"+"Merge Card"+":</span> select a second number card of yours to complete the merge");
+
+									return 0;}
+								console.log("apply merge!");
+								merge2=card_id;
+								hl_div(card_id);
+								//apply the merge
+								applycard(card_played,-1);  //card played merge, merge1 and merge2 the two cards to be merged
+								//draw_all();
+								enable_undo();
+								//nohl_section();
+								nohl_div();
+								hl_card(card_id);  //highlights attackers
+								game.onetarget=0; //target deselected
+								//skip();
+								return 0;
+						}
+
+						if (merge1==0) 
+							{	merge1=card_id;
+								hl_div(card_id);
+								return 0;}
+					};
+
+			}
+
+		if (phase==attack)
+		{
+			if (attack_status==select_attack)  //attack not defined
+			{
+				temp = getCardIndex(card_id);
+				var player = temp[0];
+				var location = temp[1];
+				var index = temp[2];
+				var card_type = temp[3];
+
+				card = getCard(card_id);
+
+				if (location==inhand)  //spell (I) or number can be played
+				{
+					attack_inhand(card,card_id);
+					return 0;
+				}
+
+
+				if (location==inplay) //card in play attack if no spells casted
+				{
+					
+					if (card.ctype!="N") 
+						{addmessage(get_player_name(priority)+": this spell cannot attack cards"); 
+							  modal_ok("<span style='color: black'>"+card_played.name+":</span> Select a number card in play!");hl_card(card_played.id);
+							  //hl_section();
+							  return 0;}
+					if (spell_attack==0 && priority==turn) //no target spell played, define attack
+					{
+						//check if card already selected
+						if (attack_already(card_id)==1)
+							{addmessage(get_player_name(priority)+": card already attacking! Select another of your card or end the phase by clicking Skip");
+							modal_ok("card already attacking! Select another of your card or end the phase by clicking Pass");return 0;}
+
+						if (player!=priority)
+							{addmessage(get_player_name(priority)+": select one of your  cards in play"); console.log("sel in play");
+							  modal_ok(get_player_name(priority)+" Select one of your cards.");return 0;}
+
+							//attacker selected
+							card_attacking = card_id;
+
+							//check if the attacker has already attacked
+							if (card_already_attack(card_id)!="") 
+								{addmessage(get_player_name(priority)+": card has already attacked this turn."); console.log("already attacked");
+								  modal_ok(get_player_name(priority)+": Card has already attacked this turn.");return 0;}
+							
+							hl_div(card_id);  //highlights attackers
+							attack_status=select_attacked;
+							//nohl_section();
+							hl_card(card_id);  //highlights attackers
+							play(click_2);
+							//highlight the other player cards
+							if (player==you) {game.onetarget=op_inplay;}
+							if (player==opponent) {game.onetarget=my_inplay;}
+							//hl_section();
+							card = getCard(card_id);
+							multi_attack=0;
+							if (card.total>0) {multi_attack=1;}
+
+							enable_undo();
+							if (multi_attack==0) {addmessage(get_player_name(priority)+": select card to be attacked");
+												   modal_ok("Select opponent card to be attacked");return 0;}
+							if (multi_attack==1) {addmessage(get_player_name(priority)+": select card(s) to be attacked");
+													modal_ok("Select opponent card(s) to be attacked");return 0;}
+					}
+					else //spell_attack==1 , card inplay, apply the spell
+					{
+					//apply spell previously selected
+					if (game.onetarget>0)  //target one card in play, apply to pre and post only!
+						{
+							temp = getCardIndex(card_id);
+							var player = temp[0];
+							var location = temp[1];
+							var index = temp[2];
+							var card_type = temp[3];
+							console.log("in target attack >0",player, location, index,game.onetarget,all_inplay);
+
+							if (game.onetarget!=-9)//all_inplay)
+								{apply_target(card_id,card_played);}
+						}
+					} //end else
+				}  //end inplay
+			}
+			if (attack_status==select_attacked)
+			{
+				if (location==inhand)  //spell (I) or number can be played
+				{
+					card = getCard(card_id);
+					console.log("attack in hand");
+					attack_inhand(card,card_id);
+					attack_status=select_attack;
+					return 0;
+				}
+
+					if (game.onetarget>0 && spell_attack==1)  //target one card in play,  only!
+						{
+							temp = getCardIndex(card_id);
+							var player = temp[0];
+							var location = temp[1];
+							var index = temp[2];
+							var card_type = temp[3];
+							console.log("in target attack >0",player, location, index,game.onetarget,all_inplay);
+
+							if (game.onetarget!=-9)//all_inplay)
+								{apply_target(card_id,card_played);
+							attack_status=select_attack;
+							return 0;}
+						}
+
+
+
+				if (player==priority && multi_attack==0)
+					{addmessage(get_player_name(priority)+": select other players cards!");
+					 modal_ok("You can only attack your opponent's cards in play.");return 0;}
+				
+				if (player==priority && multi_attack==1 && priority==turn)  //start a new attack if multi attack
+					{
+						//check if the attack has been completed
+						if (attack_already(card_attacking)==0)
+							{addmessage(get_player_name(priority)+": select other players cards to complete the attack!");
+							modal_ok("select other players cards to complete the attack!");
+							return 0;}
+						if (card_attacking==card_id)
+							{addmessage(get_player_name(priority)+": select another of your cards or other players cards to complete the attack!");
+							modal_ok("select another of your cards or other players cards to complete the attack!"); return 0;}
+						//start new attack
+						card_attacking = card_id;
+						hl_div(card_id);  //highlights attackers
+						attack_status=select_attacked;
+						//nohl_section();
+						hl_card(card_id);  //highlights attackers
+						//highlight the other player cards
+						if (player==you) {game.onetarget=op_inplay;}
+						if (player==opponent) {game.onetarget=my_inplay;}
+//						hl_section();
+						card = getCard(card_id);
+						multi_attack=0;
+						if (card.total>0) {multi_attack=1;}
+						enable_undo()
+						if (multi_attack==0) {addmessage(get_player_name(priority)+": select card to be attacked");
+											   modal_ok("Select opponent card to be attacked");return 0;}
+						if (multi_attack==1) {addmessage(get_player_name(priority)+": select card(s) to be attacked");
+												modal_ok("Select opponent card(s) to be attacked");return 0;}
+
+						return 0;
+					}
+				
+				//attacked
+				temp = getCardIndex(card_id);
+				var player = temp[0];
+				var location = temp[1];
+				var index = temp[2];
+				var card_type = temp[3];
+				enable_undo();
+
+				
+				if (location==inplay && priority==turn)
+					{   //attacker selected
+						
+						play(attack_sound);
+						hl_div(card_id);  //highlights attackers
+						attack_status=select_attacked;
+						//nohl_section();
+						hl_card(card_id);
+
+
+						//save attacks
+						game.attacks.push([parseInt(card_attacking),parseInt(card_id)]);
+						add_stack(parseInt(card_attacking),parseInt(card_id));
+
+						//game.stack.push([parseInt(card_attacking),parseInt(card_id)]);
+
+						game.connections.push([parseInt(card_attacking),parseInt(card_id),parseInt(priority)]);
+						con_div(card_attacking,card_id,priority);
+						num_attacked.push(card_attacking);  //card attacking
+						draw_all();
+						
+						hide_modal();
+						if (multi_attack==0) {
+							addmessage(get_player_name(priority)+": select another attacking card or skip the phase");
+							modal_ok("Select another attacking card or press PASS to give priority to your opponent");
+								attack_status=select_attack;
+								if (turn == you) {game.onetarget=my_inplay;}
+								if (turn == opponent) {game.onetarget = op_inplay;}
+								//hl_section();
+								return 0;}
+
+						if (multi_attack==1) {
+							addmessage(get_player_name(priority)+": select another attacked card or start a new attack by selecting one of your cards");
+							modal_ok("select another attacked card or start a new attack by selecting one of your cards")
+							//hl_section();
+							return 0;}
+					
+					}
+
+
+			}
+			return 0;
+		}
+}
+
+
+function recreateDeck(card_list,player,color)
+{
+	game.decks[player].cards.length=0;
+	var arrayLength = card_list.length;
+	for (var i = 0; i < arrayLength; i++) 
+	{
+		game.decks[player].addCard(CreateCard(card_list[i],color));
+	}
+}
+
+
+function reset_com(player)
+{
+	priority=you;
+	set_priority(you);
+}
+
+
+function get_cards_ingame()
+{
+	cards_you = new Array();
+	cards_opponent = new Array();
+	cards_ingame = new Array();
+
+	for(var i=0;i<game.hands[you].cards.length;i++) { 
+		cards_you.push(parseInt(game.hands[you].cards[i].id));cards_ingame.push(parseInt(game.hands[you].cards[i]));}
+	for(var i=0;i<game.inplay[you].cards.length;i++) { 
+		cards_you.push(parseInt(game.inplay[you].cards[i].id));cards_ingame.push(parseInt(game.inplay[you].cards[i]));}
+
+	for(var i=0;i<game.hands[opponent].cards.length;i++) { 
+		cards_opponent.push(parseInt(game.hands[opponent].cards[i].id));cards_ingame.push(parseInt(game.hands[opponent].cards[i]));}
+	for(var i=0;i<game.inplay[opponent].cards.length;i++) { 
+		cards_opponent.push(parseInt(game.inplay[opponent].cards[i].id));cards_ingame.push(parseInt(game.inplay[opponent].cards[i]));}
+}
+
+function secondhalf(){
+}
+
+function setupComs(socket){
+	//Set up communication
+	coms = new Communication(start_player,game_id,pl_you,pl_opponent,"");	
+};
+
+
+
+function setupGame(){
+
+	//get variables of the match
+	setupComs("");
+	writeName();
+	current_level = new CLevel(3,"Default level");
+	game_name = $('#game_name').text();
+
+	//current_level.mydeck(deck_solo);
+	//current_level.oppdeck(deck_num_solo);
+	current_level.SetInstructions('');
+	if (level==-1) {  //time trial
+		current_level.Set_oppcards(22);  //11 cards for the opponent
+		current_level.Set_mycards(10);  //10 cards for me
+		current_level.set_max_time(90000);  //90 seconds max time
+		current_level.set_max_points(0);  //90 seconds max time
+		$('#cardsleft').css('display','none');
+		$('#show_level').css('display','none');
+		$('#level_instructions').html(time_trial_inst);
+		show_time("0:00:0");
+		cards_used = 1000;
+		swipe_towin = 1;
+		deck_cards_you = create_deck(deck_solo);
+		deck_cards_opp = create_deck(deck_num_solo); 
+	}
+
+	if (level==-2 || level==-111) {  //40 cards trial
+		if ($('#tournament').text()=='-1') { $('#time_left').css('display','none')};
+		if (time_move!=1) { $('#time_left').css('display','none')};
+		if (level==-111) {version=1;}
+		level=-2
+
+		pl_you = $('#pl_you').text();
+
+		current_level.Set_oppcards(11);  //11 cards for the opponent
+		current_level.Set_mycards(10);  //10 cards for me
+
+		/////////////////////////////////
+		// SET THE TYPE OF GAME
+
+		set_decks(game_name)
+		set_powercards(game_name);                    
+		deck_cards_you = create_deck(deck_solo);
+		deck_cards_opp = create_deck(deck_num_solo); 
+
+		////////////////////////////////
+
+		current_level.set_max_time(90000);  //90 seconds max time
+		current_level.set_max_points(0);  //90 seconds max time
+		current_level.Setswipe(90);
+		$('#cardsleft').css('display','inline-block');
+		$('#show_level').css('display','none');
+		$('#skip').css('margin-left','0%');
+		$('#giveup').text('End');
+		if (restored==0) { $('#level_instructions').html(cards_30_inst);
+		show_time("0:00:0");}
+		else {	$('#over').css("display","none");}
+		cards_used=30;	
+		show_card_used(cards_used);
+		setupCardsLevel(current_level);
+		swipe_towin = 90;
+		//cards_used = 30;
+
+	}
+
+
+	if (level==-4) {  //endurance
+		current_level.Set_oppcards(11);  //11 cards for the opponent
+		current_level.Set_mycards(11);  //10 cards for me
+		current_level.set_max_time(90000);  //90 seconds max time
+		current_level.set_max_points(0);  //90 seconds max time
+		current_level.Setswipe(900);
+		current_level.set_interval(5);
+		current_level.set_max_opp_cards(22); //max opponent cards
+		$('#cardsleft').css('display','none');
+		$('#show_level').css('display','none');
+		$('#inplay_opponent').css('text-align','left');
+		$('#inplay_opponent').css('height','38%');
+//		$('#hand_you').css('position','absolute');
+//		$('#inplay_you').css('top','50%');
+//		$('#hand_you').css('top','70%');
+//		$('#controls').css('position','absolute');
+//		$('#controls').css('top','85%');
+		$('#giveup').text('End');
+		$('#level_instructions').html(endurance_inst);
+		show_time("0:00:0");
+		cards_used=3000;	
+		show_card_used(cards_used);
+		setupCardsLevel(current_level);
+		swipe_towin = 900;
+		pl_you = $('#pl_you').text();
+		console.log("power cards",power_cards);
+		{
+		set_powercards('standard');
+		deck_cards_you = create_deck(deck_solo);
+		deck_cards_opp = create_deck(deck_num_solo); 
+		}}
+
+
+	if (level==-3) {  //tutorial 0 for 40 cards
+		tut_active=1;
+		console.log("FDF")
+		current_level.Set_oppcards(8);  //5 cards for the opponent
+		current_level.Set_mycards(10);  //10 cards for me
+		current_level.set_max_time(90000);  //90 seconds max time
+		current_level.set_max_points(0);  //90 seconds max time
+		current_level.Setswipe(900);
+		current_level.set_max_opp_cards(22); //max opponent cards
+		//current_level.mydeck(tut1_you);
+		//current_level.oppdeck(tut1_opp);
+
+		$('#cardsleft').css('display','inline-block');
+		$('#show_level').css('display','none');
+		$('#skip').css('margin-left','0%');
+		$('#giveup').text('End');
+		$('#level_instructions').html(tutorial1);
+		show_time("0:00:0");
+		cards_used=25;	
+		show_card_used(cards_used);
+		setupCardsLevel(current_level);
+		swipe_towin = 90;
+		//cards_used = 30;
+		deck_cards_you = create_deck(tut1_you);
+		deck_cards_opp = create_deck(tut1_opp); 
+		$('#giveup').text('End');
+	}
+
+
+	card_played = new Card("1");
+	cards_you = new Array();
+	cards_opponent = new Array();
+	cards_ingame = new Array();
+
+	phase = start; //phase of the game
+	turn = you;
+	priority = you;
+
+	looking = 0;
+	expl_mode =0;
+	old_undo_phase;
+	undo_phase =0;
+	interval=600;
+	op_mes="";
+	start_game=1;
+	start_player = 1;
+	send_first_draw=0;
+	busy_event =0;
+	received_mes = [0];
+	ack_mes=[0];
+	messages_list=[];
+	first_priority=1;
+	sologame = 1;
+	num_moves = 0;
+
+
+	game_id = parseInt($('#game_id').text());
+	pl_you = $('#pl_you').text();
+	pl_opponent = $('#pl_opponent').text();
+
+	num_decks = parseInt($('#decks_num').text());  //two decks or one common deck?
+
+	//get who is starting
+	start_player = parseInt($('#starting').text());
+
+	//if start_player=0, color inversion
+	if (start_player==0){
+		var temp=""
+		temp = color_player[0],color_player[0]=color_player[1],color_player[1]=temp;
+		temp = color_player[2],color_player[2]=color_player[3],color_player[3]=temp;
+		color_you="red";color_opponent="blue";
+		}
+	else
+		{	color_you="blue";color_opponent="red";}
+	console.log("============================= COLORS ====================",color_player);
+
+	if (start_player==1){
+		deck1 = CreateDeckfromList(deck_cards_you,you,"blue");
+		deck2 = CreateDeckfromList(deck_cards_opp,opponent,"red");
+	} else
+	{
+		deck1 = CreateDeckfromList(deck_cards_you,you,"red");
+		deck2 = CreateDeckfromList(deck_cards_opp,opponent,"blue");
+	}
+
+	game = new Game(deck1,deck2);
+	undo_game = new Game(deck1,deck2);
+
+	game_type = parseInt($('#game_type').text());
+
+	//3 minutes game
+	if (game_type==-200){
+		 fast_time = 1  //1= how many points in target_time seconds
+		 target_time = 180 //300  //seconds
+		 game_type = 0
+
+	}
+
+	//5 move timer game
+	if (game_type==-300){
+		 time_move = 1
+		 fast_time = 0  //1= how many points in target_time seconds
+		 target_time = 60  //seconds
+		 game_type = 0
+
+	}
+
+	//5 move timer game
+	if ($('#tournament').text()!='-1'){
+		 fast_time = 1  //1= how many points in target_time seconds
+		 target_time = 900 //300  //seconds
+		 game_type = 0
+
+	}	
+
+
+
+	if (game_type==0 || game_type==5)
+	{
+		console.log("********************************************* FAST GAME");
+		towin=50000;
+		$('#priority').css('display','none'); 
+		num_cards_start = 9; //cards in hands at start 
+		cards_per_turn = 9;  //number of cards at the beginninig of each turn
+		extra_cards_inplay = 0 //number of additional cards in play if it is not your turn 
+	}
+
+
+	//Draw first hand and exchange it
+	first_turn=1;
+	drawUndoCard(game,you);
+	Draw_first_hand();	
+
+	action=-1;
+	previous_action=-1;
+}
+
+function drawUndoCard(game,player){
+var i = 0;
+for (i=0;i<1000;i++)
+{
+	Cards_after_Remove.push(game.decks[player].cards[Math.floor(Math.random()*game.decks[player].cards.length)]);
+}
+card_index_undo=0;
+old_card_index_undo=0;
+
+}
+
+function DrawAfterCard(){
+	return 0;
+	var item = Cards_after_Remove[card_index_undo];
+	console.log("item",item,cards_used);
+
+	var card_temp = copy_card(item);
+	console.log("card",card_temp);
+	card_id_seq[0] = card_id_seq[0] + 1; 
+	//new_id = card_id_seq[1];
+	card_temp.id =  card_id_seq[0];
+	if (card_temp.ctype=="N") {game.inplay[0].cards.push(card_temp);	
+		card_temp.status = inplay;
+	}
+	else
+	 {game.hands[0].cards.push(card_temp)
+		card_temp.status = inhand;
+	 };
+	card_index_undo++;
+	if (level==-2) {cards_used--;show_card_used(cards_used);}
+}
+
+function Drawfast(game,deck,num_cards,player){
+	var item = Math.floor(Math.random()*game.decks[player].cards.length);
+	console.log("item",item);
+
+	var card_temp = copy_card(game.decks[player].cards[item]);
+	console.log("card",card_temp);
+	card_temp.status = inplay;
+	card_id_seq[1] = card_id_seq[1] + 1; 
+	//new_id = card_id_seq[1];
+	card_temp.id =  card_id_seq[1];
+	game.inplay[player].cards.push(card_temp);
+
+}
+
+
+
+function setupLevel(c_level){
+
+	//get variables of the match
+	//setupComs("");
+	writeName();
+	deck_cards_you = create_deck(c_level.mydeck);
+	deck_cards_opp = create_deck(c_level.oppdeck); 
+	card_played = new Card("1");
+	cards_you = new Array();
+	cards_opponent = new Array();
+	cards_ingame = new Array();
+
+	phase = start; //phase of the game
+	turn = you;
+	priority = you;
+
+	looking = 0;
+	expl_mode =0;
+	old_undo_phase;
+	undo_phase =0;
+	interval=600;
+	op_mes="";
+	start_game=1;	start_player = 1;
+	send_first_draw=0;
+	busy_event =0;
+	received_mes = [0];
+	ack_mes=[0];
+	messages_list=[];
+	first_priority=1;
+	sologame = 1;
+
+	game_id = parseInt($('#game_id').text());
+	pl_you = $('#pl_you').text();
+	pl_opponent = $('#pl_opponent').text();
+
+	num_decks = parseInt($('#decks_num').text());  //two decks or one common deck?
+
+	//get who is starting
+	start_player = parseInt($('#starting').text());
+	display_level(current_level);
+	//show_swipe( "Pippo livello!!");
+
+
+	//if start_player=0, color inversion
+	if (start_player==0){
+		var temp=""
+		temp = color_player[0],color_player[0]=color_player[1],color_player[1]=temp;
+		temp = color_player[2],color_player[2]=color_player[3],color_player[3]=temp;
+		color_you="red";color_opponent="blue";
+		}
+	else
+		{	color_you="blue";color_opponent="red";}
+	console.log("============================= COLORS ====================",color_player);
+
+	if (start_player==1){
+		deck1 = CreateDeckfromList(deck_cards_you,you,"blue");
+		deck2 = CreateDeckfromList(deck_cards_opp,opponent,"red");
+	} else
+	{
+		deck1 = CreateDeckfromList(deck_cards_you,you,"red");
+		deck2 = CreateDeckfromList(deck_cards_opp,opponent,"blue");
+	}
+
+	if (level==1) {
+		game = new Game(deck1,deck2);
+		undo_game = new Game(deck1,deck2);
+	}
+	else
+	{
+		game.decks.length=0;
+		game.decks.push(deck1);
+		game.decks.push(deck2);
+		console.log(deck1,deck2);
+		game.decks[0].num_cards = game.decks[0].countcards();
+		game.decks[1].num_cards = game.decks[1].countcards();
+	}
+
+
+	game.points[you] = parseInt($('#you_score').text());
+
+	game_type = parseInt($('#game_type').text());
+	if (game_type==0 || game_type==5)
+	{
+		console.log("********************************************* FAST GAME");
+		towin=50000;
+		setupCardsLevel(c_level);
+//		num_moves = 0;
+//		cards_used = current_level.mycards - current_level;
+		$('#priority').css('display','none'); 
+	}
+
+	//Draw first hand and exchange it
+	first_turn=1;
+	if (level==1) {Draw_first_hand();} else {			
+		put_numbers_inplay(game,game.decks[opponent],initial_opponent,opponent);
+		automatic_draw();}	
+	action=-1;
+	previous_action=-1;
+	drawUndoCard(game,you);
+	$('#you_move').text("0");
+	show_card_used(cards_used);
+	show_time("00:00:0");
+	total_score = 0;
+			if (level==-2 && $('#tournament').text()!='-1') {timer()};
+//			if (level==-2) {timer()};
+}
+
+
+function show_time_left(num){
+	$('#you_time').text(num-200);
+	html = "<div style='display:block;width:15%;float:left;margin-left:3%'>⏳ ("+String(num-200)+")</div><div id='timeleft' style='width:"+String(70*parseFloat(200-num)/200)+"%;background-color:red;display:inline-block;margin-left:3%;' >&nbsp</div>"
+	$('#time_left').html(html);
+}
+
+function show_card_used(num){
+	if (cards_used<0) {cards_used=0;}
+	$('#you_cards').text(String(cards_used));
+	html = "";
+	html = html + "<div style='font-size:1.4vw;width:23%;float:right;margin-top:0%;font-size:2vw;'>Cards Left ("+String(cards_used)+")</div>";
+	if (num>=1) {html = html + '<div id="boh" style="margin-right:0%;margin-left:0.5%;float:right;width:3%;background-color:transparent;display:inline-block;border-radius:3px;border:1px solid transparent">&nbsp</div>'}
+	for (var i=0; i<num;i++) {
+		html = html + '<div id="boh" style="font-size:1.4vw;margin-left:0.5%;float:right;width:3%;background-color:dodgerblue;display:inline-block;border-radius:3px;border:1px solid black">&nbsp</div>'
+	}
+
+	$('#cardsleft').html(html);
+
+//	if (cards_used<=0 && level==-2) {
+//		show_nocards("No more Cards left!");} else {
+//	if (cards_used<=5 && level==-2 && low_cards_warning==0) {
+//		show_nocards("Only  "+String(cards_used)+" cards left.");
+//		low_cards_warning=1;
+//	}}
+
+	if (low_cards_warning==1 && cards_used>5) {low_cards_warning=0;}
+
+}
+
+function show_nocards(title_box){
+	return 0;
+	if (title_box.indexOf("Only")!=-1)  {content_text = "Use them wisely!"} else {content_text="Fight to the end!"}
+	$.alert({
+	    title: title_box,
+	    boxWidth: '30%',
+   		useBootstrap: false,
+	    content: 'You need a Meagmove or a Swipe!',
+	});
+}
+
+function  sendMessages(){
+	to_send=[]
+	for(var i=0;i<messages_list.length;i++) { 
+			if (ack_mes.indexOf(messages_list[i].m_user_id)==-1) {to_send.push(messages_list[i])}
+		}
+	//send messages
+	console.log("TO RESEND",to_send,ack_mes);
+	for(var i=0;i<to_send.length;i++) { 
+		coms.resend(to_send[i]) //resending messages that were not acknowledged
+	}	
+};
+
+function manage_right_click()
+{
+	if (tut_active==1) {return 0;}
+	//discard the card
+	if (owner(this.id)!=you) {return false;}
+
+	if (cards_used<=0 && level==-2) {return false;}
+	if (level<0) 		
+		{seconds = seconds + 3;
+		}
+
+	//use your time
+
+	if (level>0 && cards_used<=0 ) 
+		{seconds = seconds + 20;
+			show_time_left(seconds);
+			cards_used++;
+		}
+
+	removeCardfromGame(this.id);
+	//find the new card
+	cards_before = [];
+	cards_after = [];
+	draw_card_id = 0;
+	new_card_name = "";
+	for (var y = 0; y < game.inplay[you].cards.length; y++) {cards_before.push(game.inplay[you].cards[y].uid);}
+	for (var y = 0; y < game.hands[you].cards.length; y++) {cards_before.push(game.hands[you].cards[y].uid);}
+
+	//add a new card
+	DrawCards(1);
+
+	for (var y = 0; y < game.inplay[you].cards.length; y++) {cards_after.push(game.inplay[you].cards[y].uid);}
+	for (var y = 0; y < game.hands[you].cards.length; y++) {cards_after.push(game.hands[you].cards[y].uid);}
+	draw_card_id = cards_after.filter(x => !cards_before.includes(x))[0];
+	console.log(cards_before,cards_after,draw_card_id)
+	for (var y = 0; y < game.inplay[you].cards.length; y++) {if (game.inplay[you].cards[y].uid==draw_card_id) {new_card_name = game.inplay[you].cards[y].name+"("+String(game.inplay[you].cards[y].uid)+")"}}
+	for (var y = 0; y < game.hands[you].cards.length; y++) {if (game.hands[you].cards[y].uid==draw_card_id) {new_card_name = game.hands[you].cards[y].name+"("+String(game.hands[you].cards[y].uid)+")"}}
+
+	update_move(card.name+"("+String(card.uid)+")|"+new_card_name,"discard");
+
+
+	return false;
+}
+
+
+
+
+function hl_div_back(card_id){
+
+		$("#"+String(card_id)).css({'background-color':'green'}); 
+		$("#"+String(card_id)).css({'opacity':0.5}); 
+		draw_lines();
+};
+
+function nohl_div_back(card_id){
+
+		$("#"+String(card_id)).css({'background-color':'transparent'}); 
+		$("#"+String(card_id)).css({'opacity':1}); 
+		draw_lines();
+		change_mode=0;
+};
+
+
+function activate_change()
+{
+	nohl_section();
+	if (change_mode==0) 
+	{
+		hl_div_back('inplay_you');
+		hl_div_back('hand_you');
+		$('#message_text').text("Click one of your card to change it.");
+		$('#change').text("Don't Change");
+
+		change_mode=1;
+		return 0;
+	}
+
+
+	if (change_mode==1) 
+	{
+		nohl_div_back('inplay_you');
+		nohl_div_back('hand_you');
+		$('#message_text').text("Let make some moves!");
+		$('#change').text("Change Card");
+		change_mode=0;
+		return 0;
+	}
+	
+}
+
+function change_card(card_id){
+
+	if (cards_used<=0 && level==-2) {return false;}
+
+	card = getCard(card_id)
+	//carta attiva?
+	console.log("TO CHANGE",card_id);
+	if (typeof card == "undefined") {
+  		console.log("NO CARD !!")
+  		return 0;
+	}
+	//check if card is attacking
+	if (check_card_already_attack(card.id) == 1) {return 0;}
+	if (tut_active==1) {return 0;}
+	//discard the card
+	if (owner(card.id)!=you) {return false;}
+
+	if (cards_used<=0 && level==-2) {return false;}
+
+
+	//use your time
+	to_remove = String(card.name)+"("+String(card.uid)+","+String(card.id)+")"
+	removeCardfromGame(card.id);
+
+	//add a new card
+	cards_before = [];
+	cards_after = [];
+	draw_card_id = 0;
+	new_card_name = "";
+	for (var y = 0; y < game.inplay[you].cards.length; y++) {cards_before.push(game.inplay[you].cards[y].uid);}
+	for (var y = 0; y < game.hands[you].cards.length; y++) {cards_before.push(game.hands[you].cards[y].uid);}
+	nohl_section();
+
+	//suggest useful card
+	[reds,blues] = extract_cards(you)
+	suggested_card = suggest_fast(blues,reds,0)
+	console.log("suggested card",suggested_card)
+	suggested_card = revert_spellname(suggested_card[0][0])
+	card_to_add = CreateCard(suggested_card,"blue")
+	card_to_add.id = card_to_add.id  + 1;
+	console.log("Card to add:",card_to_add)
+	if (card_to_add.ctype=="N") {game.inplay[0].cards.push(card_to_add);	
+		card_to_add.status = inplay;
+	}
+	else
+	 {game.hands[0].cards.push(card_to_add)
+		card_to_add.status = inhand;
+	 };
+	$('#you_moves').text(String(num_moves));
+	cards_used	= cards_used	- 1
+	show_card_used(cards_used);
+	save_game();
+	save_local_state();
+	enable_undo();  //added but i should be removed
+	game.onetarget=0;
+	game.multitarget=0;
+	no_discard=0;
+	spell_attack=0;
+	attack_status=select_attack;
+	merge_op=0;
+
+	update_move(card_to_add.name+"("+String(card_to_add.uid)+","+String(card_to_add.id)+")|"+to_remove,"discard");
+	console.log("NEW CARD ================",card_to_add);
+	draw_all();
+	var message_change = "Card changed! The new card is: "+card_to_add.name.split("(")[0]+".";
+	$('#message_text').text(message_change);
+
+	return false;
+}
+
+function translate_name(card_name){
+	if (card_name=="Remove all range 8,10000") return "Remove all number greater than 8"
+	return card_name
+}
+
+
+function change_all_cards()
+{
+	//discard the card
+	game.hands[you].cards.length=0;
+	game.inplay[you].cards.length=0;
+	//add a new card
+	DrawCards(cards_per_turn);
+	return false;	
+}
+
+function card_message(card){
+	if (card.ctype=="N") {
+		if (card.total>0 && card.max==0) {return String(card.cvalue)+" TOTAL: remove one or more cards that together make a total of "+String(card.cvalue);}
+		if (card.total==0 && card.max>0) {return String(card.cvalue)+" MAX: remove one card equal or smaller than "+String(card.cvalue);}
+		if (card.total>0 && card.max>0) {return String(card.cvalue)+" MAX/TOTAL: remove one or more cards that together make a total of "+String(card.cvalue);}
+
+	}
+		if (card.name=="Remove range 8,10000") {return "Remove a number greater than 8";}
+		if (card.name=="Remove range 10,10000") {return "Remove a number greater than 10";}
+		if (card.name=="Remove range 12,10000") {return "Remove a number greater than 12";}
+		if (card.name=="Remove range 0,3") {return "Remove a number smaller than 4";}
+		if (card.name=="Remove range 0,5") {return "Remove a number smaller than 6";}
+
+		if (card.name=="Remove all range 8,10000") {return "Remove all the numbers greater than 8 (including yours!). You do not need to click on the cards";}
+		if (card.name=="Remove all range 10,10000") {return "Remove all the numbers greater than 10 (including yours!). You do not need to click on the cards";}
+		if (card.name=="Remove all range 12,10000") {return "Remove all the numbers greater than 12 (including yours!). You do not need to click on the cards";}
+		if (card.name=="Remove all range 0,3") {return "Remove all the numbers smaller than 4 (including yours!). You do not need to click on the cards";}
+		if (card.name=="Remove all range 0,5") {return "Remove all the numbers smaller than 6 (including yours!). You do not need to click on the cards";}
+
+	return card.instructions;
+}
+
+function manage_click(){
+		if (tut_active==1) {return 0;}
+		if (busy_event==1) {return 0;}
+		if (looking>0) {addmessage("Looking...");return 0;}
+		if (priority!==you) {addmessage(get_player_name(priority)+": Opponent has priority... please wait.");return 0;}
+		if (explain>0) {addmessage("explaining...");return 0;}
+		if (wait_data>0) {addmessage("Waiting for data...");return 0;}
+		if (change_mode==1) {change_mode=0;nohl_div_back('hand_you');nohl_div_back('inplay_you');change_card(this.id);$("#change").text("Change Card"); return 0;}
+		//busy_event=1;
+		play(click_card);
+
+		var card_temp = getCard(this.id);
+		if (card_temp==0) {console.log("=== >>> ==== undefined click, exit");busy_event=0;return 0;}
+		if (typeof card_temp.name === 'undefined') {console.log("=== >>> ==== undefined click, exit");return 0;}
+
+		console.log("CLICK ===>",card_temp,this.id,card_temp.name,card_temp.id);
+		player = owner(card_temp.id);
+		if (player==you) {$('#message_text').text(card_message(card_temp))};
+
+		// send data 
+		//special cards = draw cards, the cards have to be sent away
+		if (card_temp.name.indexOf("Draw")!=-1 && 	(look_discard != 1))  //draw
+		{
+			//block it?
+			CardClick(this.id); 
+			num = parseInt(card_temp.name.split(" ")[1])
+			var data_out = pack_hand("all");
+			coms.send_data("draw_card_"+String(num),String(this.id)+"*"+data_out);			
+		}
+		else
+		{
+			coms.send_data("click",this.id);
+			if (tut_div!="" && this.id!=tut_div) {console.log("no no no no ==>");return 0;}
+			CardClick(this.id); 
+			if (tut_div!="") 
+				{tut_index	= tut_index	+ 1;
+				 show_tutorial(current_tutorial,tut_index);
+				}
+			console.log("sending click data");
+		}
+		busy_event=0; //end of event
+}
+
+function CountCardsHand(player){
+	return 	game.hands[player].cards.length;
+}
+
+function CountCards(player){
+	return 	game.hands[player].cards.length + game.inplay[player].cards.length;
+}
+
+function CountNumbers(player){
+	var numbers = 0;
+	for (var i = 0 ; i<game.inplay[player].cards.length ; i++)
+	{
+		if (game.inplay[player].cards[i].ctype=="N") {numbers = numbers + 1;}
+	}
+	return numbers;
+}
+
+
+function CountSpells(player){
+	var num_spells = 0;
+	for (var i = 0 ; i<game.hands[player].cards.length ; i++)
+	{
+		if (game.hands[player].cards[i].ctype!="N") {num_spells = num_spells + 1;}
+	}
+	return num_spells;
+}
+
+function CountSpecials(){
+	var specials = 0;
+	for (var i = 0 ; i<game.inplay[opponent].cards.length ; i++)
+	{
+		specials = specials + game.inplay[opponent].cards[i].special;
+	}
+	return specials;
+}
+
+function CountOppCards(){
+	return 	game.inplay[opponent].cards.length;
+}
+
+function DrawSend(num){
+	console.log("PESCA!");
+//	$("#chat").append("<br>PESCA<br>")
+//	return 0;
+	Draw(game,game.decks[you],num,you);
+	draw_all();
+//	setphase(attack);
+	save_game();
+	disable_undo();
+		console.log("draw 1 card");
+		//Exchange Hands - send data first
+	var data_out = pack_hand("all");
+	coms.send_data("draw_card_1",data_out);
+//	save_local_state(); //save into web storage 	
+	busy_event=0;	
+}
+
+function checkmax_card(){
+	if (cards_used>= current_level.max_cards) {	  //all cards used
+		loss_message("You have used all your cards! You have lost, "+String(pl_you)+"!");
+		$('#next_level').css('display','none');
+		return 0;
+	}
+}
+
+
+function DrawCards(num){
+		console.log("DRAWING ",cards_used,num);
+		if (cards_used<=0) {
+			if (level==-2) {show_swipe("No more cards...")}; return 0;}
+		if (cards_used<num) 
+			{num = cards_used ; 
+				Draw(game,game.decks[you],num,you);
+				cards_used = 0;} 
+		else {
+			Draw(game,game.decks[you],num,you);
+			cards_used	= cards_used	- num;}
+		$('#you_moves').text(String(num_moves));
+		show_card_used(cards_used);
+		draw_all();
+		save_game();
+		console.log("DRAWING ",cards_used,num);
+}
+
+function DrawOpp(num){
+		Drawfast(game,game.decks[opponent],num,opponent);
+		renderCard(game,game.inplay[1].cards[game.inplay[1].cards.length-1],"inplay_opponent");
+}
+
+
+function automatic_draw(){
+
+		var cards_to_draw = 0;
+		cards_to_draw = max_cards - CountCards(you);
+		if (cards_to_draw<0) {return 0;}
+		if (cards_to_draw==0) {return 0;}
+		if (cards_used<=0) {prev_cards = CountCards(you); return 0;}
+		if (cards_used<cards_to_draw) 
+			{cards_to_draw = cards_used ; cards_used = 0;
+			 Draw(game,game.decks[you],cards_to_draw,you);}
+		else
+		{ cards_used = cards_used - cards_to_draw;
+		Draw(game,game.decks[you],cards_to_draw,you);};
+
+		$('#you_moves').text(String(num_moves));
+		show_card_used(cards_used);
+		draw_all();
+		//phase = discard_card;
+		setphase(attack);
+		save_game();
+		disable_undo();
+		var data_out = pack_hand("all");
+		coms.send_data("draw",data_out);
+//		save_local_state(); //save into web storage 	
+		busy_event=0;	
+		$('#new_turn_win').css('display','none'); 
+		$('#over').css('display','none')
+		return 0;
+}
+
+function init_level(){
+		level = level + 1;
+		$('#your_level').text(level);
+		current_level = Object.assign({},GameLevels[level-1]);
+		cards_used	= cards_used + current_level.add_cards;
+		if (cards_used>current_level.max_cards_left) {cards_used = current_level.max_cards_left;}
+		reset_time();
+		setupLevel(current_level);
+		$('#winlost').css('display','none');  
+		//$('#over').css('display','block');
+		//$('#new_turn_win').css('display','block'); 
+}
+
+//#######################
+//Start the game
+//#######################
+
+//Create 2 decks
+
+var ai_level = parseInt($('#ai_level').text());
+var level = parseInt($('#level').text());
+$('#level_instructions').text("Loading....");
+
+ 
+// CONFIGURATION FOR USA
+
+var get_feelings = 0  //1=ask for the feelings
+var time_move = 0
+
+var fast_time = 0  //1= how many points in target_time seconds
+var fast_points = 0  //1= race to points with time
+
+//these are defaults  for time
+var target_points = 500   //reach number of points
+var initial_target = 40//59
+var target_time = 40//46  //seconds
+var pen_time = 0 //does the time go faster?
+var num_pen = 0;
+var max_penalty = 5
+/////////////////////////
+
+var game_name = "";
+
+
+var pl_you;
+var game_id;
+var num_decks = 1;
+
+var coms;	
+
+
+//Initialize a game
+var undo_game;
+
+phase = start; //phase of the game
+
+var turn = you;
+priority = you;
+
+var looking = 0;
+var expl_mode =0;
+var old_undo_phase;
+var undo_phase =0;
+var old_mess_undo;
+var mess_undo = "<span style='color: black'>Play Number Card:</span> play a number card, or press PASS to cast spells";  //first message
+var start_player = 0;
+var interval=600;
+var op_mes="";
+var start_game=1;
+var start_player = parseInt($('#starting').text());
+var send_first_draw=0;
+var busy_event =0;
+
+var received_mes = [0];
+var ack_mes=[0];
+var messages_list=[];
+var first_priority=1;
+sologame = 1;
+var num_moves = 0;
+//var cards_used = 10;
+
+var deck_size = 9;
+
+var GameLevels = {};
+var num_levels = 0;
+var num_moves = 0;
+var cards_used = deck_size; //hard coded
+var prev_cards = 11;
+
+var change_mode = 0;
+var restored = 0
+var	game_type = parseInt($('#game_type').text());
+
+
+
+//if tournament create a match 
+
+$(window).on('load', function() {
+
+//refresh the id
+match_id = parseInt(localStorage["match_id"]);   //the match_id of the last  game, if it is the same as game_id it means the game was already on
+game_id = parseInt($('#game_id').text());
+console.log(game_type,match_id,game_id)
+if (match_id == game_id && game_type==0) { //old game
+		var card_played = new Card("1");
+		restored = 1;
+		setupGame();  
+		restore_local_state();   //restore the local state
+		draw_all();
+		save_game();
+		busy_event = 0;
+	
+} else 
+	{
+	if (game_type!=0) {
+		new_game_id = create_gameid();
+		$('#game_id').text(String(new_game_id));}
+
+	//Brand New match!
+	var card_played = new Card("1");
+	setupGame();  //not the first draw!
+	save_local_state()
+	}
+
+
+if (level<0) {
+
+}
+else 
+{
+	if (level==0) {
+		GameLevels = create_levels();
+		level = level + 1;
+		$('#your_level').text(level);
+		num_levels = GameLevels.length;
+	}
+	if (level>0){ //change current level and display instructions
+		current_level = Object.assign({},GameLevels[level-1]);
+		setupLevel(current_level);		}
+}  
+console.log("UPDATE SCORE ++++++")
+update_score();
+card_temp_start = describe_cards();
+
+var start_log=0;
+
+//send the resending messages every 5 seconds
+//window.setInterval(function(){ sendMessages(); }, 5000);
+get_tour_rank();
+
+
+//$(document).ready(function() {
+
+	$('body').on('click','#but',function(){
+      return false;
+    });
+
+	if (start_log==0) {update_move(card_temp_start,"start"); start_log=1;}
+	$('body').on('click','#undo',function(){
+			if (tut_active==1) {return 0;}
+			if (priority!=you) {addmessage(get_player_name(priority)+": Opponent has priority... please wait.");return 0;}
+			if (wait_data>0) {addmessage("Waiting for data...");return 0;}
+			if (looking>0) {addmessage("Looking...");return 0;}
+			if (explain>0) {addmessage("explaining...");return 0;}
+
+		if (game.undo_active==1) 
+			{	
+				if (busy_event==1) {return 0;}
+				busy_event =1; //busy...
+				coms.send_data("undo","empty");
+				disable_undo();
+				undo_priority();
+				update_move("","undo");
+				set_priority(priority);
+				console.log("communicate undo...")
+				console.log("========== Actions",old_previous_action,previous_action);
+
+				save_local_state(); //save into web storage 	
+				busy_event = 0;
+			}
+
+	});
+
+
+//	$('body').on('contextmenu','.card',manage_right_click);
+	$('body').on('click','.card',manage_click);
+//	$('body').on('click','#giveup',manage_cardpick);
+	$('body').on('click','.pickcard',select_pick);
+	$('body').on('click','#giveup',giveup);
+
+	//click on skip button
+	$('body').on('click','#change',activate_change);
+
+	$('body').on('click','#skip',function() { 
+
+		//check tutorial mode!
+		console.log("==== SKIP ========");
+		reset_change();
+		if (tut_active==1) {return 0;}
+		if (tut_div!="skip" && tut_div!="") {return 0;}
+
+		//fast game
+		if (game_type==0)  //change turn anyway
+		{
+			
+			var gap_pts = parseInt(game.points[you]);
+			skip(); 
+			gap_pts = parseInt(game.points[you])-d_pts;
+			//check time and reset it
+			if (d_pts>0 && time_move==1) {
+
+				seconds = 0;
+				num_pen = 0;
+				target_time  = 1+ parseInt(initial_target*0.75);
+			}
+
+			if (fast_points==1 &&  parseInt(game.points[you])>=target_points )
+			{
+				//stop the time
+				clearTimeout(t_points)
+				//get message
+				end_points_game()
+				return 0;
+
+			}
+
+			//send the skip
+			op_mes="";
+			mess_after_move();
+			set_turn(turn);  //end of turn, include draw
+			console.log("end of turn");
+
+			//save_local_state(); //save into web storage 	
+			busy_event=0;	
+
+			if (game.decks[0].cards.length<20) {console.log("recreate");recreateDeck(deck_cards_you,you,"blue")};
+			if (game.decks[1].cards.length<20) {recreateDeck(deck_cards_opp,opponent,"red")};
+			get_tour_rank();
+
+			save_local_state()
+			return 0;
+		}
+
+		if (action<=0) // && previous_action==0)  //end of turn
+		{
+			skip();
+			set_turn(turn);  //end of turn
+			console.log("end of turn",points_bef,points_after);
+			coms.send_data("new_turn",String(game.points[you])+";"+String(game.points[opponent])+";"+String(game.swipe[you])+";"+String(game.swipe[opponent]));
+			//save_local_state(); //save into web storage 	
+			busy_event=0;	
+			save_local_state()
+			return 0;
+		}
+
+		if (priority!=you) {addmessage(get_player_name(priority)+": Opponent has priority... please wait.");return 0;}
+		if (looking>0) {addmessage("Looking...");return 0;} 
+		if (explain>0) {addmessage("explaining...");return 0;}
+
+		console.log("========== Priority Before",priority,you,phase);
+		
+		
+		//necessary only if nothing to solve
+		if (!(phase==attack && action<=0 && priority==you)){ //&& previous_action>0
+			skip(); 
+			coms.send_data("skip","==");
+			console.log("Skip DATA",priority,you,phase);
+			//save_local_state(); //save into web storage 	
+			busy_event=0;	
+		} else
+		{
+			skip(); 
+			//save_local_state(); //save into web storage 	
+			busy_event=0;	
+		}
+		op_mes="";
+		mess_after_move();
+		save_local_state()
+		return 0;
+		});
+
+	//end the game (win/lost/draw)
+	$('body').on('click','#finish',function() { 
+		if (get_feelings==1){
+			var ans = save_feelings("solo")
+			if (ans==0) {return 0}
+				window.onbeforeunload = null;
+		}
+		window.onbeforeunload = null;
+		if ($('#tournament').text()!='-1') {window.location.replace(tour_page+".php?t_name="+$('#tournament').text().split("|")[0]);} else {
+		window.location.replace("solo_page.php")};
+		
+		});
+
+	$('body').on('click','#label_None',function() { 
+		$('#Calm').prop("checked",false)
+		$('#Excited').prop("checked",false)
+		$('#Upset').prop("checked",false)
+		$('#Smart').prop("checked",false)
+		$('#Nervous').prop("checked",false)
+		$('#None').prop("checked",!($('#None').is(":checked")))
+
+		});
+
+	$('body').on('click','#label_Excited',function() { 
+		$('#None').prop("checked",false)		});
+
+	$('body').on('click','#label_Calm',function() { 
+		$('#None').prop("checked",false)		});
+
+	$('body').on('click','#label_Nervous',function() { 
+		$('#None').prop("checked",false)		});
+
+	$('body').on('click','#label_Upset',function() { 
+		$('#None').prop("checked",false)		});
+
+	$('body').on('click','#label_Smart',function() { 
+		$('#None').prop("checked",false)		});
+
+	$('body').on('click','#deck_you',function(){
+			$('#over').css("display","none");
+			if (level==-3) {current_tutorial = tut_1; show_tutorial(current_tutorial,tut_index);}
+			if (level==-2 && $('#tournament').text()!='-1') 
+				{				
+			};
+			if (level==-2) {
+				if (time_move==1){  //penalty time
+					timer_solo();
+					target_time = initial_target
+					mins = parseInt	(Math.floor(target_time/60))
+					secs = target_time % 60
+					show_time((mins >9 ? mins : "0" +mins) + ":" +(secs > 9 ? secs : "0" + secs))
+					console.log("=======> SOLO!!!")
+					$('#time_left').css("display","inline-block")}
+				if (fast_points==1){
+					timer_points();
+					$('#time_left').css("display","inline-block")}
+				if (fast_time==1){
+					timer_fast();
+					mins = parseInt	(Math.floor(target_time/60))
+					secs = target_time % 60
+					show_time((mins >9 ? mins : "0" +mins) + ":" +(secs > 9 ? secs : "0" + secs))
+					$('#time_left').css("display","inline-block")}
+				}
+
+			return 0;});
+
+    $('body').on('click','#next_level',function(){
+		init_level();
+	});
+
+
+	$('body').on('click','#tut_next',function(){
+			tut_index = tut_index +1;
+			tut_active =1;
+			if  (current_tutorial[tut_index][0]=='move') {tut_active=0;$('#overlay_tutorial').css('display','none');console.log("ATTIVI");} else {
+			show_tutorial(current_tutorial,tut_index)};
+	});
+
+
+	$('body').on('click','#back_tut',function(){
+			tut_index = tut_index -1;
+			if (tut_index<0) {tut_index=0;}
+			show_tutorial(current_tutorial,tut_index);
+	});
+
+
+	$('body').on('click','#exit_tut',function(){
+	        window.location='solo_page.php';
+	});
+
+	window.onbeforeunload = function() { 
+		return "Your work will be lost.";
+		 };
+
+
+	$(window).resize(function(){ draw_lines();});
+});
+</script>
+</div></body></html>
