@@ -24,8 +24,8 @@
                 var content = e.target.result;
                 var lines = content.split('\n');
 
-                lines.forEach(function(line, index) {
-                    var user = (index + 1) + line.trim() + classcode;
+                lines.forEach(function(line) {
+                    var user = line.trim() + classcode;
 
                     $.ajax({
                         url: 'https://intelligent.games/create_username.php',
