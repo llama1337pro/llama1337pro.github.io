@@ -4,7 +4,7 @@
     <title>Happy Maths Signup</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js"></script>
-    <link rel="stylesheet" href="jquery-confirm.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.css">
     <script type="text/javascript">
         var pwd, classcode;
 
@@ -24,8 +24,8 @@
                 var content = e.target.result;
                 var lines = content.split('\n');
 
-                lines.forEach(function(line) {
-                    var user = line.trim() + classcode;
+                lines.forEach(function(line, index) {
+                    var user = (index + 1) + line.trim() + classcode;
 
                     $.ajax({
                         url: 'https://intelligent.games/create_username.php',
@@ -88,7 +88,7 @@
     <h1 align="center"><font face="Comic Sans MS">
         <span style="background-color: #0000FF">h</span><span style="background-color: #FF00FF">a</span><span style="background-color: #00FF00">p</span><span style="background-color: #00FFFF">p</span><span style="background-color: #FF0000">y</span>
         <span style="background-color: #008080">m</span><span style="background-color: #F1C40F">a</span><span style="background-color: #3498DB">t</span><span style="background-color: #C0C0C0">h</span><span style="background-color: #800080">s</span> 
-        signup</font><font size="1"> TXT VERSION </font><font size="2">&nbsp;&nbsp; by
+        signup</font><font size="1"> </font><font size="2">&nbsp;&nbsp; by
         <a href="https://www.youtube.com/@chairinthewild">@chairinthewild</a> yt</font></h1>
     <form onsubmit="event.preventDefault(); submitForm();">
         <p align="center"><font face="Comic Sans MS">
