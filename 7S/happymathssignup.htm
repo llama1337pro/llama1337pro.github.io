@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Maths Signup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom fonts and basic styles */
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif; /* Keep user's preferred font */
+    }
+    /* Basic spinner for loading state */
+    .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #fff;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Custom switch styling */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+
+  <h1 class="text-4xl font-bold text-center mb-6" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+    <span class="bg-blue-500 text-white px-2 py-1 rounded-md">h</span>
+    <span class="bg-fuchsia-500 text-white px-2 py-1 rounded-md">a</span>
+    <span class="bg-lime-500 text-white px-2 py-1 rounded-md">p</span>
+    <span class="bg-cyan-500 text-white px-2 py-1 rounded-md">p</span>
+    <span class="bg-red-500 text-white px-2 py-1 rounded-md">y</span>
+    <span class="ml-2 bg-teal-500 text-white px-2 py-1 rounded-md">m</span>
+    <span class="bg-amber-400 text-white px-2 py-1 rounded-md">a</span>
+    <span class="bg-blue-600 text-white px-2 py-1 rounded-md">t</span>
+    <span class="bg-gray-400 text-white px-2 py-1 rounded-md">h</span>
+    <span class="bg-purple-600 text-white px-2 py-1 rounded-md">s</span>
+    <span class="ml-2 text-gray-800">signup</span>
+  </h1>
+  <p class="text-center text-sm mb-8">by <a href="https://www.youtube.com/@chairinthewild" class="text-blue-600 hover:underline">@chairinthewild</a> yt</p>
+
+  <p class="text-center text-red-500 font-bold text-lg mb-8">
+    NOT SUPPORTED ON INTERNET EXPLORER (for modern web features)
+  </p>
+
+  <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
+    <form id="signupForm" class="space-y-6">
+      <div>
+        <label for="userInput" class="block text-sm font-medium text-gray-700 mb-1">Enter Username:</label>
+        <input type="text" id="userInput" name="userInput" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+      </div>
+
+      <div>
+        <label for="pwdInput" class="block text-sm font-medium text-gray-700 mb-1">Enter Password:</label>
+        <input type="password" id="pwdInput" name="pwdInput" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+      </div>
+
+      <div>
+        <label for="classcodeinput" class="block text-sm font-medium text-gray-700 mb-1">Classcode (auto-selected):</label>
+        <input type="text" id="classcodeinput" name="classcode" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" readonly>
+      </div>
+
+      <button
+        type="submit"
+        id="manualSubmitBtn"
+        class="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+      >
+        Create Account Manually
+      </button>
+
+      <div class="flex items-center justify-between mt-4 p-3 bg-gray-50 rounded-md shadow-sm">
+        <span class="text-lg font-medium text-gray-700">Auto-Generate & Submit Users:</span>
+        <label class="switch">
+          <input type="checkbox" id="autoGenerateSwitch">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="mt-6">
+        <label for="createdUsersDump" class="block text-sm font-medium text-gray-700 mb-1">Created Users Log:</label>
+        <textarea
+          id="createdUsersDump"
+          class="mt-1 block w-full h-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 font-mono text-sm resize-y"
+          readonly
+          placeholder="Successfully created usernames will appear here..."
+        ></textarea>
+      </div>
+    </form>
+  </div>
+
+  <p class="text-center text-gray-700 mt-8 text-sm">
+    It just signs you up to <a href="https://intelligent.games/" class="text-blue-600 hover:underline">https://intelligent.games/</a>
+  </p>
+
+  <div id="customAlert" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
+          <h3 id="alertTitle" class="text-xl font-semibold text-gray-900 mb-4"></h3>
+          <p id="alertContent" class="text-gray-700 mb-6"></p>
+          <div class="flex justify-end">
+              <button
+                  id="alertOkBtn"
+                  class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+              >
+                  OK
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <script>
+    // Get DOM elements
+    const userInput = document.getElementById('userInput');
+    const pwdInput = document.getElementById('pwdInput');
+    const classcodeInput = document.getElementById('classcodeinput');
+    const signupForm = document.getElementById('signupForm');
+    const manualSubmitBtn = document.getElementById('manualSubmitBtn');
+    const autoGenerateSwitch = document.getElementById('autoGenerateSwitch');
+    const createdUsersDump = document.getElementById('createdUsersDump');
+    const customAlert = document.getElementById('customAlert');
+    const alertTitle = document.getElementById('alertTitle');
+    const alertContent = document.getElementById('alertContent');
+    const alertOkBtn = document.getElementById('alertOkBtn');
+
+    let autoGenerateIntervalId = null; // To store the interval ID for stopping the loop
+    let createdUsers = []; // Array to store successfully created usernames
+
+    /**
+     * Helper function to generate a random class code (001-999).
+     * @returns {string} A 3-digit string representing the class code.
+     */
+    const generateRandomClassCode = () => {
+        const code = Math.floor(Math.random() * 999) + 1;
+        return String(code).padStart(3, '0'); // Ensures 3 digits, e.g., "001", "015"
+    };
+
+    /**
+     * Helper function to generate a random string of a given length, containing only lowercase letters.
+     * @param {number} length - The desired length of the random string.
+     * @returns {string} A random alphabetic string.
+     */
+    const generateRandomAlphabeticString = (length) => {
+        let result = '';
+        const characters = 'abcdefghijklmnopqrstuvwxyz';
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    };
+
+    /**
+     * Helper function to generate a random username.
+     * @param {string} classCode - The class code to append to the username.
+     * @returns {string} A generated username in the format `randomString_classCode`.
+     */
+    const generateRandomUsername = (classCode) => {
+        const randomString = generateRandomAlphabeticString(7); // Generate a 7-character random alphabetic string
+        return `${randomString}${classCode}`; // Concatenate without brackets
+    };
+
+    /**
+     * Displays a custom alert modal.
+     * @param {string} title - The title of the alert.
+     * @param {string} content - The content/body of the alert.
+     */
+    const showAlert = (title, content) => {
+        alertTitle.textContent = title;
+        alertContent.textContent = content;
+        customAlert.classList.remove('hidden');
+    };
+
+    /**
+     * Hides the custom alert modal.
+     */
+    const hideAlert = () => {
+        customAlert.classList.add('hidden');
+    };
+
+    /**
+     * Sets the loading state for buttons and the switch.
+     * @param {boolean} isLoading - True to show loading, false to hide.
+     */
+    const setLoadingState = (isLoading) => {
+        // Disable manual button if loading OR if auto-generate switch is checked
+        manualSubmitBtn.disabled = isLoading || autoGenerateSwitch.checked;
+        // Disable the switch itself only when a request is in progress (isLoading)
+        autoGenerateSwitch.disabled = isLoading;
+
+        if (isLoading) {
+            manualSubmitBtn.innerHTML = '<div class="spinner"></div><span class="ml-2">Submitting...</span>';
+        } else {
+            manualSubmitBtn.innerHTML = 'Create Account Manually';
+        }
+    };
+
+    /**
+     * Core function to submit user data to the backend.
+     * @param {string} user - The username to submit.
+     * @param {string} pwd - The password to submit.
+     * @param {string} classCode - The class code to submit.
+     * @returns {Promise<boolean>} Resolves to true if user created successfully, false otherwise.
+     */
+    const submitUserData = async (user, pwd, classCode) => {
+        setLoadingState(true); // Set loading state at the start of submission
+
+        const postData = {
+            user: user,
+            class_code: classCode,
+            pwd: pwd,
+        };
+
+        const urls = [
+            'https://intelligent.games/create_username.php',
+            'https://ellygames.com/create_username.php',
+        ];
+
+        let success = false;
+
+        try {
+            const responses = await Promise.all(
+                urls.map(url =>
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams(postData).toString(),
+                    }).then(res => {
+                        if (!res.ok) {
+                            throw new Error(`HTTP error! status: ${res.status} from ${url}`);
+                        }
+                        return res.text();
+                    })
+                )
+            );
+
+            // Process each response
+            let usernameAlreadyPresent = false;
+            let userCreated = false;
+
+            responses.forEach(data => {
+                const trimmedData = data.trim();
+                console.log(`Response: |${trimmedData}|`); // For debugging
+
+                if (trimmedData === "USERNAME ALREADY PRESENT") {
+                    usernameAlreadyPresent = true;
+                } else if (trimmedData === "OK") {
+                    userCreated = true;
+                }
+            });
+
+            if (usernameAlreadyPresent) {
+                showAlert("Username already present!", 'Press OK to change your username');
+            } else if (userCreated) {
+                // Removed the "User created!" alert message as requested
+                createdUsers.push(user); // Add to log if successfully created
+                createdUsersDump.value = createdUsers.join('\n'); // Update textarea
+                createdUsersDump.scrollTop = createdUsersDump.scrollHeight; // Scroll to bottom
+                success = true;
+            } else {
+                showAlert("Error", `An unexpected error occurred during creation.`);
+            }
+
+        } catch (error) {
+            console.error("AJAX request failed:", error);
+            showAlert("Network Error", `Failed to connect to the server: ${error.message}. Please try again later.`);
+        } finally {
+            setLoadingState(false); // Clear loading state after submission
+        }
+        return success;
+    };
+
+    /**
+     * Function to generate and submit a single random user.
+     */
+    const generateAndSubmitSingleRandomUser = async () => {
+        // This function is called by the interval, so we don't need the disabled check here.
+        // The setLoadingState function will handle disabling the switch during the fetch.
+        const newClassCode = generateRandomClassCode();
+        const newUsername = generateRandomUsername(newClassCode);
+        const newPassword = '123'; // Set default password to "123"
+
+        // Update input fields for visual feedback
+        userInput.value = newUsername;
+        pwdInput.value = newPassword;
+        classcodeInput.value = newClassCode;
+
+        await submitUserData(newUsername, newPassword, newClassCode);
+    };
+
+    /**
+     * Handles the change event for the auto-generate switch.
+     */
+    autoGenerateSwitch.addEventListener('change', () => {
+        if (autoGenerateSwitch.checked) {
+            // Start auto-generation loop
+            manualSubmitBtn.disabled = true; // Disable manual button when auto-generating
+            generateAndSubmitSingleRandomUser(); // Run once immediately
+            autoGenerateIntervalId = setInterval(generateAndSubmitSingleRandomUser, 500); // Every 0.5 seconds
+        } else {
+            // Stop auto-generation loop
+            clearInterval(autoGenerateIntervalId);
+            autoGenerateIntervalId = null;
+            manualSubmitBtn.disabled = false; // Re-enable manual button
+        }
+    });
+
+    // Event listener for the custom alert's OK button
+    alertOkBtn.addEventListener('click', hideAlert);
+
+    // Initialize with a random class code when the page loads
+    window.onload = () => {
+        classcodeInput.value = generateRandomClassCode();
+    };
+  </script>
+</body>
+</html>
