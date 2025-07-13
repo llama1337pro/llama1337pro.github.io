@@ -9,9 +9,6 @@
     <div>
         <h1>Send Content to Store</h1>
 
-        <!-- Link to the Displaying Page (assuming it's still named displaying-page.html) -->
-        <p><a href="displaying-page.html">Go to Display Page</a></p>
-
         <!-- Section to display POST request status and Firestore save status -->
         <div>
             <h2>Request Status:</h2>
@@ -61,8 +58,7 @@
         const userIdDisplay = document.getElementById('userIdDisplay');
 
         // Define the server endpoint for the POST request
-        // This is now set to your specific PHP endpoint.
-        const serverEndpoint = 'https://llamaworld.eu/livenews/news.php';
+        const serverEndpoint = 'https://llama1337pro-github-io.onrender.com/news.php';
 
         // Firebase variables
         let app;
@@ -182,12 +178,6 @@
                     // Since your PHP now returns HTML, we'll get the text response
                     const responseText = await response.text();
                     console.log("POST request successful. Server response (HTML):", responseText);
-
-                    // You could potentially display this HTML response in an iframe or a div
-                    // For now, we'll just log it and proceed to save to Firestore.
-                    // If you want to navigate to the PHP page, you'd remove the fetch and
-                    // change the form's action attribute: <form id="postForm" action="https://llamaworld.eu/livenews/news.php" method="POST">
-                    // and ensure the PHP expects form-urlencoded data, not JSON.
 
                     // After successful POST, save the content to Firestore
                     await savePostData(dataToSend);
