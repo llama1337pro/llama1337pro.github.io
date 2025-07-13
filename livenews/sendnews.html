@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Content</title>
+</head>
+<body>
+    <div>
+        <h1>Send Content to Store</h1>
+
+        <!-- Link to the Displaying Page (assuming it's still named displaying-page.html) -->
+        <p><a href="displaying-page.html">Go to Display Page</a></p>
+
+        <!-- Section to display POST request status and Firestore save status -->
+        <div>
+            <h2>Request Status:</h2>
+            <p id="requestStatus">
+                Ready to send content.
+            </p>
+            <div id="errorMessage"></div>
+        </div>
+
+        <!-- Form to send data via POST request and save to Firestore -->
+        <form id="postForm">
+            <label for="postData">
+                Enter content to send and store:
+            </label>
+            <input
+                type="text"
+                id="postData"
+                name="postData"
+                placeholder='e.g., "llama" or "hello world"'
+            />
+            <button type="submit">
+                Send & Store Content
+            </button>
+        </form>
+
+        <!-- User ID Display -->
+        <p>Your User ID: <span id="userIdDisplay">Loading...</span></p>
+
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the Canvas environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // Get references to the DOM elements
+        const postForm = document.getElementById('postForm');
+        const postDataInput = document.getElementById('postData');
+        const requestStatusDiv = document.getElementById('requestStatus');
+        const errorMessageDiv = document.getElementById('errorMessage');
+        const userIdDisplay = document.getElementById('userIdDisplay');
+
+        // Define the server endpoint for the POST request
+        // This is now set to your specific PHP endpoint.
+        const serverEndpoint = 'https://llamaworld.eu/livenews/news.php';
+
+        // Firebase variables
+        let app;
+        let db;
+        let auth;
+        let currentUserId = null;
+
+        /**
+         * Displays a message in the specified element.
+         * @param {HTMLElement} element - The DOM element to display the message in.
+         * @param {string} message - The message text.
+         */
+        function displayMessage(element, message) {
+            element.textContent = message;
+        }
+
+        /**
+         * Initializes Firebase app, authentication, and Firestore.
+         */
+        async function initializeFirebase() {
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Authenticate the user
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Listen for authentication state changes
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        currentUserId = user.uid;
+                        userIdDisplay.textContent = currentUserId; // Display full user ID
+                        console.log("Firebase authenticated. User ID:", currentUserId);
+                    } else {
+                        currentUserId = null;
+                        userIdDisplay.textContent = 'Not authenticated';
+                        console.log("Firebase not authenticated.");
+                        displayMessage(requestStatusDiv, "Please sign in to send content.");
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+                displayMessage(errorMessageDiv, `Firebase initialization error: ${error.message}`);
+            }
+        }
+
+        /**
+         * Gets the reference to the Firestore collection for post data.
+         * Data is stored in a public collection for multi-user access and persistence.
+         * @returns {CollectionReference} The Firestore collection reference.
+         */
+        const getPostCollectionRef = () => {
+            if (!db) {
+                throw new Error("Firestore not initialized.");
+            }
+            // Using public data path: /artifacts/${appId}/public/data/post_data
+            return collection(db, `/artifacts/${appId}/public/data/post_data`);
+        };
+
+        /**
+         * Saves the given content to Firestore.
+         * @param {string} content - The text content to save.
+         */
+        async function savePostData(content) {
+            try {
+                // Add a new document to the 'post_data' collection
+                const docRef = await addDoc(getPostCollectionRef(), {
+                    content: content,
+                    timestamp: serverTimestamp(), // Use server timestamp for consistent time
+                    userId: currentUserId // Store the user ID who added the content
+                });
+                console.log("Document written with ID: ", docRef.id);
+                displayMessage(requestStatusDiv, `Content "${content}" sent and saved to Firestore!`);
+            } catch (e) {
+                console.error("Error adding document to Firestore: ", e);
+                displayMessage(errorMessageDiv, `Error saving data to Firestore: ${e.message}`);
+            }
+        }
+
+        // Add event listener for the form submission
+        postForm.addEventListener('submit', async function(event) {
+            // Prevent the default form submission behavior (page reload)
+            event.preventDefault();
+
+            // Clear previous messages and show loading state
+            displayMessage(requestStatusDiv, 'Sending request...');
+            displayMessage(errorMessageDiv, ''); // Clear error message
+
+            // Get the value from the input field
+            const dataToSend = postDataInput.value.trim();
+
+            // Check if the input is not empty
+            if (!dataToSend) {
+                displayMessage(requestStatusDiv, "Please enter some content to send and store.");
+                return; // Stop execution if no data
+            }
+
+            try {
+                // Send the POST request using the Fetch API to your PHP endpoint
+                const response = await fetch(serverEndpoint, {
+                    method: 'POST', // Specify the HTTP method as POST
+                    headers: {
+                        'Content-Type': 'application/json' // Indicate that we are sending JSON data
+                    },
+                    // Convert the data to a JSON string
+                    body: JSON.stringify({ title: dataToSend, body: 'This is a test post', userId: 1 })
+                });
+
+                // Check if the POST request was successful (status code 2xx)
+                if (response.ok) {
+                    // Since your PHP now returns HTML, we'll get the text response
+                    const responseText = await response.text();
+                    console.log("POST request successful. Server response (HTML):", responseText);
+
+                    // You could potentially display this HTML response in an iframe or a div
+                    // For now, we'll just log it and proceed to save to Firestore.
+                    // If you want to navigate to the PHP page, you'd remove the fetch and
+                    // change the form's action attribute: <form id="postForm" action="https://llamaworld.eu/livenews/news.php" method="POST">
+                    // and ensure the PHP expects form-urlencoded data, not JSON.
+
+                    // After successful POST, save the content to Firestore
+                    await savePostData(dataToSend);
+                    postDataInput.value = ''; // Clear the input field on success
+                } else {
+                    // Handle HTTP errors (e.g., 404, 500) from the POST request
+                    const errorText = await response.text(); // Get the error response body
+                    displayMessage(errorMessageDiv, `POST Error: ${response.status} ${response.statusText} - ${errorText}`);
+                    displayMessage(requestStatusDiv, 'Failed to send POST request. Check error message above.');
+                }
+            } catch (error) {
+                // Handle network errors (e.g., no internet, server not reachable) for the POST request
+                displayMessage(errorMessageDiv, `Network Error during POST: ${error.message}. Make sure the server is running and accessible.`);
+                displayMessage(requestStatusDiv, 'Failed to send POST request. Check error message above.');
+            }
+        });
+
+        // Initialize Firebase when the window loads
+        window.onload = initializeFirebase;
+    </script>
+</body>
+</html>
