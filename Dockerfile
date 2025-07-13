@@ -3,15 +3,18 @@
 FROM php:8.2-apache
 
 # Set the working directory inside the container
+# This is where your web server (Apache) will look for files
 WORKDIR /var/www/html
 
 # Copy your PHP file (news.php) into the container's web root
-# Assuming news.php is in the root of your GitHub repo
-COPY news.php .
+# IMPORTANT: The path here should be relative to the root of your GitHub repository.
+# Based on your screenshot, news.php is inside the 'livenews' directory.
+COPY livenews/news.php .
 
 # If you have other HTML/JS files that need to be served by Apache
-# COPY sending-page.html .
-# COPY displaying-page.html .
+# and are in the 'livenews' directory, you would copy them similarly:
+# COPY livenews/sending-page.html .
+# COPY livenews/displaying-page.html .
 
 # Expose port 80 (default for Apache)
 EXPOSE 80
